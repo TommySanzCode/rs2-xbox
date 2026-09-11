@@ -14,10 +14,12 @@ import json
 import os
 from pathlib import Path, PurePosixPath
 import re
+import runpy
 import shutil
 import struct
 import subprocess
 import sys
+import tempfile
 import zlib
 
 
@@ -34,6 +36,21 @@ def sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
+def atomic_stage(destination: Path, *, source: Path | None = None, data: bytes | None = None) -> None:
+    """Replace the directory entry, preserving any hardlinked test/input copy."""
+    descriptor, temporary_name = tempfile.mkstemp(prefix=".release-", suffix=".tmp", dir=destination.parent)
+    os.close(descriptor)
+    temporary = Path(temporary_name)
+    try:
+        if source is not None:
+            shutil.copy2(source, temporary)
+        else:
+            temporary.write_bytes(data or b"")
+        temporary.replace(destination)
+    finally:
+        temporary.unlink(missing_ok=True)
+
+
 def git(repo: Path, *args: str) -> bytes:
     return subprocess.check_output(["git", "-C", str(repo), *args], stderr=subprocess.PIPE)
 
@@ -46,7 +63,7 @@ def excluded(relative: str, *, dependency: bool = False) -> str | None:
     parts = PurePosixPath(relative).parts
     lower = tuple(part.lower() for part in parts)
     name = lower[-1]
-    if any(part in {".git", ".cache", "__pycache__"} for part in lower):
+    if any(part in {".git", ".cache", ".turbo", "__pycache__"} for part in lower):
         return "repository/cache metadata"
     if dependency:
         return None  # Preserve complete published dependency payloads and notices.
@@ -201,6 +218,14 @@ def main() -> None:
     add_tracked("Server225/engine", engine)
     add_tracked("Server225/content", content)
     add_tree(PACKAGES[1], "Server225/engine/data/pack", engine / "data" / "pack")
+    sanitize_scripts = runpy.run_path(str(source / "scripts" / "sanitize-server-scripts.py"))["sanitize_scripts"]
+    packed_scripts = engine / "data" / "pack" / "server"
+    script_data, script_index, script_stats = sanitize_scripts(
+        (packed_scripts / "script.dat").read_bytes(), (packed_scripts / "script.idx").read_bytes(), content)
+    for filename, data in (("script.dat", script_data), ("script.idx", script_index)):
+        relative = "Server225/engine/data/pack/server/" + filename
+        plan.pop(PACKAGES[1] + "/" + relative)
+        add(PACKAGES[1], relative, data=data)
     add_tree(PACKAGES[1], "Server225/engine/node_modules", engine / "node_modules", dependency=True)
     add(PACKAGES[1], "Server225/runtime/bun-windows-x64/bun.exe", workspace / "Server225" / "runtime" / "bun-windows-x64" / "bun.exe")
     for package in PACKAGES:
@@ -243,7 +268,7 @@ def main() -> None:
                 if relative != marker.name and relative not in plan and relative not in generated:
                     raise ValueError(f"Unexpected existing staging file; use a new output directory: {relative}")
     output.mkdir(parents=True, exist_ok=True)
-    marker.write_text(json.dumps({"tool": TOOL, "version": args.version, "schema": 1}) + "\n", encoding="utf-8")
+    atomic_stage(marker, data=(json.dumps({"tool": TOOL, "version": args.version, "schema": 1}) + "\n").encode())
 
     inventory: dict[str, dict] = {package: {} for package in PACKAGES}
     package_licenses = []
@@ -256,9 +281,9 @@ def main() -> None:
             old = destination.stat() if destination.exists() else None
             current = original.stat()
             if old is None or old.st_size != current.st_size or old.st_mtime_ns != current.st_mtime_ns:
-                shutil.copy2(original, destination)
+                atomic_stage(destination, source=original)
         else:
-            destination.write_bytes(data or b"")
+            atomic_stage(destination, data=data)
         package, relative = key.split("/", 1)
         inventory[package][relative] = {"bytes": destination.stat().st_size, "sha256": sha256(destination)}
         if relative.startswith("Server225/engine/node_modules/") and destination.name == "package.json":
@@ -275,8 +300,8 @@ def main() -> None:
             print(f"Staged and hashed {index}/{len(plan)} files", flush=True)
 
     runtime_inventory = output / PACKAGES[1] / "RUNTIME-LICENSES.json"
-    runtime_inventory.write_text(json.dumps({"bun_version": args.bun_version, "packages": package_licenses,
-        "note": "Package metadata and notice locations are recorded, not relicensed. Notices remain in the dependency folders."}, indent=2) + "\n", encoding="utf-8")
+    atomic_stage(runtime_inventory, data=(json.dumps({"bun_version": args.bun_version, "packages": package_licenses,
+        "note": "Package metadata and notice locations are recorded, not relicensed. Notices remain in the dependency folders."}, indent=2) + "\n").encode())
     inventory[PACKAGES[1]][runtime_inventory.name] = {"bytes": runtime_inventory.stat().st_size, "sha256": sha256(runtime_inventory)}
     patch = template / "patches" / "engine-local-bind.patch"
     pins = {"source_commit": revision(source), "source_working_tree_modified": bool(git(source, "status", "--porcelain")),
@@ -292,10 +317,11 @@ def main() -> None:
     missing_template = [path for path in required_template if not (output / PACKAGES[1] / path).is_file()]
     for package in PACKAGES:
         manifest = {"release": args.version, "package": package, "pins": pins, "engine_modified_tracked_paths": modified,
+                    "packed_script_metadata_sanitization": script_stats,
                     "latest_optimized_hardware_fps_verified": False, "missing_server_template_files": missing_template,
                     "excluded_tracked_files": exclusions, "file_count": len(inventory[package]),
                     "total_bytes": sum(item["bytes"] for item in inventory[package].values()), "files": inventory[package]}
-        (output / package / "MANIFEST.json").write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
+        atomic_stage(output / package / "MANIFEST.json", data=(json.dumps(manifest, indent=2) + "\n").encode())
         print(f"{package}: {manifest['file_count']} payload files, {manifest['total_bytes']} bytes; MANIFEST.json written", flush=True)
     if missing_template:
         print("Template incomplete; refresh before release: " + ", ".join(missing_template), file=sys.stderr)
