@@ -1,0 +1,110 @@
+[
+  {
+    "file": "nxdk-MIT.txt",
+    "source": "https://raw.githubusercontent.com/XboxDev/nxdk/29638d0b001f179b73c3513489af10ddc2986216/LICENSES/MIT.txt",
+    "sha256": "d62678ed4c712a4b33f043790f28b00a8d74986c3eba4e01b06f1ba767dcaabc"
+  },
+  {
+    "file": "nxdk-CC0-1.0.txt",
+    "source": "https://raw.githubusercontent.com/XboxDev/nxdk/29638d0b001f179b73c3513489af10ddc2986216/LICENSES/CC0-1.0.txt",
+    "sha256": "f4e7f373b9b996950337e8d41a4a2939c2d90b7725e9baf3d5084a22717ad328"
+  },
+  {
+    "file": "nxdk-NCSA.txt",
+    "source": "https://raw.githubusercontent.com/XboxDev/nxdk/29638d0b001f179b73c3513489af10ddc2986216/LICENSES/NCSA.txt",
+    "sha256": "4cf3f2a92019440c42e4decbae84c680e39e96b2559fc9161fcbcb3de45f1abd"
+  },
+  {
+    "file": "nxdk-Apache-2.0.txt",
+    "source": "https://raw.githubusercontent.com/XboxDev/nxdk/29638d0b001f179b73c3513489af10ddc2986216/LICENSES/Apache-2.0.txt",
+    "sha256": "9bf4e882bdd75e8d10fc788c53d0a787ef0f59cead1fe1f0878c240896fc8610"
+  },
+  {
+    "file": "PDCLib-CC0.txt",
+    "source": "https://raw.githubusercontent.com/XboxDev/nxdk-pdclib/679081d4725ab893d0ef7822111b5c5d05a572f5/COPYING.CC0",
+    "sha256": "f4e7f373b9b996950337e8d41a4a2939c2d90b7725e9baf3d5084a22717ad328"
+  },
+  {
+    "file": "lwIP-COPYING.txt",
+    "source": "https://raw.githubusercontent.com/lwip-tcpip/lwip/77dcd25a72509eb83f72b033d219b1d40cd8eb95/COPYING",
+    "sha256": "d51980b934e4411a8e0d80ce61afa28978bf0d49c50d0ee93f705679cb8a6042"
+  },
+  {
+    "file": "SDL2-COPYING.txt",
+    "source": "https://raw.githubusercontent.com/XboxDev/nxdk-sdl/2554902f7bbf469449216ee25f88016421271cd8/COPYING.txt",
+    "sha256": "a7c8d0b3167c502921192585a582eb8477ad9862330f4d8b9e4a8bb4c1a9d29e"
+  },
+  {
+    "file": "SDL_ttf-COPYING.txt",
+    "source": "https://raw.githubusercontent.com/libsdl-org/SDL_ttf/200901a8f55bcf7aa031157f53a575c942d2b7aa/COPYING.txt",
+    "sha256": "8d15afc2f598daeb35509393ef341236c73352a71baefb70f49bdd3ac2f6c07b"
+  },
+  {
+    "file": "SDL_image-COPYING.txt",
+    "source": "https://raw.githubusercontent.com/libsdl-org/SDL_image/ab2a9c602623193d61827ccd395302d92d90fc38/COPYING.txt",
+    "sha256": "45079362e2230154205413a6940544ca94e3479ccf76205c71c4f542a6815d25"
+  },
+  {
+    "file": "FreeType-LICENSE.txt",
+    "source": "https://raw.githubusercontent.com/libsdl-org/SDL_ttf/200901a8f55bcf7aa031157f53a575c942d2b7aa/external/freetype-2.4.12/docs/LICENSE.TXT",
+    "sha256": "18af1c0b2380b1aef30cce7b652a1a634ca9dde335752f8be93e2cef7cf4f726"
+  },
+  {
+    "file": "FreeType-FTL.txt",
+    "source": "https://raw.githubusercontent.com/libsdl-org/SDL_ttf/200901a8f55bcf7aa031157f53a575c942d2b7aa/external/freetype-2.4.12/docs/FTL.TXT",
+    "sha256": "93db264e083fa85b7494b3dd47a214a4043b37170d7079cd4b16eb05842f5eac"
+  },
+  {
+    "file": "FreeType-GPLv2.txt",
+    "source": "https://raw.githubusercontent.com/libsdl-org/SDL_ttf/200901a8f55bcf7aa031157f53a575c942d2b7aa/external/freetype-2.4.12/docs/GPLv2.TXT",
+    "sha256": "6046da9f0fbc470892625b2f1313f16b5ca375b5c869b3540ea7ef2ad8877a12"
+  },
+  {
+    "file": "libusbohci-Apache-2.0.txt",
+    "source": "https://raw.githubusercontent.com/XboxDev/libusbohci/6a0c5fefbcd9db53f4a27ee10df99f93d5bce745/LICENSE.txt",
+    "sha256": "49bbe9114e49214df2ccc324cb3ac8d1d1aa1c3a0947f94c286765e86647b32e"
+  },
+  {
+    "file": "libusbohci-DISCLAIMER.md",
+    "source": "https://raw.githubusercontent.com/XboxDev/libusbohci/6a0c5fefbcd9db53f4a27ee10df99f93d5bce745/DISCLAIMER.md",
+    "sha256": "29b70b3d03e754626d3084cd939f3a44d18c1b52cc59215cac10e0dce88d3b0e"
+  },
+  {
+    "file": "zlib-LICENSE.txt",
+    "source": "https://raw.githubusercontent.com/madler/zlib/51b7f2abdade71cd9bb0e7a373ef2610ec6f9daf/LICENSE",
+    "sha256": "18dbd37f0ab175c37877e9053ff870a7de2809a3e9b9673b2696aa5009264638"
+  },
+  {
+    "file": "libpng-LICENSE.txt",
+    "source": "https://raw.githubusercontent.com/glennrp/libpng/a40189cf881e9f0db80511c382292a5604c3c3d1/LICENSE",
+    "sha256": "0ad3bfee8be10e5519949e7af492e36bc349376b75fbeb412229a5967e3e9434"
+  },
+  {
+    "file": "libjpeg-turbo-LICENSE.md",
+    "source": "https://raw.githubusercontent.com/libjpeg-turbo/libjpeg-turbo/166e34213e4f4e2363ce058a7bcc69fd03e38b76/LICENSE.md",
+    "sha256": "ece0ec198cc224c5e20fa010fba5a9d5d8f3f325fae2db095cc822b5b577497d"
+  },
+  {
+    "file": "libjpeg-turbo-README.ijg",
+    "source": "https://raw.githubusercontent.com/libjpeg-turbo/libjpeg-turbo/166e34213e4f4e2363ce058a7bcc69fd03e38b76/README.ijg",
+    "sha256": "cde9bcd9bba47a04e0ebb93fda7d503733f9fb6db3a789bd79fb75087a7edd36"
+  },
+  {
+    "file": "nxdk-SOURCE-NOTICES.txt",
+    "source": "https://github.com/XboxDev/nxdk/tree/29638d0b001f179b73c3513489af10ddc2986216",
+    "method": "Extracted original notice comment blocks from tracked library source files; per-file URLs are included.",
+    "sha256": "da1d3afeeb821436b0914b1643273ba5343f2a3f07ba5804892261e6bde1cc56"
+  },
+  {
+    "file": "pdclib-SOURCE-NOTICES.txt",
+    "source": "https://github.com/XboxDev/nxdk-pdclib/tree/679081d4725ab893d0ef7822111b5c5d05a572f5",
+    "method": "Extracted original notice comment blocks from tracked library source files; per-file URLs are included.",
+    "sha256": "8167d70d281bdecc109a3a2868256808d475101c353405bc7f2298a965aca24f"
+  },
+  {
+    "file": "libusbohci-SOURCE-NOTICES.txt",
+    "source": "https://github.com/XboxDev/libusbohci/tree/6a0c5fefbcd9db53f4a27ee10df99f93d5bce745",
+    "method": "Extracted original notice comment blocks from tracked library source files; per-file URLs are included.",
+    "sha256": "bbef69c2d3fb2000bcfd94ca9a25b05b8b0a35dd547cf0eea2f4d0bbf42f89a7"
+  }
+]

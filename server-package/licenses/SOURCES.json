@@ -1,0 +1,82 @@
+[
+  {
+    "file": "Bun-1.4.2-LICENSE.md",
+    "source": "https://raw.githubusercontent.com/oven-sh/bun/744846f844374847c902b5e7fd59b4342a51ef99/LICENSE.md",
+    "sha256": "b9caf52728691b4057e371232c221a132883198be2f3d2ddf92c90404c984b1a"
+  },
+  {
+    "file": "Bun-1.4.2-uSockets-LICENSE.txt",
+    "source": "https://raw.githubusercontent.com/oven-sh/bun/744846f844374847c902b5e7fd59b4342a51ef99/packages/bun-usockets/LICENSE",
+    "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+  },
+  {
+    "file": "Bun-1.4.2-uWebSockets-LICENSE.txt",
+    "source": "https://raw.githubusercontent.com/oven-sh/bun/744846f844374847c902b5e7fd59b4342a51ef99/packages/bun-uws/LICENSE",
+    "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+  },
+  {
+    "file": "Bun-1.4.2-clap-LICENSE.txt",
+    "source": "https://raw.githubusercontent.com/oven-sh/bun/744846f844374847c902b5e7fd59b4342a51ef99/src/clap/LICENSE",
+    "sha256": "88d9b4eb60579c191ec391ca04c16130572d7eedc4a86daa58bf28c6e14c9bcd"
+  },
+  {
+    "file": "WebKit-JavaScriptCore-COPYING.LIB.txt",
+    "source": "https://raw.githubusercontent.com/oven-sh/WebKit/2e2aa2290fac856d6f451ceacb58f7f5b44dd057/Source/JavaScriptCore/COPYING.LIB",
+    "sha256": "5094ecb9c9dcd0eadc34f3c11511d9b5535063032bc150164ecd1a5d5a445547"
+  },
+  {
+    "file": "WebKit-WebCore-LICENSE-APPLE.txt",
+    "source": "https://raw.githubusercontent.com/oven-sh/WebKit/2e2aa2290fac856d6f451ceacb58f7f5b44dd057/Source/WebCore/LICENSE-APPLE",
+    "sha256": "0b5d3a7cc325942567373b0ecd757d07c132e0ebd7c97bfc63f7e1a76094edb4"
+  },
+  {
+    "file": "WebKit-WebCore-LICENSE-LGPL-2.txt",
+    "source": "https://raw.githubusercontent.com/oven-sh/WebKit/2e2aa2290fac856d6f451ceacb58f7f5b44dd057/Source/WebCore/LICENSE-LGPL-2",
+    "sha256": "7555fa34bc131a75ca56d65c40cc1ea8f9515d23e353d4c15d58573a042f7805"
+  },
+  {
+    "file": "WebKit-WebCore-LICENSE-LGPL-2.1.txt",
+    "source": "https://raw.githubusercontent.com/oven-sh/WebKit/2e2aa2290fac856d6f451ceacb58f7f5b44dd057/Source/WebCore/LICENSE-LGPL-2.1",
+    "sha256": "f2b3bd09663381deb99721109d22b47af1213bb43007a8b56a06c6375c8050ce"
+  },
+  {
+    "file": "WebKit-WTF-LICENSE-LLVM.txt",
+    "source": "https://raw.githubusercontent.com/oven-sh/WebKit/2e2aa2290fac856d6f451ceacb58f7f5b44dd057/Source/WTF/LICENSE-LLVM.txt",
+    "sha256": "f72b120d1385408e9e380acc020756eb6ba1b461d66c328ea67327ba08d7dcfd"
+  },
+  {
+    "file": "WebKit-WTF-LICENSE-dragonbox.txt",
+    "source": "https://raw.githubusercontent.com/oven-sh/WebKit/2e2aa2290fac856d6f451ceacb58f7f5b44dd057/Source/WTF/LICENSE-dragonbox.txt",
+    "sha256": "9bb1036ef8dcb42c59e2a23c9e465f43e75003e06898faf0edd18de662f3ecb8"
+  },
+  {
+    "file": "WebKit-WTF-LICENSE-libc++.txt",
+    "source": "https://raw.githubusercontent.com/oven-sh/WebKit/2e2aa2290fac856d6f451ceacb58f7f5b44dd057/Source/WTF/LICENSE-libc++.txt",
+    "sha256": "c1938c0e9e90639d1e8f5a7f6bebaab83a3642e0ee44295a4c69934686d0bda8"
+  },
+  {
+    "file": "WebKit-WTF-LICENSE-simde.txt",
+    "source": "https://raw.githubusercontent.com/oven-sh/WebKit/2e2aa2290fac856d6f451ceacb58f7f5b44dd057/Source/WTF/LICENSE-simde.txt",
+    "sha256": "75ce0a8c5a7bff42fbd6f8f3b469b518132132c4f4948fb8d02b1ccb5d0df9d8"
+  },
+  {
+    "file": "LostCity-Engine-MIT.txt",
+    "source": "https://raw.githubusercontent.com/LostCityRS/Engine-TS/e1dea19f256c7ff1a89d47024c811c755ad2184d/LICENSE",
+    "sha256": "cae6a5766b9ce591329da3a832633b2e989adc791e355f573b971b37c7199f93"
+  },
+  {
+    "file": "LostCity-Content-MIT.txt",
+    "source": "https://raw.githubusercontent.com/LostCityRS/Content/9901aa27b60198afac49012f45f32e4eb4d5c012/LICENSE",
+    "sha256": "cae6a5766b9ce591329da3a832633b2e989adc791e355f573b971b37c7199f93"
+  },
+  {
+    "file": "Kysely-Bun-SQLite-MIT.txt",
+    "source": "https://raw.githubusercontent.com/LostCityRS/Engine-TS/e1dea19f256c7ff1a89d47024c811c755ad2184d/src/db/dialect/LICENSE",
+    "sha256": "8274d4b204e98291c29a3b1f52222031234ed2cac776249bb540d3ba624a5120"
+  },
+  {
+    "file": "Engine-Bzip2-Wasm-LICENSE.txt",
+    "source": "https://raw.githubusercontent.com/LostCityRS/Engine-TS/e1dea19f256c7ff1a89d47024c811c755ad2184d/src/3rdparty/bzip2-wasm/LICENSE",
+    "sha256": "9102b70091e84168c468d57dcca64ec1f60c76cefbc83b66e1754725b9dd90cf"
+  }
+]

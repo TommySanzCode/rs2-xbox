@@ -1,0 +1,75 @@
+RuneScape 2 Xbox preview - v0.1.0-preview.1
+
+This package runs the revision-225 game server on a separate Windows x64 PC.
+The RS2-2004-Xbox package runs natively on a homebrew-capable original Xbox,
+targeting stock 64 MB RAM. Keep the PC running while you play.
+
+GET STARTED
+
+1. Fully extract RS2-2004-Server.zip and RS2-2004-Xbox.zip. The server runtime
+   and complete matching default game cache are included.
+
+2. In RS2-2004-Server, open Options.cmd to edit options.ini. Defaults work for
+   a normal LAN: automatic PC address, TCP port 43594, members enabled, and
+   normal XP. Choose any custom account settings before the first start.
+
+3. Open Start-Server.cmd and wait for the ready message. First setup creates
+   fresh RSA keys and a local account. With blank account options, it uses
+   the default username xboxplayer and generates a random password. Later
+   starts reuse the local account, keys, database, and saves.
+
+4. Find Xbox-config.ini beside Start-Server.cmd. Check its socketip setting
+   points to the PC's LAN address. If automatic detection chose a VPN or
+   another unsuitable adapter, stop the server, set server_address through
+   Options.cmd, and start again to regenerate this file.
+
+5. Copy Xbox-config.ini into the extracted RS2-2004-Xbox folder and rename
+   it config.ini, replacing the blank template beside default.xbe.
+
+6. FTP the whole RS2-2004-Xbox folder to your Xbox, for example under
+   E:\Games\. Keep default.xbe, config.ini, cache, and Roboto together.
+   Launch default.xbe from the Xbox dashboard, then press Start to log in.
+   The PC and Xbox must be on the same reachable LAN. If Windows Firewall
+   blocks access, allow the server's game TCP port on your private network.
+
+7. When finished, open Stop-Server.cmd. It requests the server's normal
+   player-save and shutdown sequence; it does not force-kill the process.
+
+OPTIONS
+
+server_address=auto     Detect the PC's LAN address, or enter it explicitly.
+game_port=43594         TCP game port, 35730-64030 (allows companion ports).
+members=1               1 enables members content; 0 selects free content.
+xp_rate=1               XP multiplier, 1-1000; 1 is the normal rate.
+account_username=      Blank uses/reuses the locally configured account.
+account_password=      Blank generates/reuses a local password.
+
+Custom usernames must contain 1-12 letters/digits. Custom passwords must contain
+1-20 letters, digits, spaces, underscores, or hyphens. Choose these before the
+first start. Recopy Xbox-config.ini after changing connection settings.
+
+Save options.ini, then stop and start the server to apply changes. Recopy the
+generated Xbox-config.ini whenever its connection or login settings change.
+Changing the password option after account creation is rejected rather than
+resetting the account. Leave the field blank to reuse its existing password.
+
+Logs are in Server225\runtime\. Keep the extracted server folder to retain
+your account, keys, and saves. Distributed archives contain no personal
+addresses, accounts, keys, or saves; those are generated locally. Your generated
+Xbox-config.ini contains a plaintext login, so keep configured copies private.
+
+XBOX CONTROLS
+
+Left stick: cursor                 Right stick: camera
+A: left click                     B: right click
+X: Ctrl/run modifier              Y: performance display
+Start: configured login           Back + Start: logout
+White: cycle fitted screen sizes  Black + left stick: slower cursor
+
+PREVIEW LIMITS
+
+Audio and controller text entry are not implemented. This is historical
+RuneScape 2 revision 225, not a client for current official OSRS worlds.
+An earlier filtered build was observed playing from Tutorial Island to
+Lumbridge at approximately 14-16 FPS. The latest optimized build passes
+build/tests, but its hardware frame rate has not yet been measured.

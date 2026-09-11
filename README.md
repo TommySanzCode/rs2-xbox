@@ -10,9 +10,16 @@ credited by its author. This repository adds Xbox controller, display, and build
 work to that foundation. See [CREDITS.md](CREDITS.md) for the people and projects
 behind the client, and [the license notices](docs/THIRD-PARTY.md) for component details.
 
-This repository contains source and build tools. Supply your own matching client
-cache in `rom/cache/client/`; game assets, account data, and configured packages
-are not included. See [third-party provenance and licensing](docs/THIRD-PARTY.md).
+Download the two ZIPs from [Releases](https://github.com/TommySanzCode/rs2-xbox/releases)
+for the built Xbox folder and a matching portable Windows server. The server
+includes **Start, Stop, Options, and Help** and generates your local login and
+Xbox configuration on first start. Follow [the release setup guide](docs/RELEASE.md).
+
+The Git repository contains source and build tools; release assets separately
+include the matching historical game cache. Source builds require that cache in
+`rom/cache/client/`. No personal accounts, keys, saves, or LAN addresses are shipped.
+See [third-party provenance and licensing](docs/THIRD-PARTY.md) and
+[server package notices](server-package/THIRD-PARTY.md).
 
 ## Build
 

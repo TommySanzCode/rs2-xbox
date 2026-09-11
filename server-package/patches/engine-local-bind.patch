@@ -1,0 +1,99 @@
+diff --git a/src/server/friend/FriendServer.ts b/src/server/friend/FriendServer.ts
+index 188b847..e38a0b1 100644
+--- a/src/server/friend/FriendServer.ts
++++ b/src/server/friend/FriendServer.ts
+@@ -71,7 +71,7 @@ export class FriendServer {
+     private socketByWorld: Record<number, WebSocket> = {};
+ 
+     constructor() {
+-        this.server = new WebSocketServer({ port: Environment.FRIEND_PORT, host: '0.0.0.0' }, () => {
++        this.server = new WebSocketServer({ port: Environment.FRIEND_PORT, host: Environment.FRIEND_BIND_HOST }, () => {
+             printInfo(`Friend server listening on port ${Environment.FRIEND_PORT}`);
+         });
+ 
+diff --git a/src/server/logger/LoggerServer.ts b/src/server/logger/LoggerServer.ts
+index eb5ff2e..768edce 100644
+--- a/src/server/logger/LoggerServer.ts
++++ b/src/server/logger/LoggerServer.ts
+@@ -10,7 +10,7 @@ export default class LoggerServer {
+     private server: WebSocketServer;
+ 
+     constructor() {
+-        this.server = new WebSocketServer({ port: Environment.LOGGER_PORT, host: '0.0.0.0' }, () => {
++        this.server = new WebSocketServer({ port: Environment.LOGGER_PORT, host: Environment.LOGGER_BIND_HOST }, () => {
+             printInfo(`Logger server listening on port ${Environment.LOGGER_PORT}`);
+         });
+ 
+diff --git a/src/server/login/LoginServer.ts b/src/server/login/LoginServer.ts
+index 555a7d6..f57e05d 100644
+--- a/src/server/login/LoginServer.ts
++++ b/src/server/login/LoginServer.ts
+@@ -147,7 +147,7 @@ export default class LoginServer {
+ 
+         InvType.load('data/pack');
+ 
+-        this.server = new WebSocketServer({ port: Environment.LOGIN_PORT, host: '0.0.0.0' }, () => {
++        this.server = new WebSocketServer({ port: Environment.LOGIN_PORT, host: Environment.LOGIN_BIND_HOST }, () => {
+             printInfo(`Login server listening on port ${Environment.LOGIN_PORT}`);
+         });
+ 
+diff --git a/src/util/Environment.ts b/src/util/Environment.ts
+index d639814..a980c14 100644
+--- a/src/util/Environment.ts
++++ b/src/util/Environment.ts
+@@ -9,6 +9,7 @@ export default {
+     WEBSITE_REGISTRATION: tryParseBoolean(process.env.WEBSITE_REGISTRATION, true),
+ 
+     /// web server
++    WEB_HOST: tryParseString(process.env.WEB_HOST, '0.0.0.0'),
+     WEB_PORT: tryParseInt(process.env.WEB_PORT, process.platform === 'win32' || process.platform === 'darwin' ? 80 : 8888),
+     WEB_ALLOWED_ORIGIN: tryParseString(process.env.WEB_ALLOWED_ORIGIN, ''),
+     // WEB_SOCKET_TOKEN_RPOTECTION tightens security somewhat by embedding a token in the
+@@ -20,6 +21,7 @@ export default {
+     WEB_SOCKET_TOKEN_PROTECTION: tryParseBoolean(process.env.WEB_SOCKET_TOKEN_PROTECTECTION, false),
+ 
+     // management server
++    WEB_MANAGEMENT_HOST: tryParseString(process.env.WEB_MANAGEMENT_HOST, '0.0.0.0'),
+     WEB_MANAGEMENT_PORT: tryParseInt(process.env.WEB_MANAGEMENT_PORT, 8898),
+ 
+     /// game server
+@@ -64,16 +66,19 @@ export default {
+ 
+     /// login server
+     LOGIN_SERVER: tryParseBoolean(process.env.LOGIN_SERVER, false),
++    LOGIN_BIND_HOST: tryParseString(process.env.LOGIN_BIND_HOST, '0.0.0.0'),
+     LOGIN_HOST: tryParseString(process.env.LOGIN_HOST, 'localhost'),
+     LOGIN_PORT: tryParseInt(process.env.LOGIN_PORT, 43500),
+ 
+     /// friends server
+     FRIEND_SERVER: tryParseBoolean(process.env.FRIEND_SERVER, false),
++    FRIEND_BIND_HOST: tryParseString(process.env.FRIEND_BIND_HOST, '0.0.0.0'),
+     FRIEND_HOST: tryParseString(process.env.FRIEND_HOST, 'localhost'),
+     FRIEND_PORT: tryParseInt(process.env.FRIEND_PORT, 45099),
+ 
+     /// logger server
+     LOGGER_SERVER: tryParseBoolean(process.env.LOGGER_SERVER, false),
++    LOGGER_BIND_HOST: tryParseString(process.env.LOGGER_BIND_HOST, '0.0.0.0'),
+     LOGGER_HOST: tryParseString(process.env.LOGGER_HOST, 'localhost'),
+     LOGGER_PORT: tryParseInt(process.env.LOGGER_PORT, 43501),
+ 
+diff --git a/src/web.ts b/src/web.ts
+index 7e23202..9c26f56 100644
+--- a/src/web.ts
++++ b/src/web.ts
+@@ -42,6 +42,7 @@ export type WebSocketRoutes = {
+ 
+ export async function startWeb() {
+     Bun.serve<WebSocketData, WebSocketRoutes>({
++        hostname: Environment.WEB_HOST,
+         port: Environment.WEB_PORT,
+         async fetch(req, server) {
+             const url = new URL(req.url ?? `', 'http://${req.headers.get('host')}`);
+@@ -166,6 +167,7 @@ export async function startWeb() {
+ 
+ export async function startManagementWeb() {
+     Bun.serve({
++        hostname: Environment.WEB_MANAGEMENT_HOST,
+         port: Environment.WEB_MANAGEMENT_PORT,
+         routes: {
+             '/prometheus': new Response(await register.metrics(), {

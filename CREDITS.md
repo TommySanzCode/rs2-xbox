@@ -6,7 +6,15 @@ This project builds on the work below. Source revisions, component license decla
 
 - **[lesleyrs](https://github.com/lesleyrs)** — primary author of [Client3](https://github.com/lesleyrs/Client3), the portable C99 RuneScape 2 revision-225 client. Its existing Xbox platform support is the starting point for this repository.
 - **Jagex and the original RuneScape team** — the original RuneScape game, client, and game content.
-- This repository adds Xbox display fitting and filtering, controller changes, cache validation, and build/test work to the inherited client. Game caches and server content are supplied separately.
+- This repository adds Xbox display fitting and filtering, controller changes, cache validation, and build/test work to the inherited client. Playable release archives include the matching historical game data separately from the Git source tree.
+
+## Portable server release
+
+- **[Lost City](https://github.com/LostCityRS), 2004Scape, and their contributors** — the [Engine-TS](https://github.com/LostCityRS/Engine-TS) server and [Content](https://github.com/LostCityRS/Content) project that power the matching revision-225 world.
+- **[Bun](https://github.com/oven-sh/bun), its contributors, and the JavaScriptCore/WebKit contributors** — the bundled Windows runtime.
+- **Dylan Blokhuis, Julian R Seward, and the authors of the server's installed dependencies** — the SQLite dialect, bzip2 implementation, and supporting libraries. Their original notices and package metadata remain included.
+
+See [the server package notices](server-package/THIRD-PARTY.md) for exact revisions, full license texts, and runtime source/rebuild references. The server's software licenses do not cover Jagex's game assets.
 
 ## Source projects and references
 

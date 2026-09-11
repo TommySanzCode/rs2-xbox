@@ -1,0 +1,474 @@
+Original source notice comment blocks, preserved with their source paths.
+
+
+
+FILE: inc/config.h
+SOURCE: https://github.com/XboxDev/libusbohci/blob/6a0c5fefbcd9db53f4a27ee10df99f93d5bce745/inc/config.h
+
+/**
+ * @file     config.h
+ * @version  V1.00
+ * @brief    This header file defines the configuration of USB Host library.
+ * @note
+ * SPDX-License-Identifier: Apache-2.0
+ * Copyright (C) 2018 Nuvoton Technology Corp. All rights reserved.
+ *****************************************************************************/
+
+/*** (C) COPYRIGHT 2018 Nuvoton Technology Corp. ***/
+
+FILE: inc/ehci.h
+SOURCE: https://github.com/XboxDev/libusbohci/blob/6a0c5fefbcd9db53f4a27ee10df99f93d5bce745/inc/ehci.h
+
+/**
+ * @file     ehci.h
+ * @version  V1.00
+ * @brief    USB EHCI host controller driver header file.
+ * @note
+ * SPDX-License-Identifier: Apache-2.0
+ * Copyright (C) 2017 Nuvoton Technology Corp. All rights reserved.
+ *****************************************************************************/
+
+FILE: inc/hub.h
+SOURCE: https://github.com/XboxDev/libusbohci/blob/6a0c5fefbcd9db53f4a27ee10df99f93d5bce745/inc/hub.h
+
+/**
+ * @file     hub.h
+ * @version  V1.00
+ * @brief    USB Host hub class driver header file.
+ * @note
+ * SPDX-License-Identifier: Apache-2.0
+ * Copyright (C) 2017 Nuvoton Technology Corp. All rights reserved.
+ *****************************************************************************/
+
+FILE: inc/ohci.h
+SOURCE: https://github.com/XboxDev/libusbohci/blob/6a0c5fefbcd9db53f4a27ee10df99f93d5bce745/inc/ohci.h
+
+/**
+ * @file     ohci.h
+ * @version  V1.00
+ * @brief    USB OHCI host controller driver header file.
+ * @note
+ * SPDX-License-Identifier: Apache-2.0
+ * Copyright (C) 2017 Nuvoton Technology Corp. All rights reserved.
+ *****************************************************************************/
+
+FILE: inc/usb.h
+SOURCE: https://github.com/XboxDev/libusbohci/blob/6a0c5fefbcd9db53f4a27ee10df99f93d5bce745/inc/usb.h
+
+/**
+ * @file     usb.h
+ * @version  V1.00
+ * @brief    USB Host library header file.
+ * @note
+ * SPDX-License-Identifier: Apache-2.0
+ * Copyright (C) 2017 Nuvoton Technology Corp. All rights reserved.
+ *****************************************************************************/
+
+FILE: inc/usbh_cdc.h
+SOURCE: https://github.com/XboxDev/libusbohci/blob/6a0c5fefbcd9db53f4a27ee10df99f93d5bce745/inc/usbh_cdc.h
+
+/**
+ * @file     usbh_cdc.h
+ * @version  V1.10
+ * @brief    USB Host CDC(Communication Device Class) driver header file.
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ * @copyright (C) 2019 Nuvoton Technology Corp. All rights reserved.
+ ******************************************************************************/
+
+/*** (C) COPYRIGHT 2019 Nuvoton Technology Corp. ***/
+
+FILE: inc/usbh_hid.h
+SOURCE: https://github.com/XboxDev/libusbohci/blob/6a0c5fefbcd9db53f4a27ee10df99f93d5bce745/inc/usbh_hid.h
+
+/**
+ * @file     usbh_hid.h
+ * @version  V1.10
+ * $Revision: 1 $
+ * $Date: 15/06/12 9:58a $
+ * @brief    USB Host HID class driver header file.
+ *
+ * @note
+ * SPDX-License-Identifier: Apache-2.0
+ * Copyright (C) 2017 Nuvoton Technology Corp. All rights reserved.
+ ******************************************************************************/
+
+/*** (C) COPYRIGHT 2017 Nuvoton Technology Corp. ***/
+
+FILE: inc/usbh_lib.h
+SOURCE: https://github.com/XboxDev/libusbohci/blob/6a0c5fefbcd9db53f4a27ee10df99f93d5bce745/inc/usbh_lib.h
+
+/**
+ * @file     usbh_lib.h
+ * @version  V1.10
+ * $Revision: 4 $
+ * $Date: 15/06/10 2:06p $
+ * @brief    USB Host library exported header file.
+ *
+ * @note
+ * SPDX-License-Identifier: Apache-2.0
+ * Copyright (C) 2017 Nuvoton Technology Corp. All rights reserved.
+ ******************************************************************************/
+
+/*** (C) COPYRIGHT 2017 Nuvoton Technology Corp. ***/
+
+FILE: inc/usbh_msc.h
+SOURCE: https://github.com/XboxDev/libusbohci/blob/6a0c5fefbcd9db53f4a27ee10df99f93d5bce745/inc/usbh_msc.h
+
+/*** (C) COPYRIGHT 2017 Nuvoton Technology Corp. ***/
+
+FILE: inc/usbh_uac.h
+SOURCE: https://github.com/XboxDev/libusbohci/blob/6a0c5fefbcd9db53f4a27ee10df99f93d5bce745/inc/usbh_uac.h
+
+/**
+ * @file     usbh_uac.h
+ * @version  V1.10
+ * $Revision: 1 $
+ * $Date: 15/06/12 9:58a $
+ * @brief    USB Host UAC class driver header file.
+ *
+ * @note
+ * SPDX-License-Identifier: Apache-2.0
+ * Copyright (C) 2017 Nuvoton Technology Corp. All rights reserved.
+ ******************************************************************************/
+
+/*** (C) COPYRIGHT 2017 Nuvoton Technology Corp. ***/
+
+FILE: inc/usbh_uvc.h
+SOURCE: https://github.com/XboxDev/libusbohci/blob/6a0c5fefbcd9db53f4a27ee10df99f93d5bce745/inc/usbh_uvc.h
+
+/*** (C) COPYRIGHT 2018 Nuvoton Technology Corp. ***/
+
+FILE: src_cdc/cdc_core.c
+SOURCE: https://github.com/XboxDev/libusbohci/blob/6a0c5fefbcd9db53f4a27ee10df99f93d5bce745/src_cdc/cdc_core.c
+
+/**
+ * @file     cdc_core.c
+ * @version  V1.00
+ * @brief    N9H30 MCU USB Host CDC library core
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ * @copyright (C) 2019 Nuvoton Technology Corp. All rights reserved.
+*****************************************************************************/
+
+/*** (C) COPYRIGHT 2019~2022 Nuvoton Technology Corp. ***/
+
+FILE: src_cdc/cdc_driver.c
+SOURCE: https://github.com/XboxDev/libusbohci/blob/6a0c5fefbcd9db53f4a27ee10df99f93d5bce745/src_cdc/cdc_driver.c
+
+/**
+ * @file     cdc_driver.c
+ * @version  V1.00
+ * @brief    N9H30 MCU USB Host CDC driver
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ * @copyright (C) 2019 Nuvoton Technology Corp. All rights reserved.
+*****************************************************************************/
+
+/*** (C) COPYRIGHT 2019~2022 Nuvoton Technology Corp. ***/
+
+FILE: src_cdc/cdc_parser.c
+SOURCE: https://github.com/XboxDev/libusbohci/blob/6a0c5fefbcd9db53f4a27ee10df99f93d5bce745/src_cdc/cdc_parser.c
+
+/**
+ * @file     cdc_parser.c
+ * @version  V1.00
+ * @brief    N9H30 MCU USB Host CDC Class driver
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ * @copyright (C) 2019 Nuvoton Technology Corp. All rights reserved.
+*****************************************************************************/
+
+/*** (C) COPYRIGHT 2019~2022 Nuvoton Technology Corp. ***/
+
+FILE: src_core/ehci.c
+SOURCE: https://github.com/XboxDev/libusbohci/blob/6a0c5fefbcd9db53f4a27ee10df99f93d5bce745/src_core/ehci.c
+
+/**
+ * @file     ehci.c
+ * @version  V1.10
+ * $Revision: 11 $
+ * $Date: 14/10/03 1:54p $
+ * @brief   USB Host library EHCI (USB 2.0) host controller driver.
+ *
+ * @note
+ * SPDX-License-Identifier: Apache-2.0
+ * Copyright (C) 2017 Nuvoton Technology Corp. All rights reserved.
+*****************************************************************************/
+
+/*** (C) COPYRIGHT 2017 Nuvoton Technology Corp. ***/
+
+FILE: src_core/ehci_iso.c
+SOURCE: https://github.com/XboxDev/libusbohci/blob/6a0c5fefbcd9db53f4a27ee10df99f93d5bce745/src_core/ehci_iso.c
+
+/**
+ * @file     ehci_iso.c
+ * @version  V1.10
+ * $Revision: 11 $
+ * $Date: 14/10/03 1:54p $
+ * @brief   USB EHCI isochornous transfer driver.
+ *
+ * @note
+ * SPDX-License-Identifier: Apache-2.0
+ * Copyright (C) 2017 Nuvoton Technology Corp. All rights reserved.
+*****************************************************************************/
+
+/*** (C) COPYRIGHT 2017 Nuvoton Technology Corp. ***/
+
+FILE: src_core/hub.c
+SOURCE: https://github.com/XboxDev/libusbohci/blob/6a0c5fefbcd9db53f4a27ee10df99f93d5bce745/src_core/hub.c
+
+/**
+ * @file     hub.c
+ * @version  V1.10
+ * $Revision: 11 $
+ * $Date: 14/10/03 1:54p $
+ * @brief   USB Host library hub class driver.
+ *
+ * @note
+ * SPDX-License-Identifier: Apache-2.0
+ * Copyright (C) 2017 Nuvoton Technology Corp. All rights reserved.
+*****************************************************************************/
+
+/*** (C) COPYRIGHT 2017 Nuvoton Technology Corp. ***/
+
+FILE: src_core/mem_alloc.c
+SOURCE: https://github.com/XboxDev/libusbohci/blob/6a0c5fefbcd9db53f4a27ee10df99f93d5bce745/src_core/mem_alloc.c
+
+/**
+ * @file     mem_alloc.c
+ * @version  V1.10
+ * $Revision: 11 $
+ * $Date: 14/10/03 1:54p $
+ * @brief   USB host library memory allocation functions.
+ *
+ * @note
+ * SPDX-License-Identifier: Apache-2.0
+ * Copyright (C) 2018 Nuvoton Technology Corp. All rights reserved.
+*****************************************************************************/
+
+/*** (C) COPYRIGHT 2018 Nuvoton Technology Corp. ***/
+
+FILE: src_core/ohci.c
+SOURCE: https://github.com/XboxDev/libusbohci/blob/6a0c5fefbcd9db53f4a27ee10df99f93d5bce745/src_core/ohci.c
+
+/**
+ * @file     ohci.c
+ * @version  V1.10
+ * $Revision: 11 $
+ * $Date: 14/10/03 1:54p $
+ * @brief   USB Host library OHCI (USB 1.1) host controller driver.
+ *
+ * @note
+ * SPDX-License-Identifier: Apache-2.0
+ * Copyright (C) 2017 Nuvoton Technology Corp. All rights reserved.
+*****************************************************************************/
+
+/*** (C) COPYRIGHT 2017 Nuvoton Technology Corp. ***/
+
+FILE: src_core/support.c
+SOURCE: https://github.com/XboxDev/libusbohci/blob/6a0c5fefbcd9db53f4a27ee10df99f93d5bce745/src_core/support.c
+
+/**
+ * @file     support.c
+ * @version  V1.10
+ * $Revision: 11 $
+ * $Date: 14/10/03 1:54p $
+ * @brief  Functions to support USB host driver.
+ *
+ * @note
+ * SPDX-License-Identifier: Apache-2.0
+ * Copyright (C) 2018 Nuvoton Technology Corp. All rights reserved.
+*****************************************************************************/
+
+FILE: src_core/usb_core.c
+SOURCE: https://github.com/XboxDev/libusbohci/blob/6a0c5fefbcd9db53f4a27ee10df99f93d5bce745/src_core/usb_core.c
+
+/**
+ * @file     usb_core.c
+ * @version  V1.10
+ * $Revision: 11 $
+ * $Date: 14/10/03 1:54p $
+ * @brief   USB Host library core.
+ *
+ * @note
+ * SPDX-License-Identifier: Apache-2.0
+ * Copyright (C) 2018 Nuvoton Technology Corp. All rights reserved.
+*****************************************************************************/
+
+/*** (C) COPYRIGHT 2017 Nuvoton Technology Corp. ***/
+
+FILE: src_hid/hid_core.c
+SOURCE: https://github.com/XboxDev/libusbohci/blob/6a0c5fefbcd9db53f4a27ee10df99f93d5bce745/src_hid/hid_core.c
+
+/**
+ * @file     hid_core.c
+ * @version  V1.00
+ * $Revision: 13 $
+ * $Date: 14/12/02 5:47p $
+ * @brief    N9H30 USB Host HID driver.
+ *
+ * @note
+ * SPDX-License-Identifier: Apache-2.0
+ * Copyright (C) 2017 Nuvoton Technology Corp. All rights reserved.
+*****************************************************************************/
+
+/*** (C) COPYRIGHT 2017 Nuvoton Technology Corp. ***/
+
+FILE: src_hid/hid_driver.c
+SOURCE: https://github.com/XboxDev/libusbohci/blob/6a0c5fefbcd9db53f4a27ee10df99f93d5bce745/src_hid/hid_driver.c
+
+/**
+ * @file     hid_driver.c
+ * @version  V1.00
+ * $Revision: 11 $
+ * $Date: 14/12/02 5:47p $
+ * @brief    N9H30 MCU USB Host HID driver
+ *
+ * @note
+ * SPDX-License-Identifier: Apache-2.0
+ * Copyright (C) 2016 Nuvoton Technology Corp. All rights reserved.
+*****************************************************************************/
+
+/*** (C) COPYRIGHT 2016 Nuvoton Technology Corp. ***/
+
+FILE: src_msc/msc_driver.c
+SOURCE: https://github.com/XboxDev/libusbohci/blob/6a0c5fefbcd9db53f4a27ee10df99f93d5bce745/src_msc/msc_driver.c
+
+/**
+ * @file     msc_driver.c
+ * @version  V1.00
+ * $Revision: 4 $
+ * $Date: 14/10/07 4:33p $
+ * @brief    Lightweight USB mass storage class driver
+ *
+ * @note
+ * SPDX-License-Identifier: Apache-2.0
+ * Copyright (C) 2017 Nuvoton Technology Corp. All rights reserved.
+ * Copyright (C) 2021 Ryan Wendland (remove FATFS requirement)
+*****************************************************************************/
+
+/*** (C) COPYRIGHT 2017 Nuvoton Technology Corp. ***/
+
+FILE: src_msc/msc_xfer.c
+SOURCE: https://github.com/XboxDev/libusbohci/blob/6a0c5fefbcd9db53f4a27ee10df99f93d5bce745/src_msc/msc_xfer.c
+
+/**
+ * @file     msc_xfer.c
+ * @version  V1.00
+ * $Revision: 4 $
+ * $Date: 14/10/07 4:33p $
+ * @brief    Lightweight USB mass storage class transfer layer
+ *
+ * @note
+ * SPDX-License-Identifier: Apache-2.0
+ * Copyright (C) 2017 Nuvoton Technology Corp. All rights reserved.
+*****************************************************************************/
+
+/*** (C) COPYRIGHT 2017 Nuvoton Technology Corp. ***/
+
+FILE: src_uac/uac.h
+SOURCE: https://github.com/XboxDev/libusbohci/blob/6a0c5fefbcd9db53f4a27ee10df99f93d5bce745/src_uac/uac.h
+
+/*** (C) COPYRIGHT 2017 Nuvoton Technology Corp. ***/
+
+FILE: src_uac/uac_core.c
+SOURCE: https://github.com/XboxDev/libusbohci/blob/6a0c5fefbcd9db53f4a27ee10df99f93d5bce745/src_uac/uac_core.c
+
+/**
+ * @file     uac_core.c
+ * @version  V1.00
+ * $Revision: 2 $
+ * $Date: 15/06/12 10:12a $
+ * @brief    N9H30 MCU USB Host Audio Class driver
+ *
+ * @note
+ * SPDX-License-Identifier: Apache-2.0
+ * Copyright (C) 2016 Nuvoton Technology Corp. All rights reserved.
+*****************************************************************************/
+
+/*** (C) COPYRIGHT 2016 Nuvoton Technology Corp. ***/
+
+FILE: src_uac/uac_driver.c
+SOURCE: https://github.com/XboxDev/libusbohci/blob/6a0c5fefbcd9db53f4a27ee10df99f93d5bce745/src_uac/uac_driver.c
+
+/**
+ * @file     uac_driver.c
+ * @version  V1.00
+ * $Revision: 2 $
+ * $Date: 15/06/12 10:12a $
+ * @brief    N9H30 MCU USB Host Audio Class driver
+ *
+ * @note     Support mono and stero audio input and output.
+ * SPDX-License-Identifier: Apache-2.0
+ * Copyright (C) 2016 Nuvoton Technology Corp. All rights reserved.
+*****************************************************************************/
+
+/*** (C) COPYRIGHT 2016 Nuvoton Technology Corp. ***/
+
+FILE: src_uac/uac_parser.c
+SOURCE: https://github.com/XboxDev/libusbohci/blob/6a0c5fefbcd9db53f4a27ee10df99f93d5bce745/src_uac/uac_parser.c
+
+/**
+ * @file     uac_parser.c
+ * @version  V1.00
+ * $Revision: 1 $
+ * $Date: 15/06/10 2:03p $
+ * @brief    N9H30 MCU USB Host Audio Class driver
+ *
+ * @note
+ * SPDX-License-Identifier: Apache-2.0
+ * Copyright (C) 2016 Nuvoton Technology Corp. All rights reserved.
+*****************************************************************************/
+
+/*** (C) COPYRIGHT 2016 Nuvoton Technology Corp. ***/
+
+FILE: src_uvc/uvc_core.c
+SOURCE: https://github.com/XboxDev/libusbohci/blob/6a0c5fefbcd9db53f4a27ee10df99f93d5bce745/src_uvc/uvc_core.c
+
+/**
+ * @file     uvc_core.c
+ * @version  V1.00
+ * $Revision: 2 $
+ * $Date: 15/06/12 10:12a $
+ * @brief    N9H30 MCU USB Host Video Class driver
+ *
+ * @note
+ * SPDX-License-Identifier: Apache-2.0
+ * Copyright (C) 2018 Nuvoton Technology Corp. All rights reserved.
+*****************************************************************************/
+
+/*** (C) COPYRIGHT 2018 Nuvoton Technology Corp. ***/
+
+FILE: src_uvc/uvc_driver.c
+SOURCE: https://github.com/XboxDev/libusbohci/blob/6a0c5fefbcd9db53f4a27ee10df99f93d5bce745/src_uvc/uvc_driver.c
+
+/**
+ * @file     uvc_driver.c
+ * @version  V1.00
+ * $Revision: 2 $
+ * $Date: 15/06/12 10:12a $
+ * @brief    N9H30 MCU USB Host Video Class driver
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ * Copyright (C) 2018 Nuvoton Technology Corp. All rights reserved.
+*****************************************************************************/
+
+/*** (C) COPYRIGHT 2018 Nuvoton Technology Corp. ***/
+
+FILE: src_uvc/uvc_parser.c
+SOURCE: https://github.com/XboxDev/libusbohci/blob/6a0c5fefbcd9db53f4a27ee10df99f93d5bce745/src_uvc/uvc_parser.c
+
+/**
+ * @file     uvc_parser.c
+ * @version  V1.00
+ * $Revision: 1 $
+ * $Date: 15/06/10 2:03p $
+ * @brief    N9H30 MCU USB Host Video Class driver
+ *
+ * @note
+ * SPDX-License-Identifier: Apache-2.0
+ * Copyright (C) 2018 Nuvoton Technology Corp. All rights reserved.
+*****************************************************************************/
+
+/*** (C) COPYRIGHT 2018 Nuvoton Technology Corp. ***/

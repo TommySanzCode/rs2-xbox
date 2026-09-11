@@ -7,6 +7,10 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 ALLOWED_BINARY = {'rom/Roboto/Roboto-Bold.ttf', 'tests/fixtures/client225-crc.bin'}
+ALLOWED_INI = {'xbox-config.example.ini', 'server-package/options.ini'}
+# Preserve the pinned upstream notice byte-for-byte (copyright symbol 0xA9).
+# This exception changes text decoding only; all privacy checks still apply.
+TEXT_ENCODINGS = {'release-notices/xbox/FreeType-FTL.txt': 'latin-1'}
 FORBIDDEN_PARTS = {'.deps', 'build', 'dist', 'node_modules', 'runtime', 'players', 'saves', '.git'}
 FORBIDDEN_SUFFIXES = {'.xbe', '.iso', '.zip', '.exe', '.dll', '.obj', '.o', '.d', '.rdi', '.log', '.pem', '.key', '.pfx', '.sqlite', '.sqlite3', '.db', '.pyc'}
 IPV4 = re.compile(r'(?<![\w.])(?:\d{1,3}\.){3}\d{1,3}(?![\w.])')
@@ -47,13 +51,13 @@ def check(files):
         path = PurePosixPath(name)
         if (set(path.parts) & FORBIDDEN_PARTS or path.suffix.lower() in FORBIDDEN_SUFFIXES or
             name.startswith('rom/cache/') or path.name == 'config.ini' or path.name.startswith('.env') or
-            (path.suffix.lower() == '.ini' and path.name != 'xbox-config.example.ini')):
+            (path.suffix.lower() == '.ini' and name not in ALLOWED_INI)):
             issues.append((name, 'private or generated file'))
             continue
         if name in ALLOWED_BINARY:
             continue
         try:
-            text = payload.decode('utf-8')
+            text = payload.decode(TEXT_ENCODINGS.get(name, 'utf-8'))
         except UnicodeDecodeError:
             issues.append((name, 'unexpected binary file'))
             continue
@@ -70,8 +74,14 @@ def check(files):
                 issues.append((name, 'non-loopback IP address'))
                 break
         if path.suffix.lower() == '.ini':
-            if re.search(r'^[ \t]*(?:username|password|rsa_modulus|rsa_exponent)[ \t]*=[ \t]*\S', text, re.M | re.I):
+            if re.search(r'^[ \t]*(?:(?:account_)?(?:username|password)|rsa_modulus|rsa_exponent)[ \t]*=[ \t]*\S', text, re.M | re.I):
                 issues.append((name, 'nonempty private configuration field'))
+        if name == 'server-package/options.ini':
+            for field in ('account_username', 'account_password'):
+                values = re.findall(r'^[ \t]*' + field + r'[ \t]*=[ \t]*(.*)$', text, re.M | re.I)
+                if len(values) != 1 or values[0].strip():
+                    issues.append((name, 'server options require one blank value for each account field'))
+                    break
     return issues
 
 def main():

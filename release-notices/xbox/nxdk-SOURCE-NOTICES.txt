@@ -1,0 +1,1329 @@
+Original source notice comment blocks, preserved with their source paths.
+
+
+
+FILE: lib/hal/audio.c
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/hal/audio.c
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2003 Andy Green
+// SPDX-FileCopyrightText: 2004 Craig Edwards
+// SPDX-FileCopyrightText: 2005-2006 Richard Osborne
+// SPDX-FileCopyrightText: 2006 Guillaume Lamonoca
+// SPDX-FileCopyrightText: 2017-2020 Jannik Vogel
+// SPDX-FileCopyrightText: 2020-2021 Stefan Schmidt
+
+FILE: lib/hal/audio.h
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/hal/audio.h
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2003 Andy Green
+// SPDX-FileCopyrightText: 2004 Craig Edwards
+// SPDX-FileCopyrightText: 2019-2021 Stefan Schmidt
+// SPDX-FileCopyrightText: 2020 Jannik Vogel
+// SPDX-FileCopyrightText: 2021 Bennet Blischke
+
+FILE: lib/hal/debug.c
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/hal/debug.c
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2004 Craig Edwards
+// SPDX-FileCopyrightText: 2005 Robin Mulloy
+// SPDX-FileCopyrightText: 2006 Richard Osborne
+// SPDX-FileCopyrightText: 2019-2021 Stefan Schmidt
+// SPDX-FileCopyrightText: 2019-2020 Jannik Vogel
+// SPDX-FileCopyrightText: 2020 Bennet Blischke
+// SPDX-FileCopyrightText: 2020 Matthew Lawson
+// SPDX-FileCopyrightText: 2021 Ryan Wendland
+
+FILE: lib/hal/debug.h
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/hal/debug.h
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2004 Craig Edwards
+// SPDX-FileCopyrightText: 2005 Robin Mulloy
+// SPDX-FileCopyrightText: 2005 Tom Burns
+// SPDX-FileCopyrightText: 2006 Richard Osborne
+
+// SPDX-FileCopyrightText: 2019-2021 Stefan Schmidt
+// SPDX-FileCopyrightText: 2019 Jannik Vogel
+// SPDX-FileCopyrightText: 2020 Bennet Blischke
+// SPDX-FileCopyrightText: 2020 Matthew Lawson
+
+FILE: lib/hal/fileio.c
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/hal/fileio.c
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2004 Craig Edwards
+// SPDX-FileCopyrightText: 2006 Richard Osborne
+// SPDX-FileCopyrightText: 2017-2020 Stefan Schmidt
+// SPDX-FileCopyrightText: 2019 Lucas Jansson
+// SPDX-FileCopyrightText: 2019 Jannik Vogel
+
+FILE: lib/hal/fileio.h
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/hal/fileio.h
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2004 Craig Edwards
+// SPDX-FileCopyrightText: 2017-2020 Stefan Schmidt
+
+FILE: lib/hal/font_terminal.h
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/hal/font_terminal.h
+
+/*
+	https://github.com/dhepper/font8x8
+	; Summary: font8_8.asm
+	; 8x8 monochrome bitmap fonts for rendering
+	;
+	; Author:
+	;     Marcel Sondaar
+	;     International Business Machines (public domain VGA fonts)
+	;
+	; License:
+	;     Public Domain
+	;
+	*/
+
+FILE: lib/hal/font_unscii_16.h
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/hal/font_unscii_16.h
+
+// Converted from http://pelulamu.net/unscii/ (unscii-16.hex)
+// License: Public Domain.
+
+FILE: lib/hal/led.c
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/hal/led.c
+
+/*
+  Copyright and related rights waived by Lucas Eriksson via CC0
+  https://creativecommons.org/publicdomain/zero/1.0/
+*/
+
+FILE: lib/hal/video.c
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/hal/video.c
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2005 Robin Mulloy
+// SPDX-FileCopyrightText: 2006 Tom Burns
+// SPDX-FileCopyrightText: 2006 Guillaume Lamonoca
+// SPDX-FileCopyrightText: 2006 Richard Osborne
+// SPDX-FileCopyrightText: 2017-2020 Jannik Vogel
+// SPDX-FileCopyrightText: 2019 Lucas Jansson
+// SPDX-FileCopyrightText: 2021 Kosmas Raptis
+// SPDX-FileCopyrightText: 2021 GXTX
+// SPDX-FileCopyrightText: 2021 Stefan Schmidt
+// SPDX-FileCopyrightText: 2022 Ryan Wendland
+
+FILE: lib/hal/video.h
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/hal/video.h
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2005 Robin Mulloy
+// SPDX-FileCopyrightText: 2006 Tom Burns
+// SPDX-FileCopyrightText: 2006 Richard Osborne
+// SPDX-FileCopyrightText: 2017-2021 Stefan Schmidt
+// SPDX-FileCopyrightText: 2019 Lucas Jansson
+// SPDX-FileCopyrightText: 2020 Jannik Vogel
+// SPDX-FileCopyrightText: 2022 Ryan Wendland
+
+FILE: lib/hal/xbox.c
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/hal/xbox.c
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2004 Craig Edwards
+// SPDX-FileCopyrightText: 2006 Richard Osborne
+// SPDX-FileCopyrightText: 2017-2020 Stefan Schmidt
+// SPDX-FileCopyrightText: 2022-2025 Erik Abair
+
+FILE: lib/hal/xbox.h
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/hal/xbox.h
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2004 Craig Edwards
+// SPDX-FileCopyrightText: 2005 Robin Mulloy
+// SPDX-FileCopyrightText: 2005 Tom Burns
+// SPDX-FileCopyrightText: 2019-2021 Stefan Schmidt
+// SPDX-FileCopyrightText: 2022 Erik Abair
+
+FILE: lib/libpng/pnglibconf.h
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/libpng/pnglibconf.h
+
+/* Copyright (c) 2018-2019 Cosmin Truta */
+
+/* Copyright (c) 1998-2002,2004,2006-2018 Glenn Randers-Pehrson */
+
+/* This code is released under the libpng license. */
+
+/* and license in png.h */
+
+FILE: lib/net/nforceif/include/arch/cc.h
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/net/nforceif/include/arch/cc.h
+
+/*
+ * Copyright (c) 2001-2003 Swedish Institute of Computer Science.
+ * Copyright (c) 2015 Matt Borgerson
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without modification,
+ * are permitted provided that the following conditions are met:
+ *
+ * 1. Redistributions of source code must retain the above copyright notice,
+ *    this list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright notice,
+ *    this list of conditions and the following disclaimer in the documentation
+ *    and/or other materials provided with the distribution.
+ * 3. The name of the author may not be used to endorse or promote products
+ *    derived from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR IMPLIED
+ * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+ * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT
+ * SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT
+ * OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING
+ * IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
+ * OF SUCH DAMAGE.
+ *
+ * This file is part of the lwIP TCP/IP stack.
+ *
+ * Author: Adam Dunkels <adam@sics.se>
+ * Xbox Support: Matt Borgerson
+ *
+ */
+
+FILE: lib/net/nforceif/include/arch/sys_arch.h
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/net/nforceif/include/arch/sys_arch.h
+
+/*
+ * Copyright (c) 2001-2003 Swedish Institute of Computer Science.
+ * Copyright (c) 2015 Matt Borgerson
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without modification,
+ * are permitted provided that the following conditions are met:
+ *
+ * 1. Redistributions of source code must retain the above copyright notice,
+ *    this list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright notice,
+ *    this list of conditions and the following disclaimer in the documentation
+ *    and/or other materials provided with the distribution.
+ * 3. The name of the author may not be used to endorse or promote products
+ *    derived from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR IMPLIED
+ * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+ * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT
+ * SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT
+ * OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING
+ * IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
+ * OF SUCH DAMAGE.
+ *
+ * This file is part of the lwIP TCP/IP stack.
+ *
+ * Author: Adam Dunkels <adam@sics.se>
+ * Xbox Support: Matt Borgerson
+ *
+ */
+
+FILE: lib/net/nforceif/include/lwipopts.h
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/net/nforceif/include/lwipopts.h
+
+/*
+ * Copyright (c) 2001-2004 Swedish Institute of Computer Science.
+ * Copyright (c) 2015 Matt Borgerson
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without modification,
+ * are permitted provided that the following conditions are met:
+ *
+ * 1. Redistributions of source code must retain the above copyright notice,
+ *    this list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright notice,
+ *    this list of conditions and the following disclaimer in the documentation
+ *    and/or other materials provided with the distribution.
+ * 3. The name of the author may not be used to endorse or promote products
+ *    derived from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR IMPLIED
+ * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+ * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT
+ * SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT
+ * OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING
+ * IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
+ * OF SUCH DAMAGE.
+ *
+ * This file is part of the lwIP TCP/IP stack.
+ *
+ * Author: Adam Dunkels <adam@sics.se>
+ * Xbox Support: Matt Borgerson
+ *
+ */
+
+FILE: lib/net/nforceif/src/sys_arch.c
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/net/nforceif/src/sys_arch.c
+
+/*
+ * Copyright (c) 2001-2003 Swedish Institute of Computer Science.
+ * Copyright (c) 2015 Matt Borgerson
+ *
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without modification,
+ * are permitted provided that the following conditions are met:
+ *
+ * 1. Redistributions of source code must retain the above copyright notice,
+ *    this list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright notice,
+ *    this list of conditions and the following disclaimer in the documentation
+ *    and/or other materials provided with the distribution.
+ * 3. The name of the author may not be used to endorse or promote products
+ *    derived from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR IMPLIED
+ * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+ * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT
+ * SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT
+ * OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING
+ * IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
+ * OF SUCH DAMAGE.
+ *
+ * This file is part of the lwIP TCP/IP stack.
+ *
+ * Author: Adam Dunkels <adam@sics.se>
+ * Xbox Support: Matt Borgerson
+ *
+ */
+
+FILE: lib/net/nvnetdrv/nvnetdrv.c
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/net/nvnetdrv/nvnetdrv.c
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2022 Stefan Schmidt
+// SPDX-FileCopyrightText: 2022 Ryan Wendland
+
+FILE: lib/net/nvnetdrv/nvnetdrv.h
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/net/nvnetdrv/nvnetdrv.h
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2022 Stefan Schmidt
+// SPDX-FileCopyrightText: 2022 Ryan Wendland
+
+FILE: lib/net/nvnetdrv/nvnetdrv_lwip.c
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/net/nvnetdrv/nvnetdrv_lwip.c
+
+// SPDX-License-Identifier: BSD
+
+// SPDX-FileCopyrightText: 2001-2004 Swedish Institute of Computer Science.
+// SPDX-FileCopyrightText: 2015 Matt Borgerson
+// SPDX-FileCopyrightText: 2022 Stefan Schmidt
+// SPDX-FileCopyrightText: 2022 Ryan Wendland
+
+FILE: lib/nxdk/automount_d.c
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/nxdk/automount_d.c
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2019-2022 Stefan Schmidt
+
+FILE: lib/nxdk/configsector.c
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/nxdk/configsector.c
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2021 Luke Usher
+// SPDX-FileCopyrightText: 2022 Stefan Schmidt
+
+FILE: lib/nxdk/configsector.h
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/nxdk/configsector.h
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2021 Luke Usher
+// SPDX-FileCopyrightText: 2022 Stefan Schmidt
+
+FILE: lib/nxdk/fatx.h
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/nxdk/fatx.h
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2021 Stefan Schmidt
+
+FILE: lib/nxdk/format.c
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/nxdk/format.c
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2021-2022 Stefan Schmidt
+// SPDX-FileCopyrightText: 2021 GXTX
+
+FILE: lib/nxdk/format.h
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/nxdk/format.h
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2021 Stefan Schmidt
+
+FILE: lib/nxdk/mount.c
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/nxdk/mount.c
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2019-2020 Stefan Schmidt
+// SPDX-FileCopyrightText: 2020 Kosmas Raptis
+
+FILE: lib/nxdk/mount.h
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/nxdk/mount.h
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2019-2020 Stefan Schmidt
+
+FILE: lib/nxdk/net.c
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/nxdk/net.c
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2022 Stefan Schmidt
+
+FILE: lib/nxdk/path.c
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/nxdk/path.c
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2019 Stefan Schmidt
+
+FILE: lib/nxdk/path.h
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/nxdk/path.h
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2019 Stefan Schmidt
+// SPDX-FileCopyrightText: 2020 Lucas Jansson
+
+FILE: lib/nxdk/xbe.c
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/nxdk/xbe.c
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2022 Stefan Schmidt
+
+FILE: lib/nxdk/xbe.h
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/nxdk/xbe.h
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2022 Stefan Schmidt
+
+FILE: lib/pbkit/pbkit.c
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/pbkit/pbkit.c
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2007 Guillaume Lamonoca
+// SPDX-FileCopyrightText: 2017 espes
+// SPDX-FileCopyrightText: 2017-2020 Jannik Vogel
+// SPDX-FileCopyrightText: 2018-2022 Stefan Schmidt
+// SPDX-FileCopyrightText: 2019 Lucas Jansson
+// SPDX-FileCopyrightText: 2021 Erik Abair
+
+FILE: lib/pbkit/pbkit.h
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/pbkit/pbkit.h
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2007 Guillaume Lamonoca
+// SPDX-FileCopyrightText: 2017 espes
+// SPDX-FileCopyrightText: 2017-2020 Jannik Vogel
+// SPDX-FileCopyrightText: 2018-2022 Stefan Schmidt
+// SPDX-FileCopyrightText: 2019 Lucas Jansson
+// SPDX-FileCopyrightText: 2021 Erik Abair
+
+FILE: lib/pbkit/pbkit_dma.c
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/pbkit/pbkit_dma.c
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2007 Guillaume Lamonoca
+// SPDX-FileCopyrightText: 2017 espes
+// SPDX-FileCopyrightText: 2017-2020 Jannik Vogel
+// SPDX-FileCopyrightText: 2018-2022 Stefan Schmidt
+// SPDX-FileCopyrightText: 2019 Lucas Jansson
+// SPDX-FileCopyrightText: 2021-2025 Erik Abair
+
+FILE: lib/pbkit/pbkit_dma.h
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/pbkit/pbkit_dma.h
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2007 Guillaume Lamonoca
+// SPDX-FileCopyrightText: 2017 espes
+// SPDX-FileCopyrightText: 2017-2020 Jannik Vogel
+// SPDX-FileCopyrightText: 2018-2022 Stefan Schmidt
+// SPDX-FileCopyrightText: 2019 Lucas Jansson
+// SPDX-FileCopyrightText: 2021-2025 Erik Abair
+
+FILE: lib/pbkit/pbkit_draw.c
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/pbkit/pbkit_draw.c
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2007 Guillaume Lamonoca
+// SPDX-FileCopyrightText: 2017 espes
+// SPDX-FileCopyrightText: 2017-2020 Jannik Vogel
+// SPDX-FileCopyrightText: 2018-2022 Stefan Schmidt
+// SPDX-FileCopyrightText: 2019 Lucas Jansson
+// SPDX-FileCopyrightText: 2021-2025 Erik Abair
+
+FILE: lib/pbkit/pbkit_draw.h
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/pbkit/pbkit_draw.h
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2007 Guillaume Lamonoca
+// SPDX-FileCopyrightText: 2017 espes
+// SPDX-FileCopyrightText: 2017-2020 Jannik Vogel
+// SPDX-FileCopyrightText: 2018-2022 Stefan Schmidt
+// SPDX-FileCopyrightText: 2019 Lucas Jansson
+// SPDX-FileCopyrightText: 2021-2025 Erik Abair
+
+FILE: lib/pbkit/pbkit_framebuffer.h
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/pbkit/pbkit_framebuffer.h
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2007 Guillaume Lamonoca
+// SPDX-FileCopyrightText: 2017 espes
+// SPDX-FileCopyrightText: 2017-2020 Jannik Vogel
+// SPDX-FileCopyrightText: 2018-2022 Stefan Schmidt
+// SPDX-FileCopyrightText: 2019 Lucas Jansson
+// SPDX-FileCopyrightText: 2021-2025 Erik Abair
+
+FILE: lib/pbkit/pbkit_gamma.c
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/pbkit/pbkit_gamma.c
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2007 Guillaume Lamonoca
+// SPDX-FileCopyrightText: 2025 Stefan Schmidt
+
+FILE: lib/pbkit/pbkit_gamma.h
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/pbkit/pbkit_gamma.h
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2007 Guillaume Lamonoca
+// SPDX-FileCopyrightText: 2025 Stefan Schmidt
+
+FILE: lib/pbkit/pbkit_print.c
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/pbkit/pbkit_print.c
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2007 Guillaume Lamonoca
+// SPDX-FileCopyrightText: 2017 espes
+// SPDX-FileCopyrightText: 2017-2020 Jannik Vogel
+// SPDX-FileCopyrightText: 2018-2022 Stefan Schmidt
+// SPDX-FileCopyrightText: 2019 Lucas Jansson
+// SPDX-FileCopyrightText: 2021-2025 Erik Abair
+
+FILE: lib/pbkit/pbkit_print.h
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/pbkit/pbkit_print.h
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2007 Guillaume Lamonoca
+// SPDX-FileCopyrightText: 2017 espes
+// SPDX-FileCopyrightText: 2017-2020 Jannik Vogel
+// SPDX-FileCopyrightText: 2018-2022 Stefan Schmidt
+// SPDX-FileCopyrightText: 2019 Lucas Jansson
+// SPDX-FileCopyrightText: 2021-2025 Erik Abair
+
+FILE: lib/pbkit/pbkit_pushbuffer.c
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/pbkit/pbkit_pushbuffer.c
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2007 Guillaume Lamonoca
+// SPDX-FileCopyrightText: 2017 espes
+// SPDX-FileCopyrightText: 2017-2020 Jannik Vogel
+// SPDX-FileCopyrightText: 2018-2022 Stefan Schmidt
+// SPDX-FileCopyrightText: 2019 Lucas Jansson
+// SPDX-FileCopyrightText: 2021-2025 Erik Abair
+
+FILE: lib/pbkit/pbkit_pushbuffer.h
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/pbkit/pbkit_pushbuffer.h
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2007 Guillaume Lamonoca
+// SPDX-FileCopyrightText: 2017 espes
+// SPDX-FileCopyrightText: 2017-2020 Jannik Vogel
+// SPDX-FileCopyrightText: 2018-2022 Stefan Schmidt
+// SPDX-FileCopyrightText: 2019 Lucas Jansson
+// SPDX-FileCopyrightText: 2021-2025 Erik Abair
+
+FILE: lib/sdl/ftoption.h
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/sdl/ftoption.h
+
+/*  Copyright 1996-2017 by                                                 */
+
+/*  license, LICENSE.TXT.  By continuing to use, modify, or distribute     */
+
+/*  this file you indicate that you have read the license and              */
+
+/* describe the font, like family name, copyright, version, etc.  It     */
+
+FILE: lib/usb/libusbohci_xbox/usbh_config_xbox.h
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/usb/libusbohci_xbox/usbh_config_xbox.h
+
+/**
+ * @file     usbh_config_xbox.h
+ * @version  V1.00
+ * @brief    This header file defines the configuration of USB Host library.
+ * @note
+ * SPDX-License-Identifier: Apache-2.0
+ * Copyright (C) 2018 Nuvoton Technology Corp. All rights reserved.
+ * Copyright (C) 2021 Ryan Wendland (Xbox port)
+ *****************************************************************************/
+
+FILE: lib/usb/libusbohci_xbox/xid_driver.c
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/usb/libusbohci_xbox/xid_driver.c
+
+//Copyright 2020, Ryan Wendland
+//SPDX-License-Identifier: MIT
+
+FILE: lib/usb/libusbohci_xbox/xid_driver.h
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/usb/libusbohci_xbox/xid_driver.h
+
+//Copyright 2020, Ryan Wendland
+//SPDX-License-Identifier: MIT
+
+FILE: lib/winapi/badptr.c
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/winapi/badptr.c
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2020 Jannik Vogel
+
+FILE: lib/winapi/basetsd.h
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/winapi/basetsd.h
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2020 Jannik Vogel
+
+FILE: lib/winapi/debug.c
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/winapi/debug.c
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2019 Jannik Vogel
+// SPDX-FileCopyrightText: 2019 Stefan Schmidt
+
+FILE: lib/winapi/debugapi.h
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/winapi/debugapi.h
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2019 Stefan Schmidt
+
+FILE: lib/winapi/errhandlingapi.c
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/winapi/errhandlingapi.c
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2019 Stefan Schmidt
+
+FILE: lib/winapi/errhandlingapi.h
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/winapi/errhandlingapi.h
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2019 Stefan Schmidt
+
+FILE: lib/winapi/error.c
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/winapi/error.c
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2019 Stefan Schmidt
+
+FILE: lib/winapi/fiber.c
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/winapi/fiber.c
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2019-2022 Stefan Schmidt
+
+FILE: lib/winapi/fibersapi.h
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/winapi/fibersapi.h
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2019 Stefan Schmidt
+
+FILE: lib/winapi/fibersapi_internal_.h
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/winapi/fibersapi_internal_.h
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2019 Stefan Schmidt
+
+FILE: lib/winapi/fileapi.h
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/winapi/fileapi.h
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2019-2022 Stefan Schmidt
+// SPDX-FileCopyrightText: 2021 Erik Abair
+
+FILE: lib/winapi/fileio.c
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/winapi/fileio.c
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2019-2021 Stefan Schmidt
+
+FILE: lib/winapi/filemanip.c
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/winapi/filemanip.c
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2019-2022 Stefan Schmidt
+// SPDX-FileCopyrightText: 2021 Erik Abair
+
+FILE: lib/winapi/findfile.c
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/winapi/findfile.c
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2019-2020 Stefan Schmidt
+
+FILE: lib/winapi/handleapi.c
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/winapi/handleapi.c
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2019 Stefan Schmidt
+
+FILE: lib/winapi/handleapi.h
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/winapi/handleapi.h
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2019 Stefan Schmidt
+
+FILE: lib/winapi/ioapi.c
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/winapi/ioapi.c
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2023 Ryan Wendland
+
+FILE: lib/winapi/libloaderapi.c
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/winapi/libloaderapi.c
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2020 Jannik Vogel
+// SPDX-FileCopyrightText: 2021 Stefan Schmidt
+
+FILE: lib/winapi/libloaderapi.h
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/winapi/libloaderapi.h
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2020 Jannik Vogel
+
+FILE: lib/winapi/memory.c
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/winapi/memory.c
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2019-2020 Stefan Schmidt
+
+FILE: lib/winapi/memoryapi.h
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/winapi/memoryapi.h
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2019 Stefan Schmidt
+
+FILE: lib/winapi/minwinbase.h
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/winapi/minwinbase.h
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2019-2020 Stefan Schmidt
+// SPDX-FileCopyrightText: 2020 Samuel Cuella
+
+FILE: lib/winapi/process.h
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/winapi/process.h
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2019 Stefan Schmidt
+
+FILE: lib/winapi/processthreadsapi.h
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/winapi/processthreadsapi.h
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2019-2021 Stefan Schmidt
+
+FILE: lib/winapi/profileapi.h
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/winapi/profileapi.h
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2019 Stefan Schmidt
+
+FILE: lib/winapi/profiling.c
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/winapi/profiling.c
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2019-2025 Stefan Schmidt
+
+FILE: lib/winapi/shlobj.h
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/winapi/shlobj.h
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2020 Jannik Vogel
+
+FILE: lib/winapi/shlobj_core.c
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/winapi/shlobj_core.c
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2020 Jannik Vogel
+
+FILE: lib/winapi/shlobj_core.h
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/winapi/shlobj_core.h
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2020 Jannik Vogel
+
+FILE: lib/winapi/sync.c
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/winapi/sync.c
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2019-2020 Stefan Schmidt
+// SPDX-FileCopyrightText: 2020 Jannik Vogel
+// SPDX-FileCopyrightText: 2022 Ryan Wendland
+
+FILE: lib/winapi/synchapi.h
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/winapi/synchapi.h
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2019-2020 Stefan Schmidt
+// SPDX-FileCopyrightText: 2020 Jannik Vogel
+// SPDX-FileCopyrightText: 2022 Ryan Wendland
+
+FILE: lib/winapi/sysinfo.c
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/winapi/sysinfo.c
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2019 Stefan Schmidt
+// SPDX-FileCopyrightText: 2020 Samuel Cuella
+// SPDX-FileCopyrightText: 2023 Ryan Wendland
+
+FILE: lib/winapi/sysinfoapi.h
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/winapi/sysinfoapi.h
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2019 Stefan Schmidt
+// SPDX-FileCopyrightText: 2020 Samuel Cuella
+
+FILE: lib/winapi/thread.c
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/winapi/thread.c
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2019-2021 Stefan Schmidt
+
+FILE: lib/winapi/timezoneapi.c
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/winapi/timezoneapi.c
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2023 Ryan Wendland
+// SPDX-FileCopyrightText: 2025 Stefan Schmidt
+
+FILE: lib/winapi/timezoneapi.h
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/winapi/timezoneapi.h
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2023 Ryan Wendland
+// SPDX-FileCopyrightText: 2025 Stefan Schmidt
+
+FILE: lib/winapi/tls.c
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/winapi/tls.c
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2019 Stefan Schmidt
+
+FILE: lib/winapi/winapifamily.h
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/winapi/winapifamily.h
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2019 Stefan Schmidt
+
+FILE: lib/winapi/winbase.h
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/winapi/winbase.h
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2019-2020 Stefan Schmidt
+// SPDX-FileCopyrightText: 2019-2020 Jannik Vogel
+
+FILE: lib/winapi/windef.h
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/winapi/windef.h
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2019-2021 Stefan Schmidt
+// SPDX-FileCopyrightText: 2019-2020 Jannik Vogel
+
+FILE: lib/winapi/windows.h
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/winapi/windows.h
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2019-2020 Stefan Schmidt
+// SPDX-FileCopyrightText: 2020 Jannik Vogel
+
+FILE: lib/winapi/winerror.h
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/winapi/winerror.h
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2004 Craig Edwards
+
+FILE: lib/winapi/winmm/mmsystem.h
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/winapi/winmm/mmsystem.h
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2020 Jannik Vogel
+
+FILE: lib/winapi/winmm/timeapi.c
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/winapi/winmm/timeapi.c
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2020 Jannik Vogel
+
+FILE: lib/winapi/winmm/timeapi.h
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/winapi/winmm/timeapi.h
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2020 Jannik Vogel
+// SPDX-FileCopyrightText: 2021 Stefan Schmidt
+
+FILE: lib/winapi/winnt.c
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/winapi/winnt.c
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2021 Stefan Schmidt
+
+FILE: lib/winapi/winnt.h
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/winapi/winnt.h
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2019 Jannik Vogel
+// SPDX-FileCopyrightText: 2019-2024 Stefan Schmidt
+// SPDX-FileCopyrightText: 2021 Lucas Jansson
+
+FILE: lib/xboxkrnl/ntstatus.h
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/xboxkrnl/ntstatus.h
+
+// SPDX-License-Identifier: CC0-1.0
+
+// SPDX-FileCopyrightText: 2020-2021 Stefan Schmidt
+// SPDX-FileCopyrightText: 2021 RadWolfie
+// SPDX-FileCopyrightText: 2022 Ryan Wendland
+
+FILE: lib/xboxkrnl/xboxdef.h
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/xboxkrnl/xboxdef.h
+
+// SPDX-License-Identifier: CC0-1.0
+
+// SPDX-FileCopyrightText: 2019-2024 Stefan Schmidt
+// SPDX-FileCopyrightText: 2019-2020 Jannik Vogel
+// SPDX-FileCopyrightText: 2019 Matt Borgerson
+// SPDX-FileCopyrightText: 2022 RadWolfie
+
+FILE: lib/xboxkrnl/xboxkrnl.h
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/xboxkrnl/xboxkrnl.h
+
+// SPDX-License-Identifier: CC0-1.0
+
+// SPDX-FileCopyrightText: 2017-2023 Stefan Schmidt
+// SPDX-FileCopyrightText: 2018-2021 Jannik Vogel
+// SPDX-FileCopyrightText: 2018 Sean Koppenhafer
+// SPDX-FileCopyrightText: 2022-2025 Erik Abair
+
+FILE: lib/xboxrt/c_runtime/_alldiv.s
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/xboxrt/c_runtime/_alldiv.s
+
+// SPDX-License-Identifier: MIT OR NCSA
+
+// SPDX-FileCopyrightText: 2008 Stephen Canon
+// SPDX-FileCopyrightText: 2018-2021 Stefan Schmidt
+
+FILE: lib/xboxrt/c_runtime/_allmul.s
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/xboxrt/c_runtime/_allmul.s
+
+// SPDX-License-Identifier: MIT OR NCSA
+
+// SPDX-FileCopyrightText: 2008 Stephen Canon
+// SPDX-FileCopyrightText: 2018-2021 Stefan Schmidt
+
+FILE: lib/xboxrt/c_runtime/_allrem.s
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/xboxrt/c_runtime/_allrem.s
+
+// SPDX-License-Identifier: MIT OR NCSA
+
+// SPDX-FileCopyrightText: 2008 Stephen Canon
+// SPDX-FileCopyrightText: 2018-2021 Stefan Schmidt
+
+FILE: lib/xboxrt/c_runtime/_allshl.s
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/xboxrt/c_runtime/_allshl.s
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2018-2021 Stefan Schmidt
+
+FILE: lib/xboxrt/c_runtime/_allshr.s
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/xboxrt/c_runtime/_allshr.s
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2018-2021 Stefan Schmidt
+
+FILE: lib/xboxrt/c_runtime/_aulldiv.s
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/xboxrt/c_runtime/_aulldiv.s
+
+// SPDX-License-Identifier: MIT OR NCSA
+
+// SPDX-FileCopyrightText: 2008 Stephen Canon
+// SPDX-FileCopyrightText: 2018-2021 Stefan Schmidt
+
+FILE: lib/xboxrt/c_runtime/_aullrem.s
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/xboxrt/c_runtime/_aullrem.s
+
+// SPDX-License-Identifier: MIT OR NCSA
+
+// SPDX-FileCopyrightText: 2008 Stephen Canon
+// SPDX-FileCopyrightText: 2018-2021 Stefan Schmidt
+
+FILE: lib/xboxrt/c_runtime/_aullshl.s
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/xboxrt/c_runtime/_aullshl.s
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2018-2021 Stefan Schmidt
+
+FILE: lib/xboxrt/c_runtime/_aullshr.s
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/xboxrt/c_runtime/_aullshr.s
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2018-2021 Stefan Schmidt
+
+FILE: lib/xboxrt/c_runtime/_fltused.c
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/xboxrt/c_runtime/_fltused.c
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2018-2021 Stefan Schmidt
+
+FILE: lib/xboxrt/c_runtime/check_stack.c
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/xboxrt/c_runtime/check_stack.c
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2018-2021 Stefan Schmidt
+// SPDX-FileCopyrightText: 2020 Jannik Vogel
+
+FILE: lib/xboxrt/c_runtime/chkstk.s
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/xboxrt/c_runtime/chkstk.s
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2018-2021 Stefan Schmidt
+
+FILE: lib/xboxrt/libc_extensions/crtdbg.h
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/xboxrt/libc_extensions/crtdbg.h
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2020 Jannik Vogel
+
+FILE: lib/xboxrt/libc_extensions/ctype_ext_.h
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/xboxrt/libc_extensions/ctype_ext_.h
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2019 Stefan Schmidt
+
+FILE: lib/xboxrt/libc_extensions/direct.c
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/xboxrt/libc_extensions/direct.c
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2023 ExoSkye
+// SPDX-FileCopyrightText: 2025 Ryan Wendland
+
+// Made referencing https://www.digitalmars.com/rtl/direct.html, retrieved 2023-06-10, copyrighted 1999-2018 by Digital Mars
+
+FILE: lib/xboxrt/libc_extensions/direct.h
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/xboxrt/libc_extensions/direct.h
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2020 Jannik Vogel
+
+FILE: lib/xboxrt/libc_extensions/errno_ext_.h
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/xboxrt/libc_extensions/errno_ext_.h
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2019 Stefan Schmidt
+
+FILE: lib/xboxrt/libc_extensions/locale_ext_.h
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/xboxrt/libc_extensions/locale_ext_.h
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2019 Stefan Schmidt
+
+FILE: lib/xboxrt/libc_extensions/malloc.h
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/xboxrt/libc_extensions/malloc.h
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2020 Stefan Schmidt
+
+FILE: lib/xboxrt/libc_extensions/stdio_ext_.h
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/xboxrt/libc_extensions/stdio_ext_.h
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2019 Stefan Schmidt
+
+FILE: lib/xboxrt/libc_extensions/stdlib_ext_.c
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/xboxrt/libc_extensions/stdlib_ext_.c
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2019-2021 Stefan Schmidt
+
+FILE: lib/xboxrt/libc_extensions/stdlib_ext_.h
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/xboxrt/libc_extensions/stdlib_ext_.h
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2019-2021 Stefan Schmidt
+// SPDX-FileCopyrightText: 2020 Jannik Vogel
+
+FILE: lib/xboxrt/libc_extensions/string_ext_.c
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/xboxrt/libc_extensions/string_ext_.c
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2019-2020 Stefan Schmidt
+
+FILE: lib/xboxrt/libc_extensions/string_ext_.h
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/xboxrt/libc_extensions/string_ext_.h
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2019-2020 Stefan Schmidt
+
+FILE: lib/xboxrt/libc_extensions/strings.c
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/xboxrt/libc_extensions/strings.c
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2015 espes
+
+FILE: lib/xboxrt/libc_extensions/strings.h
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/xboxrt/libc_extensions/strings.h
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2015 espes
+
+FILE: lib/xboxrt/libc_extensions/tchar.h
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/xboxrt/libc_extensions/tchar.h
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2020 Stefan Schmidt
+
+FILE: lib/xboxrt/libc_extensions/unistd.h
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/xboxrt/libc_extensions/unistd.h
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2017 Matt Borgerson
+
+FILE: lib/xboxrt/libc_extensions/wchar.c
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/xboxrt/libc_extensions/wchar.c
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2019 Sean Koppenhafer
+// SPDX-FileCopyrightText: 2019 Stefan Schmidt
+
+FILE: lib/xboxrt/libc_extensions/wchar.h
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/xboxrt/libc_extensions/wchar.h
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2019 Sean Koppenhafer
+// SPDX-FileCopyrightText: 2019 Stefan Schmidt
+
+FILE: lib/xboxrt/libc_extensions/wchar_ext_.c
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/xboxrt/libc_extensions/wchar_ext_.c
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2019 Stefan Schmidt
+
+FILE: lib/xboxrt/libc_extensions/wchar_ext_.h
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/xboxrt/libc_extensions/wchar_ext_.h
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2019 Stefan Schmidt
+
+FILE: lib/xboxrt/libc_extensions/wctype_ext_.c
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/xboxrt/libc_extensions/wctype_ext_.c
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2019 Stefan Schmidt
+
+FILE: lib/xboxrt/prelude.s.inc
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/xboxrt/prelude.s.inc
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2021 Stefan Schmidt
+
+FILE: lib/xboxrt/vcruntime/eh.cpp
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/xboxrt/vcruntime/eh.cpp
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2020 Stefan Schmidt
+
+FILE: lib/xboxrt/vcruntime/eh.h
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/xboxrt/vcruntime/eh.h
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2020 Stefan Schmidt
+
+FILE: lib/xboxrt/vcruntime/excpt.cpp
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/xboxrt/vcruntime/excpt.cpp
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2020-2023 Stefan Schmidt
+// SPDX-FileCopyrightText: 2021 Lucas Jansson
+
+FILE: lib/xboxrt/vcruntime/excpt.h
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/xboxrt/vcruntime/excpt.h
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2020 Stefan Schmidt
+// SPDX-FileCopyrightText: 2022 RadWolfie
+
+FILE: lib/xboxrt/vcruntime/purecall.c
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/xboxrt/vcruntime/purecall.c
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2019-2021 Stefan Schmidt
+
+FILE: lib/xboxrt/vcruntime/stack_protection.c
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/xboxrt/vcruntime/stack_protection.c
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2021 Stefan Schmidt
+
+FILE: lib/xboxrt/vcruntime/threadsafe_statics.c
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/xboxrt/vcruntime/threadsafe_statics.c
+
+// SPDX-License-Identifier: CC0-1.0
+
+// SPDX-FileCopyrightText: 2019 Timo Kreuzer
+// SPDX-FileCopyrightText: 2020 Stefan Schmidt
+
+FILE: lib/xboxrt/vcruntime/vcruntime_exception.cpp
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/xboxrt/vcruntime/vcruntime_exception.cpp
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2019 Stefan Schmidt
+
+FILE: lib/xboxrt/vcruntime/vcruntime_exception.h
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/xboxrt/vcruntime/vcruntime_exception.h
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2019 Stefan Schmidt
+
+FILE: lib/xboxrt/vcruntime/vcruntime_typeinfo.cpp
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/xboxrt/vcruntime/vcruntime_typeinfo.cpp
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2019-2020 Stefan Schmidt
+
+FILE: lib/xboxrt/vcruntime/vcruntime_typeinfo.h
+SOURCE: https://github.com/XboxDev/nxdk/blob/29638d0b001f179b73c3513489af10ddc2986216/lib/xboxrt/vcruntime/vcruntime_typeinfo.h
+
+// SPDX-License-Identifier: MIT
+
+// SPDX-FileCopyrightText: 2019-2020 Stefan Schmidt

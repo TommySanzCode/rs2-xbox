@@ -21,7 +21,7 @@ The upstream [references document at the recorded base](https://github.com/lesle
 - [RuneWiki/rs-deob](https://github.com/RuneWiki/rs-deob): unmodified Java deobfuscations.
 - [The Client2 OpenGL comparison](https://github.com/2004Scape/Client2/compare/main...dennisdev:Client2:feature/webgl2): an OpenGL renderer reference.
 
-Those are upstream attribution references, not separately verified import commits. The original RuneScape client and game originate with Jagex. Game caches and server content are supplied separately by the user; this source export does not contain them.
+Those are upstream attribution references, not separately verified import commits. The original RuneScape client and game originate with Jagex. Game caches and server content are separate from the tracked client source and may accompany the project's playable release assets. The server package's [third-party inventory](../server-package/THIRD-PARTY.md) preserves the distinction between Lost City's MIT source code and Jagex-owned assets. The Xbox binary's [runtime notices](../release-notices/xbox/README.md) accompany its linked SDK components; the SDK source remains an external build dependency.
 
 ## Bundled source components
 

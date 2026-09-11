@@ -1,0 +1,7 @@
+# Dependencies and runtime data are assembled into the release separately.
+/Server225/engine/
+/Server225/content/
+/Server225/runtime/
+
+# The initializer generates a configuration containing local account settings.
+/Xbox-config.ini

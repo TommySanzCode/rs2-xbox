@@ -8,3 +8,8 @@
 *.ini text eol=lf
 *.bin binary
 *.ttf binary
+
+# Keep imported notices and patch context byte-exact, including upstream spacing.
+release-notices/xbox/** -text -whitespace
+server-package/licenses/** -text -whitespace
+server-package/patches/*.patch -text -whitespace
