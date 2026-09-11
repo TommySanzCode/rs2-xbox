@@ -1,0 +1,33 @@
+# Dependencies and generated files
+/.deps/
+/build/
+/dist/
+*.xbe
+*.iso
+*.zip
+*.exe
+*.dll
+*.obj
+*.o
+*.d
+*.rdi
+*.log
+__pycache__/
+*.pyc
+
+# Game assets and private connection/account settings
+/rom/cache/
+/rom/config.ini
+/config.ini
+*.local.*
+.env
+.env.*
+*.pem
+*.key
+*.pfx
+*.sqlite
+*.sqlite3
+*.db
+/saves/
+/players/
+.DS_Store
