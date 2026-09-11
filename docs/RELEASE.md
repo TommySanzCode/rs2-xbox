@@ -14,6 +14,7 @@ and Jagex accounts are not used.
 ## Set up and play
 
 1. Fully extract both archives. Keep each extracted folder's contents together.
+   Use a short destination such as `C:\RS2\` to avoid Windows path-length limits.
 2. Open `RS2-2004-Server/Options.cmd` to edit `options.ini` if needed. The defaults
    detect the PC's LAN address and use game TCP port `43594`, members content,
    and normal XP. Choose custom account settings before the first start.

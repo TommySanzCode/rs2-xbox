@@ -8,6 +8,7 @@ GET STARTED
 
 1. Fully extract RS2-2004-Server.zip and RS2-2004-Xbox.zip. The server runtime
    and complete matching default game cache are included.
+   Use a short destination such as C:\RS2\ to avoid Windows path-length limits.
 
 2. In RS2-2004-Server, open Options.cmd to edit options.ini. Defaults work for
    a normal LAN: automatic PC address, TCP port 43594, members enabled, and

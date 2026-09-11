@@ -190,12 +190,15 @@ def main() -> None:
     xbe = workspace / "build" / "github-validation" / "rom" / "default.xbe"
     build_record = json.loads((workspace / "build" / "github-validation" / "build" / "xbox-build.json").read_text())
     recorded_xbe = build_record.get("artifacts", {}).get("rom/default.xbe", {})
-    if xbe.stat().st_size != recorded_xbe.get("bytes") or sha256(xbe) != recorded_xbe.get("sha256"):
+    original_xbe = xbe.read_bytes()
+    original_xbe_sha = hashlib.sha256(original_xbe).hexdigest()
+    if len(original_xbe) != recorded_xbe.get("bytes") or original_xbe_sha != recorded_xbe.get("sha256"):
         raise ValueError("Clean-source XBE does not match its build manifest.")
-    with xbe.open("rb") as stream:
-        if stream.read(4) != b"XBEH":
-            raise ValueError("Clean-source validation executable has no XBE header.")
-    add(PACKAGES[0], "default.xbe", xbe)
+    if not original_xbe.startswith(b"XBEH"):
+        raise ValueError("Clean-source validation executable has no XBE header.")
+    sanitize_xbe = runpy.run_path(str(source / "scripts" / "sanitize-xbox-paths.py"))["sanitize_xbe"]
+    public_xbe, xbe_stats = sanitize_xbe(original_xbe)
+    add(PACKAGES[0], "default.xbe", data=public_xbe)
     add(PACKAGES[0], "config.ini", blank_config)
     add_tree(PACKAGES[0], "cache/client", engine / "data" / "pack" / "client")
     cache = engine / "data" / "pack" / "client"
@@ -318,6 +321,8 @@ def main() -> None:
     for package in PACKAGES:
         manifest = {"release": args.version, "package": package, "pins": pins, "engine_modified_tracked_paths": modified,
                     "packed_script_metadata_sanitization": script_stats,
+                    "xbe_build_path_sanitization": {"original_sha256": original_xbe_sha,
+                        "original_bytes": len(original_xbe), "stats": xbe_stats},
                     "latest_optimized_hardware_fps_verified": False, "missing_server_template_files": missing_template,
                     "excluded_tracked_files": exclusions, "file_count": len(inventory[package]),
                     "total_bytes": sum(item["bytes"] for item in inventory[package].values()), "files": inventory[package]}
