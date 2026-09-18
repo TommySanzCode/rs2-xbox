@@ -17,6 +17,7 @@ __pycache__/
 
 # Game assets and private connection/account settings
 /rom/cache/
+/rom/TimGM6mb.sf2
 /rom/config.ini
 /config.ini
 *.local.*

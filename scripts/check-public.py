@@ -7,7 +7,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 ALLOWED_BINARY = {'rom/Roboto/Roboto-Bold.ttf', 'tests/fixtures/client225-crc.bin'}
-ALLOWED_INI = {'xbox-config.example.ini', 'server-package/options.ini'}
+ALLOWED_INI = {'xbox-config.example.ini', 'xbox-128-config.example.ini', 'server-package/options.ini'}
 # Preserve the pinned upstream notice byte-for-byte (copyright symbol 0xA9).
 # This exception changes text decoding only; all privacy checks still apply.
 TEXT_ENCODINGS = {'release-notices/xbox/FreeType-FTL.txt': 'latin-1'}

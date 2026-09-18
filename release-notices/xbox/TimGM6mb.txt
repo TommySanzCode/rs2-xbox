@@ -1,0 +1,21 @@
+TimGM6mb SoundFont (unmodified, version distributed with MuseScore 1.3)
+
+Copyright 2004 Tim Brechbill
+Copyright 2010 David Bolton
+License: GNU General Public License version 2 (GPL-2.0-only).
+See GPL-2.0.txt in this directory for the full license.
+
+The editable SoundFont file itself is distributed alongside the enhanced XBE
+as TimGM6mb.sf2. No modifications or format conversion have been made to it.
+
+Source archive:
+https://deb.debian.org/debian/pool/main/t/timgm6mb-soundfont/timgm6mb-soundfont_1.3.orig.tar.gz
+SHA256 af8f3a00e416dfb262bcaa904a1c84df04a51b72bbc1313aed012bc754bdf99b
+Upstream provenance:
+https://github.com/musescore/musescore-old/commit/90c33ef9d87b3f5ff92efd3b07d89eb455fb1fef
+Copyright information:
+https://sources.debian.org/src/timgm6mb-soundfont/1.3-5/debian/copyright/
+
+This file is an instrument sample bank, separate from Jagex's game music and
+assets and from the client executable. It is not the original 2004 MIDI device;
+instrument timbres will differ. The Xbox port uses TinySoundFont to synthesize it.

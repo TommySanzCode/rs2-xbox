@@ -4359,7 +4359,7 @@ void client_update_game(Client *c) {
                 // if (c->wave_ids[wave] != c->last_wave_id || c->wave_loops[wave] != c->last_wave_loops) {
                 Packet *buf = wave_generate(c->wave_ids[wave], c->wave_loops[wave]);
 
-                if (rs2_now() + (uint64_t)(buf->pos / 22) > c->last_wave_start_time + (uint64_t)(c->last_wave_length / 22)) {
+                if (buf && rs2_now() + (uint64_t)(buf->pos / 22) > c->last_wave_start_time + (uint64_t)(c->last_wave_length / 22)) {
                     c->last_wave_length = buf->pos;
                     c->last_wave_start_time = rs2_now();
                     // if (c->saveWave(buf->data, buf->pos)) {
@@ -5352,10 +5352,15 @@ bool client_read(Client *c) {
             int delay = g2(c->in);
             int length = g4(c->in);
             int remaining = c->packet_size - 6;
-            int8_t *src = calloc(length, sizeof(int8_t));
-            bzip_decompress(src, c->in->data, remaining, c->in->pos);
-            platform_set_jingle(src, length);
-            c->nextMusicDelay = delay;
+            if (length >= 14 && length <= 1024 * 1024 && remaining > 0) {
+                int8_t *src = malloc(length);
+                if (src && bzip_decompress_checked(src, length, c->in->data + c->in->pos, remaining)) {
+                    platform_set_jingle(src, length);
+                    c->nextMusicDelay = delay;
+                } else {
+                    free(src);
+                }
+            }
         }
         c->packet_type = -1;
         return true;
@@ -5371,7 +5376,7 @@ bool client_read(Client *c) {
         int id = g2(c->in);
         int loop = g1(c->in);
         int delay = g2(c->in);
-        if (c->wave_enabled && !_Client.lowmem && c->wave_count < 50) {
+        if (c->wave_enabled && !_Client.lowmem && c->wave_count < 50 && id < 1000 && _Wave.tracks[id]) {
             c->wave_ids[c->wave_count] = id;
             c->wave_loops[c->wave_count] = loop;
             c->wave_delay[c->wave_count] = delay + _Wave.delays[id];

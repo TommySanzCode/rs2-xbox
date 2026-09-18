@@ -43,7 +43,18 @@ Unless a version is stated below, the exact imported component version was not i
 
 The micro-bunzip notice's LGPLv2 declaration is accompanied here by the [GNU Library General Public License, version 2.0](https://www.gnu.org/licenses/old-licenses/lgpl-2.0.html), dated June 1991. The complete text was downloaded unchanged from [GNU's archived plain-text source](https://www.gnu.org/licenses/old-licenses/lgpl-2.0.txt) on 11 September 2026. The 25,270-byte file has SHA-256 `cc535c21133c895b56b374c8a1dc1eb948d99003ed2b47372069456b62f42b24`. It accompanies this component's existing declaration; it is not a repository-wide license assignment.
 
-The Xbox configuration selects `WITH_RSA_LIBTOM`. Alternate RSA implementations and the TinySoundFont/TinyMidiLoader headers are retained from the portable source tree; the Xbox audio functions currently do not use the MIDI synthesizer. Their notices are retained because the source files are included in this repository.
+The Xbox configuration selects `WITH_RSA_LIBTOM`. Alternate RSA implementations are retained from the portable source tree. The 128 MB profile uses the retained TinySoundFont and TinyMidiLoader libraries to synthesize music and jingles. Their complete notices accompany the source and packages.
+
+The enhanced package includes the unmodified, editable `TimGM6mb.sf2` instrument
+bank (5,969,788 bytes), copyright Tim Brechbill and David Bolton, under GPL-2.0-only.
+The pinned source archive, provenance, and license are recorded in
+[TimGM6mb.txt](../release-notices/xbox/TimGM6mb.txt) and
+[GPL-2.0.txt](../release-notices/xbox/GPL-2.0.txt). The bank is fetched separately
+by `scripts/prepare-xbox-audio.py`; it is not committed to the Git source tree.
+
+Xbox-port changes to micro-bunzip on 18 September 2026 add a bounded, nonfatal
+decoder and widen a Huffman length counter that could overflow with 256 symbols.
+The original authors and LGPL declaration are retained in the modified sources.
 
 ## Runtime font
 

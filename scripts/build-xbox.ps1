@@ -1,7 +1,8 @@
 param(
     [string]$MsysRoot = 'C:\msys64',
     [string]$NxdkPath = (Join-Path $PSScriptRoot '..\.deps\nxdk'),
-    [ValidateRange(1, 32)][int]$Jobs = 8
+    [ValidateRange(1, 32)][int]$Jobs = 8,
+    [ValidateSet(64, 128)][int]$RamMB = 64
 )
 
 $ErrorActionPreference = 'Stop'
@@ -28,7 +29,7 @@ $sdkBuildPath = ConvertTo-MsysBuildPath $sdkPath
 $previousSystem = $env:MSYSTEM
 try {
     $env:MSYSTEM = 'MINGW64'
-    & $bashPath --login "$clientBuildPath/scripts/build-xbox.sh" $clientBuildPath $sdkBuildPath $Jobs
+    & $bashPath --login "$clientBuildPath/scripts/build-xbox.sh" $clientBuildPath $sdkBuildPath $Jobs $RamMB
     if ($LASTEXITCODE -ne 0) {
         throw "Xbox build failed (exit $LASTEXITCODE). See build/xbox-build.log."
     }

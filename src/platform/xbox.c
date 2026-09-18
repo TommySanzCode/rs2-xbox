@@ -16,6 +16,9 @@
 #include "../pixmap.h"
 #include "../platform.h"
 #include "../xboxdisplay.h"
+#include "../xboxaudio.h"
+#include "../thirdparty/ini.h"
+#include "../thirdparty/bzip.h"
 
 extern ClientData _Client;
 extern InputTracking _InputTracking;
@@ -30,6 +33,53 @@ static int cursor_y = SCREEN_HEIGHT / 2;
 static XboxDisplay display;
 static uint32_t display_canvas[SCREEN_WIDTH * SCREEN_HEIGHT];
 static int display_inset = 16;
+static int framebuffer_width = 640, framebuffer_height = 480;
+#if XBOX_ENHANCED
+static SDL_AudioDeviceID audio_device;
+static float music_volume = 1.0f;
+static int effects_volume = 128;
+static bool music_enabled = true;
+
+static void audio_callback(void *userdata, Uint8 *stream, int length) {
+    (void)userdata;
+    memset(stream, 0, length);
+    xbox_audio_render((int16_t *)stream, length / 4);
+}
+
+static void audio_start(void) {
+    int enabled = 1, midi = 1;
+    ini_t *config = ini_load("D:\\config.ini");
+    if (config) {
+        ini_sget(config, NULL, "xbox_audio", "%d", &enabled);
+        ini_sget(config, NULL, "xbox_music", "%d", &midi);
+        ini_free(config);
+    }
+    music_enabled = midi != 0;
+    if (!enabled || _Client.lowmem) return;
+    if (SDL_InitSubSystem(SDL_INIT_AUDIO) < 0) {
+        debugPrint("Audio init failed: %s\n", SDL_GetError());
+        return;
+    }
+    if (music_enabled && !xbox_audio_init("D:\\TimGM6mb.sf2")) {
+        debugPrint("Music unavailable: check TimGM6mb.sf2. Effects remain enabled.\n");
+    }
+    SDL_AudioSpec requested = {0}, obtained = {0};
+    requested.freq = 48000;
+    requested.format = AUDIO_S16LSB;
+    requested.channels = 2;
+    requested.samples = 1024;
+    requested.callback = audio_callback;
+    audio_device = SDL_OpenAudioDevice(NULL, 0, &requested, &obtained, 0);
+    if (!audio_device || obtained.freq != 48000 || obtained.format != AUDIO_S16LSB || obtained.channels != 2) {
+        debugPrint("Audio open failed: %s\n", SDL_GetError());
+        if (audio_device) SDL_CloseAudioDevice(audio_device);
+        audio_device = 0;
+        xbox_audio_shutdown();
+        return;
+    }
+    SDL_PauseAudioDevice(audio_device, 0);
+}
+#endif
 uint32_t xbox_last_present_ms;
 
 #define CURSOR_W 12
@@ -114,13 +164,37 @@ static const unsigned char cursor[] = {
 SDL_GameController *pad = NULL;
 
 bool platform_init(void) {
-    XVideoSetMode(640, 480, 32, REFRESH_DEFAULT);
-    rgbx = (uint32_t *)XVideoGetFB();
-    if (!xbox_display_init(&display, SCREEN_WIDTH, SCREEN_HEIGHT,
-                           SCREEN_FB_WIDTH, SCREEN_FB_HEIGHT, display_inset, display_canvas)) {
+    if (!XVideoSetMode(640, 480, 32, REFRESH_DEFAULT)) return false;
+#if XBOX_ENHANCED
+    MM_STATISTICS memory = {0};
+    memory.Length = sizeof(memory);
+    if (MmQueryStatistics(&memory) != 0 || memory.TotalPhysicalPages < 96 * 256) {
+        debugPrint("RS2 128 MB build needs expanded RAM exposed by the BIOS.\nUse the 64 MB build on this console.\n");
+        Sleep(12000);
         return false;
     }
-    for (int i = 0; i < SCREEN_FB_WIDTH * SCREEN_FB_HEIGHT; i++) {
+    int video = 480;
+    ini_t *config = ini_load("D:\\config.ini");
+    if (config) {
+        ini_sget(config, NULL, "xbox_video", "%d", &video);
+        ini_free(config);
+    }
+    if (video == 720) {
+        if (XVideoSetMode(1280, 720, 32, REFRESH_DEFAULT)) {
+            framebuffer_width = 1280;
+            framebuffer_height = 720;
+        } else {
+            if (!XVideoSetMode(640, 480, 32, REFRESH_DEFAULT)) return false;
+            debugPrint("720p unavailable; using 480 output.\n");
+        }
+    }
+#endif
+    rgbx = (uint32_t *)XVideoGetFB();
+    if (!xbox_display_init(&display, SCREEN_WIDTH, SCREEN_HEIGHT,
+                           framebuffer_width, framebuffer_height, display_inset, display_canvas)) {
+        return false;
+    }
+    for (int i = 0; i < framebuffer_width * framebuffer_height; i++) {
         rgbx[i] = 0;
     }
 
@@ -172,24 +246,99 @@ bool platform_init(void) {
 void platform_new(GameShell *shell) {
     shell->mouse_x = cursor_x;
     shell->mouse_y = cursor_y;
+#if XBOX_ENHANCED
+    audio_start();
+#endif
 }
 
 void platform_free(void) {
+#if XBOX_ENHANCED
+    if (audio_device) SDL_CloseAudioDevice(audio_device);
+    audio_device = 0;
+    xbox_audio_shutdown();
+#endif
     nxNetShutdown();
     SDL_GameControllerClose(pad);
     SDL_Quit();
 }
 void platform_set_wave_volume(int wavevol) {
+#if XBOX_ENHANCED
+    effects_volume = wavevol;
+    if (!audio_device) return;
+    SDL_LockAudioDevice(audio_device);
+    xbox_audio_volumes(music_volume, effects_volume);
+    SDL_UnlockAudioDevice(audio_device);
+#endif
 }
 void platform_play_wave(int8_t *src, int length) {
+#if XBOX_ENHANCED
+    if (!audio_device || length <= 0) return;
+    SDL_LockAudioDevice(audio_device);
+    xbox_audio_wave(src, (size_t)length);
+    SDL_UnlockAudioDevice(audio_device);
+#endif
 }
 void platform_set_midi_volume(float midivol) {
+#if XBOX_ENHANCED
+    music_volume = midivol;
+    if (!audio_device) return;
+    SDL_LockAudioDevice(audio_device);
+    xbox_audio_volumes(music_volume, effects_volume);
+    SDL_UnlockAudioDevice(audio_device);
+#endif
 }
 void platform_set_jingle(int8_t *src, int len) {
+#if XBOX_ENHANCED
+    if (audio_device && music_enabled) {
+        SDL_LockAudioDevice(audio_device);
+        xbox_audio_music(src, len);
+        SDL_UnlockAudioDevice(audio_device);
+    }
+#endif
+    free(src); /* The game transfers ownership of the decoded jingle. */
 }
 void platform_set_midi(const char *name, int crc, int len) {
+#if XBOX_ENHANCED
+    if (!audio_device || !music_enabled || !name || !*name || strlen(name) > 64) return;
+    for (const char *p = name; *p; ++p) {
+        if (!((*p >= 'a' && *p <= 'z') || (*p >= 'A' && *p <= 'Z') ||
+              (*p >= '0' && *p <= '9') || *p == '_' || *p == '-')) return;
+    }
+    char filename[128];
+    snprintf(filename, sizeof(filename), "D:\\cache\\client\\songs\\%s.mid", name);
+    FILE *file = fopen(filename, "rb");
+    if (!file) return;
+    if (fseek(file, 0, SEEK_END) != 0) { fclose(file); return; }
+    long size = ftell(file);
+    if (size < 5 || size > 1024 * 1024 || (crc != 12345678 && size != len)) { fclose(file); return; }
+    rewind(file);
+    int8_t *compressed = malloc((size_t)size);
+    if (!compressed) { fclose(file); return; }
+    size_t got = fread(compressed, 1, (size_t)size, file);
+    fclose(file);
+    if (got != (size_t)size || (crc != 12345678 && rs_crc32(compressed, got) != crc)) {
+        free(compressed); return;
+    }
+    const uint8_t *header = (const uint8_t *)compressed;
+    uint32_t decoded_size = (uint32_t)header[0] << 24 | (uint32_t)header[1] << 16 | (uint32_t)header[2] << 8 | header[3];
+    if (decoded_size < 14 || decoded_size > 1024 * 1024) { free(compressed); return; }
+    int8_t *decoded = malloc(decoded_size);
+    if (decoded && bzip_decompress_checked(decoded, (int)decoded_size, compressed + 4, (int)size - 4)) {
+        SDL_LockAudioDevice(audio_device);
+        xbox_audio_music(decoded, (int)decoded_size);
+        SDL_UnlockAudioDevice(audio_device);
+    }
+    free(decoded);
+    free(compressed);
+#endif
 }
 void platform_stop_midi(void) {
+#if XBOX_ENHANCED
+    if (!audio_device) return;
+    SDL_LockAudioDevice(audio_device);
+    xbox_audio_stop_music();
+    SDL_UnlockAudioDevice(audio_device);
+#endif
 }
 void platform_poll_events(Client *c) {
     static uint8_t prev_buttons[SDL_CONTROLLER_BUTTON_MAX];
@@ -277,8 +426,8 @@ void platform_poll_events(Client *c) {
                     // Cycle fitted sizes for different amounts of TV overscan.
                     display_inset = display_inset == 16 ? 0 : (display_inset == 0 ? 32 : 16);
                     xbox_display_init(&display, SCREEN_WIDTH, SCREEN_HEIGHT,
-                                      SCREEN_FB_WIDTH, SCREEN_FB_HEIGHT, display_inset, display_canvas);
-                    for (int pixel = 0; pixel < SCREEN_FB_WIDTH * SCREEN_FB_HEIGHT; pixel++) {
+                                      framebuffer_width, framebuffer_height, display_inset, display_canvas);
+                    for (int pixel = 0; pixel < framebuffer_width * framebuffer_height; pixel++) {
                         rgbx[pixel] = 0;
                     }
                     c->redraw_background = true;

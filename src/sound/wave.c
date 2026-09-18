@@ -48,7 +48,7 @@ void wave_unpack(Packet *dat) {
 }
 
 Packet *wave_generate(int id, int loopCount) {
-    if (!_Wave.tracks[id]) {
+    if (id < 0 || id >= 1000 || !_Wave.tracks[id]) {
         return NULL;
     }
 
@@ -122,23 +122,25 @@ Packet *wave_get_wave(Wave *wave, int loopCount) {
 static int generate(Wave *wave, int loopCount) {
     int duration = 0;
     for (int tone = 0; tone < 10; tone++) {
+        if (wave->tones[tone] && wave->tones[tone]->length > 10000) return 0;
         if (wave->tones[tone] && wave->tones[tone]->length + wave->tones[tone]->start > duration) {
             duration = wave->tones[tone]->length + wave->tones[tone]->start;
         }
     }
 
-    if (duration == 0) {
+    if (duration <= 0 || duration > 19998) {
         return 0;
     }
 
     int sampleCount = duration * 22050 / 1000;
     int loopStart = wave->loopBegin * 22050 / 1000;
     int loopStop = wave->loopEnd * 22050 / 1000;
-    if (loopStart < 0 || loopStop < 0 || loopStop > sampleCount || loopStart >= loopStop) {
-        loopCount = 0;
+    if (loopCount < 1 || loopStart < 0 || loopStop < 0 || loopStop > sampleCount || loopStart >= loopStop) {
+        loopCount = 1;
     }
 
     int totalSampleCount = sampleCount + (loopStop - loopStart) * (loopCount - 1);
+    if (totalSampleCount < sampleCount || totalSampleCount > 441000 - 44) return 0;
     for (int sample = 44; sample < totalSampleCount + 44; sample++) {
         _Wave.waveBytes[sample] = -128;
     }

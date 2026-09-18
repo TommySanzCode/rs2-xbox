@@ -11,7 +11,11 @@
 #include <stdlib.h>
 #include <string.h>
 
-enum { SW = 789, SH = 532, FW = 640, FH = 480, GUARD_WORDS = 16 };
+#ifndef TEST_FB_WIDTH
+#define TEST_FB_WIDTH 640
+#define TEST_FB_HEIGHT 480
+#endif
+enum { SW = 789, SH = 532, FW = TEST_FB_WIDTH, FH = TEST_FB_HEIGHT, GUARD_WORDS = 16 };
 static const uint32_t CANARY = UINT32_C(0xa9531ec7);
 static const uint32_t MARGIN = UINT32_C(0xdeadcafe);
 
@@ -55,7 +59,9 @@ static Fixture fixture_new(int inset) {
     CHECK(xbox_display_init(&result.display, SW, SH, FW, FH, inset, result.canvas.pixels));
     CHECK(result.display.framebuffer_width == FW && result.display.framebuffer_height == FH);
     CHECK(result.display.source_width == SW && result.display.source_height == SH);
-    CHECK(result.display.x == inset && result.display.width == FW - 2 * inset);
+    CHECK(result.display.x >= inset && result.display.y >= inset);
+    CHECK(result.display.width <= FW - 2 * inset && result.display.height <= FH - 2 * inset);
+    CHECK(abs(2 * result.display.x + result.display.width - FW) <= 1);
     CHECK(abs(result.display.height * SW - result.display.width * SH) <= SW);
     CHECK(abs(2 * result.display.y + result.display.height - FH) <= 1);
     return result;
@@ -384,8 +390,8 @@ int main(void) {
         printf("PASS inset %d: exact-area reference, constants/checkerboard, tiled/disjoint/overflow dirty updates, clipping, cursor trails, every stroke phase, and guards.\n", insets[i]);
     }
     Fixture fixture = fixture_new(16);
-    CHECK(!xbox_display_init(&fixture.display, SW, SH, 641, FH, 0, fixture.canvas.pixels));
-    CHECK(!xbox_display_init(&fixture.display, SW, SH, FW, 481, 0, fixture.canvas.pixels));
+    CHECK(!xbox_display_init(&fixture.display, SW, SH, XBOX_DISPLAY_MAX_WIDTH + 1, FH, 0, fixture.canvas.pixels));
+    CHECK(!xbox_display_init(&fixture.display, SW, SH, FW, XBOX_DISPLAY_MAX_HEIGHT + 1, 0, fixture.canvas.pixels));
     CHECK(!xbox_display_init(&fixture.display, SW, SH, FW, FH, INT_MAX, fixture.canvas.pixels));
     fixture_free(&fixture);
     return 0;

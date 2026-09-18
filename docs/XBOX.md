@@ -1,7 +1,8 @@
 # Xbox build and deployment
 
 This is a native RuneScape 2 revision-225 client for a homebrew-capable original
-Xbox. The target is stock 64 MB RAM with low-memory mode enabled. A compatible
+Xbox. The default target is stock 64 MB RAM with low-memory mode enabled. See
+[the 128 MB guide](XBOX-128.md) for the separate enhanced profile. A compatible
 historical game server runs on another computer; current official OSRS worlds
 and Jagex accounts are not supported.
 

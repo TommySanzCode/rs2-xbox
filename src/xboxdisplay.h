@@ -2,6 +2,7 @@
 
 #include <stdbool.h>
 #include <stdint.h>
+#include "xboxprofile.h"
 
 typedef struct XboxDisplaySample {
     int first, count;
@@ -20,8 +21,8 @@ typedef struct XboxDisplay {
     int source_width, source_height;
     int x, y, width, height;
     uint32_t *canvas;
-    XboxDisplaySample x_samples[640], y_samples[480];
-    uint32_t rows[3][640];
+    XboxDisplaySample x_samples[XBOX_DISPLAY_MAX_WIDTH], y_samples[XBOX_DISPLAY_MAX_HEIGHT];
+    uint32_t rows[3][XBOX_DISPLAY_MAX_WIDTH];
     int row_source[3];
     XboxDisplayRect dirty[32];
     int dirty_count;

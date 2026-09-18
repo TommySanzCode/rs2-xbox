@@ -4,6 +4,8 @@ set -euo pipefail
 client_dir=${1:?Pass the Client3 directory}
 export NXDK_DIR=${2:?Pass the nxdk directory}
 jobs=${3:-8}
+export XBOX_RAM_MB=${4:-64}
+case "$XBOX_RAM_MB" in 64|128) ;; *) printf 'RAM profile must be 64 or 128\n' >&2; exit 1 ;; esac
 export PATH="$NXDK_DIR/bin:/mingw64/bin:/usr/bin:$PATH"
 cd "$client_dir"
 
@@ -52,7 +54,9 @@ def modified():
         return True
 
 manifest = {
-    'target': 'original Xbox, stock 64 MB, lowmem',
+    'target': 'original Xbox, ' + os.environ['XBOX_RAM_MB'] + ' MB',
+    'ram_mb': int(os.environ['XBOX_RAM_MB']),
+    'enhanced': os.environ['XBOX_RAM_MB'] == '128',
     'client_revision': 225,
     'client_upstream_commit': 'd828cb3cb87f033d76f0582748e664bade049562',
     'client_source_commit': revision('.'),

@@ -3,13 +3,15 @@ from pathlib import Path
 import struct
 import shutil
 import zlib
+import os
 
 root = Path(__file__).resolve().parents[1]
 cache = root / 'rom' / 'cache' / 'client'
 local_config = root / 'rom' / 'config.ini'
 if not local_config.exists():
     local_config.parent.mkdir(parents=True, exist_ok=True)
-    shutil.copyfile(root / 'xbox-config.example.ini', local_config)
+    template = 'xbox-128-config.example.ini' if os.environ.get('XBOX_RAM_MB') == '128' else 'xbox-config.example.ini'
+    shutil.copyfile(root / template, local_config)
     print('Created rom/config.ini. Set the LAN server address and local test account before login.')
 archives = ('title', 'config', 'interface', 'media', 'models', 'textures', 'wordenc', 'sounds')
 required = [cache / name for name in archives]

@@ -1,4 +1,6 @@
 /* micro-bunzip: http://www.landley.net/code/ */
+/* Xbox port modifications, 2026-09-18: bounded nonfatal music decoder and
+ * widened Huffman length counts. Original license and credits follow. */
 
 /*  Small bzip2 deflate implementation, by Rob Landley (rob@landley.net).
     Based on bzip2 decompression code by Julian R Seward (jseward@acm.org),
@@ -196,7 +198,9 @@ static int get_next_block(bunzip_data *bd) {
     symCount = symTotal + 2;
 
     for (j = 0; j < groupCount; j++) {
-        uint8_t length[MAX_SYMBOLS], temp[MAX_HUFCODE_BITS + 1];
+        uint8_t length[MAX_SYMBOLS];
+        /* A length bucket can contain all 256 byte symbols plus RUNA/RUNB. */
+        uint32_t temp[MAX_HUFCODE_BITS + 1];
         uint32_t minLen, maxLen, pp;
 
         /* Read huffman code lengths for each symbol.  They're stored in
@@ -678,6 +682,33 @@ static int start_bunzip(bunzip_data **bdp, int in_fd, uint8_t *inbuf, int len) {
 static void bzip_fatal(int retval) {
     fprintf(stderr, "bzip error: %s\n", bunzip_errors[-retval]);
     exit(1);
+}
+
+int bzip_decompress_checked(int8_t *out, int capacity, const int8_t *input, int length) {
+    if (!out || !input || capacity <= 0 || length <= 0 || length > INT_MAX - 4) return 0;
+    uint8_t *headered = malloc((size_t)length + 4);
+    if (!headered) return 0;
+    memcpy(headered, BZIP_HEADER, 4);
+    memcpy(headered + 4, input, length);
+    bunzip_data *bd = NULL;
+    int valid = 0;
+    if (start_bunzip(&bd, -1, headered, length + 4) == RETVAL_OK) {
+        int written = 0, result = 0;
+        while (written < capacity) {
+            result = read_bunzip(bd, out + written, capacity - written);
+            if (result <= 0) break;
+            written += result;
+        }
+        int8_t extra;
+        if (written == capacity) {
+            result = read_bunzip(bd, &extra, 1);
+            if (result == 0) result = read_bunzip(bd, &extra, 1);
+            valid = result == RETVAL_LAST_BLOCK && bd->totalCRC == bd->headerCRC;
+        }
+    }
+    if (bd) { free(bd->dbuf); free(bd); }
+    free(headered);
+    return valid;
 }
 
 void bzip_decompress(int8_t *file_data, int8_t *archive_data, int archive_size,

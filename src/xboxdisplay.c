@@ -27,8 +27,8 @@ bool xbox_display_init(XboxDisplay *display, int source_width, int source_height
                        uint32_t *canvas) {
     if (!display || !canvas || source_width <= 0 || source_width > 4096 ||
         source_height <= 0 || source_height > 4096 ||
-        framebuffer_width <= 0 || framebuffer_width > 640 ||
-        framebuffer_height <= 0 || framebuffer_height > 480 || inset < 0 || inset > 320 ||
+        framebuffer_width <= 0 || framebuffer_width > XBOX_DISPLAY_MAX_WIDTH ||
+        framebuffer_height <= 0 || framebuffer_height > XBOX_DISPLAY_MAX_HEIGHT || inset < 0 || inset > 320 ||
         inset * 2 >= framebuffer_width || inset * 2 >= framebuffer_height) {
         return false;
     }

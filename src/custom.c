@@ -10,6 +10,7 @@
 #include "gameshell.h"
 #include "inputtracking.h"
 #include "thirdparty/ini.h"
+#include "xboxprofile.h"
 
 extern ClientData _Client;
 extern InputTracking _InputTracking;
@@ -68,8 +69,11 @@ bool load_ini_args(void) {
     // world nodeid 1 = 10 (default)
     INI_INT_LOG(&(&_Client), nodeid, _Client.nodeid = 10 + _Client.nodeid - 1);
     INI_INT_LOG(&(&_Client), portoff, );
+#if defined(NXDK) && XBOX_ENHANCED
+    _Client.lowmem = false;
+#endif
     INI_INT_LOG(&(&_Client), lowmem, );
-#if defined(__PSP__) || defined(_arch_dreamcast) || defined(__NDS__) || defined(NXDK)
+#if defined(__PSP__) || defined(_arch_dreamcast) || defined(__NDS__) || (defined(NXDK) && !XBOX_ENHANCED)
     // implicitly ignore highmem, avoids confusion as there's no way it'll load, except if xbox has mem expansion
     _Client.lowmem = true;
 #endif

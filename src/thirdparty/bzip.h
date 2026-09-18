@@ -81,6 +81,10 @@ typedef struct {
 extern const char BZIP_HEADER[];
 extern const char *bunzip_errors[];
 
+/* Bounded, nonfatal decoder for headerless cache/music payloads. Returns 1
+ * only when the exact output size and the stream CRC both match. */
+int bzip_decompress_checked(int8_t *out, int capacity, const int8_t *input, int length);
+
 void bzip_decompress(int8_t *file_data, int8_t *archive_data, int archive_size,
                      int offset);
 

@@ -1,7 +1,8 @@
 # RuneScape 2 for the original Xbox
 
 A native homebrew client for **RuneScape 2 revision 225 (18 May 2004)**, targeting
-the original Xbox with **64 MB RAM**. It uses nxdk, software rendering, and a
+the original Xbox with **64 MB RAM**, with a separate experimental **128 MB**
+profile for consoles with expanded memory. It uses nxdk, software rendering, and a
 filtered interface fitted to a 640×480 display. A compatible game server runs
 separately on a PC. This client does not connect to current official OSRS worlds.
 
@@ -10,8 +11,10 @@ credited by its author. This repository adds Xbox controller, display, and build
 work to that foundation. See [CREDITS.md](CREDITS.md) for the people and projects
 behind the client, and [the license notices](docs/THIRD-PARTY.md) for component details.
 
-Download the two ZIPs from [Releases](https://github.com/TommySanzCode/rs2-xbox/releases)
-for the built Xbox folder and a matching portable Windows server. The server
+Choose an Xbox ZIP and the server ZIP from [Releases](https://github.com/TommySanzCode/rs2-xbox/releases).
+The original Xbox ZIP is for 64 MB; separately labeled experimental 128 MB ZIPs
+offer 480 and 720p output presets. **Both profiles use the same portable Windows
+server**, accounts and saves. The server
 includes **Start, Stop, Options, and Help** and generates your local login and
 Xbox configuration on first start. Follow [the release setup guide](docs/RELEASE.md).
 
@@ -64,7 +67,13 @@ source passes the Xbox build and host renderer tests; its hardware frame rate
 has **not yet been checked**. Extended gameplay and total memory usage still need
 measurement on a stock console.
 
-Audio and controller text entry are not implemented. Enter login details in the
+The 64 MB profile remains silent. The [128 MB profile](docs/XBOX-128.md) adds
+original high-detail textures and texture animation, optional 720p output,
+General MIDI music, jingles, and sound effects. Its Xbox audio output and
+performance still need testing on a 128 MB console; extra RAM does not increase
+CPU speed. Use the separate enhanced folder when testing it.
+
+Controller text entry is not implemented. Enter login details in the
 local configuration. The 789×532 logical interface is reduced to fit the TV;
 area filtering preserves thin strokes, but cannot retain the original resolution.
 

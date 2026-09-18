@@ -32,7 +32,7 @@ The upstream document also records historical references to [Pazaz/RS2-225](http
 ## Xbox platform and external dependencies
 
 - **[XboxDev/nxdk](https://github.com/XboxDev/nxdk) and its contributors** — the external homebrew Xbox SDK, runtime, hardware support, and build integration.
-- **Sam Lantinga and the [SDL](https://github.com/libsdl-org/SDL) contributors**, including nxdk's SDL port contributors — controller support.
+- **Sam Lantinga and the [SDL](https://github.com/libsdl-org/SDL) contributors**, including nxdk's SDL port contributors — controller and audio support. **Jannik Vogel** and the nxdk audio contributors provide the Xbox SDL/AC97 backend used by the enhanced build.
 - **The PDCLib, lwIP, and libusbohci contributors** — C runtime, networking, and USB components provided through nxdk. The lwIP notice credits the Swedish Institute of Computer Science. Their complete notices remain with the external SDK.
 - **LLVM/Clang/lld and GNU build-tool contributors** — the external compilation and build tools.
 
@@ -44,7 +44,8 @@ The upstream document also records historical references to [Pazaz/RS2-225](http
 - **Tom St Denis and LibTomMath contributors** — multiprecision arithmetic.
 - **RSC Sundae contributors** — the RSA wrappers identified by their source notices.
 - **Sean Barrett and stb contributors** — `stb_image` and `stb_truetype`; their source headers retain the detailed contributor credits.
-- **Bernhard Schelling** — TinyMidiLoader and TinySoundFont; **Steve Folta** — SFZero, credited as a basis for TinySoundFont. These portable source headers are retained even though the Xbox audio functions do not currently use the MIDI synthesizer.
+- **Bernhard Schelling** — TinyMidiLoader and TinySoundFont; **Steve Folta** — SFZero, credited as a basis for TinySoundFont. The 128 MB Xbox profile uses these libraries for music and jingles.
+- **Tim Brechbill and David Bolton** — the TimGM6mb instrument SoundFont used by the 128 MB profile, distributed unmodified under GPL version 2. Thanks to **MuseScore** and the **Debian Multimedia Maintainers** for its preservation and packaging. See [the SoundFont notice](release-notices/xbox/TimGM6mb.txt).
 - **Google and the Roboto contributors** — the bundled Roboto Bold font. Its embedded notice records Copyright 2011 Google Inc.
 
 The inherited `bn.c`/`bn.h` files do not identify an author or license in their copied notices; the provenance gap is recorded in [THIRD-PARTY.md](docs/THIRD-PARTY.md) rather than filled with a guessed attribution.
