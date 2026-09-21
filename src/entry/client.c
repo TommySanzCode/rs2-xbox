@@ -12,6 +12,7 @@
 #include "../animframe.h"
 #ifdef NXDK
 #include "../cachecrc.h"
+#include "../xboxconnect.h"
 #endif
 #include "../client.h"
 #include "../clientstream.h"
@@ -7488,6 +7489,11 @@ void client_update_title(Client *c) {
 }
 
 void client_login(Client *c, const char *username, const char *password, bool reconnect) {
+#ifdef NXDK
+    if (!xbox_connect_login(c)) { client_draw_title_screen(c); platform_update_surface(); return; }
+    username = c->username;
+    password = c->password;
+#endif
     // signlink.errorname = username;
     // try {
     if (!reconnect) {

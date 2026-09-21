@@ -18,7 +18,7 @@ See [the server package notices](server-package/THIRD-PARTY.md) for exact revisi
 
 ## RS2 Xbox Connect
 
-- **fatedier and the [frp contributors](https://github.com/fatedier/frp)** — private TCP forwarding used by the companion app and relay.
+- **fatedier and the [frp contributors](https://github.com/fatedier/frp)** — private TCP forwarding in the retained advanced relay mode. The direct preview uses newly written .NET transport code and bundles no frp executable.
 - **Microsoft and the .NET/WPF contributors** — Windows application framework and runtime.
 - **Python Software Foundation, Alpine Linux, OpenSSL, and Docker contributors** — relay deployment tools and platform.
 - Connect's application, gateway, setup tools and online-play documentation are additions by this port; the existing Lost City, Bun, Jagex and client credits above remain applicable. See [Connect notices](connect/THIRD-PARTY.md).

@@ -2,7 +2,32 @@
 
 This file records actual evidence, not promised compatibility. The existing Xbox game archives are unchanged.
 
-## Status
+## Direct preview 0.2 — current implementation
+
+This preview implements the selected **automatic direct connection** approach. No hosted relay, domain or tunneling service account is required. Unsupported routers and non-public host addresses are reported; CGNAT guest connections can work when the host is reachable. There is no relay fallback. See [the direct guide](ONLINE-DIRECT.md).
+
+Local validation on Windows:
+
+- Windows app and separate nxdk 64 MB / 128 MB XBE builds compile. Existing Xbox release folders are not overwritten.
+- Eight simultaneous encrypted streams of more than 256 KB retain byte integrity. Invalid secrets/certificate pins, host stop, old invitations after rotation, and reconnection with the new invitation are tested.
+- Mock router tests cover finite-lease creation/renewal/removal, preserving another program's rule, rejecting CGNAT/private addresses, permanent-only routers and unsafe router XML/URLs. These tests do not change the user's router.
+- Real UDP discovery requires local approval and contains no character credentials. A raw revision-225 login traverses the local credential bridge, retaining the original cipher seeds and inserting the selected character.
+- **Eight separate characters logged into an actual disposable revision-225 world through the Xbox bridge plus Windows TLS tunnel, received game data, logged out normally, and logged in again.** Normal shutdown completed and eight `.sav` files were present. This is a protocol test, not movement/chat/trade testing or proof of progress persistence across a server restart.
+- DPAPI round trips include host TLS identity, world access secret and per-Xbox characters; the protected settings file contains none of those plaintext credentials. Existing INI preservation tests still pass.
+- Native C parser tests reject malformed/unrelated discovery responses. Diagnostic XBE path sanitation retains code, headers and file layout.
+- The Windows host screen was visually inspected. Start/Stop controls were subsequently moved into a fixed bottom bar and manual configuration fields collapsed for easier access. Further GUI input was interrupted by concurrent user input; full GUI/installer flows remain unverified.
+
+Still pending: actual router mapping/expiry across router models, external household reachability, end-to-end Xbox discovery in xemu and on hardware, full host/join/install GUI walkthrough, real Xbox gameplay and first-time user acceptance. The 128 MB client remains unvalidated on suitable hardware/BIOS. Do not interpret an automatic mapping success as proof of outside reachability.
+
+Reproduce direct software checks:
+
+```powershell
+dotnet run --project connect/tests/Connect.Direct.Tests -c Release
+dotnet run --project connect/tests/Connect.Windows.Tests -c Release
+dotnet run --project connect/tests/Connect.Game.Tests -c Release -- PATH_TO_CLEAN_SERVER_TEMPLATE PATH_TO_CONNECT_SCRIPTS
+```
+
+## Earlier 0.1 relay preview — historical status
 
 The implementation is available as a **developer preview**. A ready-to-play Windows bundle is **blocked on Windows security rejecting the official frp 0.68.0 Windows archive**. Protection has not been disabled or bypassed. The Windows developer ZIP omits frpc and cannot establish online tunnels. Source, build tooling and a separate Linux relay package are available.
 

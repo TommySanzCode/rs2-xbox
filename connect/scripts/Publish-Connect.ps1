@@ -8,10 +8,13 @@ $ErrorActionPreference = 'Stop'
 $repo = (Resolve-Path (Join-Path $PSScriptRoot '..\..')).Path
 $artifactRoot = (Resolve-Path -LiteralPath $ArtifactDirectory).Path
 $manifest = Get-Content -LiteralPath (Join-Path $artifactRoot 'build-manifest.json') -Raw | ConvertFrom-Json
-$names = @((Split-Path $manifest.AppZip -Leaf), 'RS2-Xbox-Connect-Relay.zip', 'SHA256SUMS.txt')
+$direct = $manifest.Mode -eq 'direct'
+$names = if ($direct) { @($manifest.Assets) } else { @((Split-Path $manifest.AppZip -Leaf), 'RS2-Xbox-Connect-Relay.zip', 'SHA256SUMS.txt') }
+foreach ($name in $names) { if ([IO.Path]::GetFileName($name) -ne $name -or $name -notmatch '^(RS2-Xbox-Connect[-A-Za-z0-9]*\.zip|SHA256SUMS\.txt)$') { throw 'Unexpected release asset name.' } }
 foreach ($name in $names) { if (-not (Test-Path -LiteralPath (Join-Path $artifactRoot $name) -PathType Leaf)) { throw "Missing artifact: $name" } }
 $notes = [IO.File]::ReadAllText((Resolve-Path -LiteralPath $NotesFile).Path)
-if (-not $manifest.FrpBundled -and $notes -notmatch 'cannot establish online') { throw 'Developer release notes must explicitly state that it cannot establish online connections.' }
+if (-not $direct -and -not $manifest.FrpBundled -and $notes -notmatch 'cannot establish online') { throw 'Developer release notes must explicitly state that it cannot establish online connections.' }
+if ($direct -and $notes -notmatch 'cross-household.*pending') { throw 'Direct preview notes must disclose pending cross-household acceptance.' }
 if ($Tag -notmatch '^connect-v[0-9]+\.[0-9]+\.[0-9]+-preview\.[0-9]+$') { throw 'Use a separate connect-vX.Y.Z-preview.N tag.' }
 Push-Location $repo
 try {
@@ -31,7 +34,7 @@ try {
     $base = 'https://api.github.com/repos/TommySanzCode/rs2-xbox'
     $existing = @(Invoke-RestMethod "$base/releases?per_page=100" -Headers $headers) | Where-Object { $_.tag_name -eq $Tag }
     if ($existing.Count -gt 0) { throw 'This release already exists. Inspect it; never overwrite existing assets implicitly.' }
-    $label = if ($manifest.FrpBundled) { 'RS2 Xbox Connect Preview 1' } else { 'RS2 Xbox Connect — Developer Preview 1 (Windows tunnel dependency not bundled)' }
+    $label = if ($direct) { 'RS2 Xbox Connect Direct Preview 1 — automatic hosting + Xbox discovery' } elseif ($manifest.FrpBundled) { 'RS2 Xbox Connect Preview 1' } else { 'RS2 Xbox Connect — Developer Preview 1 (Windows tunnel dependency not bundled)' }
     $body = @{ tag_name=$Tag; target_commitish=$sha; name=$label; body=$notes; draft=$true; prerelease=$true; make_latest='false' } | ConvertTo-Json
     $release = Invoke-RestMethod "$base/releases" -Method Post -Headers $headers -ContentType 'application/json' -Body ([Text.Encoding]::UTF8.GetBytes($body))
     # Upload while draft, then publish only after every expected asset has arrived.

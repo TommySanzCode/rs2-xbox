@@ -7,7 +7,8 @@ This native Xbox client connects to a **RuneScape 2 revision-225 server**. Every
 | Method | PCs needed | Internet requirement | Best fit |
 | --- | --- | --- | --- |
 | [Same LAN](#same-lan) | One server PC | None during play once installed | Friends in the same home |
-| [RS2 Xbox Connect](ONLINE-CONNECT.md) | Host PC and one PC per other household | A trusted operator's Linux relay | Guided private groups without home router forwarding |
+| [Connect automatic direct](ONLINE-DIRECT.md) | Host PC and one PC per other household | Host with public IPv4 and compatible UPnP router | One app; no rented relay or service account |
+| [Connect advanced relay](ONLINE-CONNECT.md) | Host PC and one PC per other household | A trusted operator's Linux relay | Advanced existing setups; Windows frp package remains incomplete |
 | [Direct forwarding](ONLINE-ALTERNATIVES.md#direct-port-forwarding) | Host PC only | Public IPv4 and router control | Host comfortable configuring a router |
 | [Tailscale](ONLINE-ALTERNATIVES.md#tailscale-with-a-local-xbox-gateway) | Host PC and one PC per household | Tailscale accounts and connection | Existing Tailscale users |
 | [Managed TCP tunnel](ONLINE-ALTERNATIVES.md#playitgg-managed-tcp-tunnel) | Host PC only | A service plan supporting custom TCP | Avoid running your own relay |

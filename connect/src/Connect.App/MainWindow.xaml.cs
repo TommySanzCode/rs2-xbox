@@ -30,10 +30,10 @@ public partial class MainWindow : Window
     private readonly DispatcherTimer timer = new() { Interval = TimeSpan.FromSeconds(5) };
     private readonly System.Windows.Forms.NotifyIcon tray = new() { Text = "RS2 Xbox Connect", Icon = System.Drawing.SystemIcons.Application };
     private string SettingsPath => Path.Combine(data, "settings.protected");
-    private bool Active => gateway != null || tunnel != null || runningWorld != null;
+    private bool Active => gateway != null || tunnel != null || runningWorld != null || directHost != null || directGuest != null || discovery != null;
     private bool Hosting => Mode.SelectedIndex == 0;
     private WorldInfo SelectedWorld => Worlds.SelectedItem as WorldInfo ?? throw new InvalidOperationException("Create or select a world first.");
-    private sealed record Adapter(string Address, string Label);
+    private sealed record Adapter(string Address, string Label, string Mask, string Router);
 
     public MainWindow()
     {
@@ -50,6 +50,9 @@ public partial class MainWindow : Window
     {
         try {
             settings = PrivateSettings.Load(SettingsPath);
+            Transport.SelectedIndex = Math.Clamp(settings.Transport, 0, 2);
+            foreach (var pair in settings.XboxCharacters) xboxCharacters[pair.Key] = pair.Value;
+            PairUsername.Text = settings.Username; PairPassword.Password = settings.Password;
             Mode.SelectedIndex = settings.Mode == "join" ? 1 : 0;
             Username.Text = settings.Username; Password.Password = settings.Password; Port.Text = settings.Port.ToString(); Preset.SelectedIndex = Math.Clamp(settings.Preset, 0, 2);
             ReloadWorlds(); LoadAdapters(); Labels(); initialized = true; Controls(); timer.Start();
@@ -64,6 +67,13 @@ public partial class MainWindow : Window
         TemplateLabel.Text = settings.Template.Length == 0 ? "Using the selected preset." : "Existing config loaded; display, audio and controls will be preserved.";
         HostPanel.Visibility = Hosting ? Visibility.Visible : Visibility.Collapsed;
         JoinPanel.Visibility = Hosting ? Visibility.Collapsed : Visibility.Visible;
+        LegacyHost.Visibility = LegacyJoin.Visibility = AdvancedRelay ? Visibility.Visible : Visibility.Collapsed;
+        DirectJoin.Visibility = AdvancedRelay ? Visibility.Collapsed : Visibility.Visible;
+        if (!AdvancedRelay) {
+            RelayLabel.Text = Transport.SelectedIndex == 1 ? "Local play only. Xboxes on this LAN can use this PC; no router mapping is created."
+                : "Automatic hosting needs a compatible UPnP router with public IPv4. CGNAT and unsupported routers are reported; no relay account is needed.";
+            InviteLabel.Text = settings.DirectInvitation == null ? "Paste a code from a running host." : "World: " + settings.DirectInvitation.WorldName;
+        }
     }
     private void ReloadWorlds(string? select = null)
     {
@@ -84,14 +94,15 @@ public partial class MainWindow : Window
         var selected = (Adapters.SelectedItem as Adapter)?.Address ?? settings.Address;
         var items = NetworkInterface.GetAllNetworkInterfaces().Where(n => n.OperationalStatus == OperationalStatus.Up && n.NetworkInterfaceType != NetworkInterfaceType.Loopback)
             .SelectMany(n => n.GetIPProperties().UnicastAddresses.Where(a => a.Address.AddressFamily == AddressFamily.InterNetwork && !a.Address.ToString().StartsWith("169.254."))
-                .Select(a => new Adapter(a.Address.ToString(), n.Name + " — " + a.Address))).ToList();
+                .Select(a => new Adapter(a.Address.ToString(), n.Name + " — " + a.Address, a.IPv4Mask.ToString(), n.GetIPProperties().GatewayAddresses.FirstOrDefault(g => g.Address.AddressFamily == AddressFamily.InterNetwork && !g.Address.Equals(IPAddress.Any))?.Address.ToString() ?? ""))).ToList();
         Adapters.ItemsSource = items;
-        Adapters.SelectedItem = items.FirstOrDefault(a => a.Address == selected) ?? (items.Count == 1 ? items[0] : null);
+        Adapters.SelectedItem = items.FirstOrDefault(a => a.Address == selected) ?? items.FirstOrDefault(a => a.Router.Length > 0) ?? items.FirstOrDefault();
         if (selected.Length > 0 && !items.Any(a => a.Address == selected)) Notice.Text = "The saved PC address has changed. Select the correct adapter and export a new Xbox config.";
     }
     private void Capture()
     {
         settings.Mode = Hosting ? "host" : "join"; settings.WorldId = (Worlds.SelectedItem as WorldInfo)?.Id ?? "";
+        settings.Transport = Transport.SelectedIndex;
         settings.Address = (Adapters.SelectedItem as Adapter)?.Address ?? settings.Address;
         settings.Username = Username.Text.Trim().ToLowerInvariant(); settings.Password = Password.Password;
         settings.Preset = Preset.SelectedIndex;
@@ -105,6 +116,7 @@ public partial class MainWindow : Window
         StopButton.IsEnabled = !busy && (Active || (Hosting && Worlds.SelectedItem is WorldInfo)); ConfigButton.IsEnabled = !busy;
         BackupButton.IsEnabled = !busy && !Active && Hosting; RestoreButton.IsEnabled = !busy && !Active;
         RotateButton.IsEnabled = !busy && Hosting;
+        CopyCodeButton.IsEnabled = !busy && directInvitation != null && lease != null && mappingHealthy;
     }
     private async Task Work(Func<Task> action)
     {
@@ -134,7 +146,7 @@ public partial class MainWindow : Window
     private async void CreateWorld(object sender, RoutedEventArgs e) => await Work(async () => {
         Notice.Text = "Creating a private world copy. This can take a few minutes…";
         var world = await store.Create(Path.Combine(assets, "server-template"), WorldName.Text.Trim(), true);
-        ReloadWorlds(world.Id); Save(); Notice.Text = "World created. Import a relay profile, then start the connection.";
+        ReloadWorlds(world.Id); Save(); Notice.Text = "World created. Start the connection to play.";
     });
     private async void ImportWorld(object sender, RoutedEventArgs e) => await Work(async () => {
         var dialog = new OpenFolderDialog { Title = "Select the stopped portable server folder containing Server225 and scripts" };
@@ -174,17 +186,19 @@ public partial class MainWindow : Window
     });
     private void ClearTemplate(object sender, RoutedEventArgs e) { settings.Template = ""; Labels(); }
     private async void ExportConfig(object sender, RoutedEventArgs e) => await Work(() => {
-        Capture(); var invite = CurrentInvite();
+        Capture();
         var address = (Adapters.SelectedItem as Adapter)?.Address ?? throw new InvalidOperationException("Select the adapter on the Xbox's LAN.");
         var template = settings.Template.Length > 0 ? settings.Template : File.ReadAllText(Path.Combine(assets, "templates", settings.Preset == 0 ? "xbox-config.example.ini" : "xbox-128-config.example.ini"));
         if (settings.Template.Length == 0 && settings.Preset == 2) template = template.Replace("xbox_video = 480", "xbox_video = 720");
-        var config = XboxConfig.Export(template, invite, address, settings.Port, settings.Username, settings.Password);
+        var config = AdvancedRelay ? XboxConfig.Export(template, CurrentInvite(), address, settings.Port, settings.Username, settings.Password)
+            : XboxConfig.Export(template, DirectWorld(), address, settings.Port, settings.Username, settings.Password);
         var path = Output("Export private Xbox config", "INI file|*.ini", "config.ini");
         if (path != null) { if (File.Exists(path)) File.Copy(path, path + ".backup-" + DateTime.Now.ToString("yyyyMMddHHmmss"), false); ProfileFiles.AtomicWrite(path, config); Save(); Notice.Text = "Config exported. Transfer beside default.xbe, then press Start in the game."; }
         return Task.CompletedTask;
     });
     private async void StartClick(object sender, RoutedEventArgs e) => await Work(async () => {
-        if (!File.Exists(Path.Combine(assets, "frp", "frpc.exe"))) throw new IOException("This developer build does not contain the Windows frp client, so online tunnels are unavailable. See FRP-NOT-BUNDLED.txt and the release validation notes. The complete bundle remains blocked; do not disable security protection.");
+        if (!AdvancedRelay) { await StartDirect(); return; }
+        if (!File.Exists(Path.Combine(assets, "frp", "frpc.exe"))) throw new IOException("Advanced relay mode requires a separate Windows frp dependency, which this package does not include. Select Automatic direct for the built-in connection, or Same LAN for local play. See the advanced relay validation notes; do not disable security protection.");
         Capture(); var invite = CurrentInvite();
         var address = (Adapters.SelectedItem as Adapter)?.Address ?? throw new InvalidOperationException("Select a LAN adapter first.");
         Save(); Notice.Text = "Starting world and connection…";
@@ -200,17 +214,19 @@ public partial class MainWindow : Window
     });
     private async Task StopConnection()
     {
+        var mappingNote = await StopDirect();
         if (gateway != null) { await gateway.DisposeAsync(); gateway = null; }
         if (tunnel != null) { await tunnel.DisposeAsync(); tunnel = null; }
         if (runningWorld != null) { await store.Stop(runningWorld); runningWorld = null; }
         ServerStatus.Text = RelayStatus.Text = XboxStatus.Text = "Stopped";
-        Notice.Text = "Stopped. The host's world has completed its normal save/shutdown sequence.";
+        Notice.Text = "Stopped. The host's world has completed its normal save/shutdown sequence." + mappingNote;
     }
     private async void StopClick(object sender, RoutedEventArgs e) => await Work(async () => {
         if (runningWorld == null && Hosting && Worlds.SelectedItem is WorldInfo selected) await store.Stop(selected);
         await StopConnection();
     });
     private async void RotateInvitation(object sender, RoutedEventArgs e) => await Work(async () => {
+        if (!AdvancedRelay) { await RotateDirect(); return; }
         var invite = CurrentInvite();
         if (MessageBox.Show(this, "Replace the world access secret? Connected friends will be disconnected and need a new invitation.", "Replace invitation", MessageBoxButton.OKCancel) != MessageBoxResult.OK) return;
         settings.HostInvitation = invite with { Secret = WorldInvite.NewSecret() }; settings.HostedInvitations[invite.WorldId] = settings.HostInvitation; Save();
@@ -231,7 +247,8 @@ public partial class MainWindow : Window
     private async void SaveClick(object sender, RoutedEventArgs e) => await Work(() => { Save(); Notice.Text = "Settings saved for this Windows account."; return Task.CompletedTask; });
     private async void ExportDiagnostics(object sender, RoutedEventArgs e) => await Work(() => {
         var path = Output("Export redacted diagnostics", "Text file|*.txt", "Connect-diagnostics.txt");
-        if (path != null) File.WriteAllText(path, "RS2 Xbox Connect 0.1.0 preview\n" +
+        if (path != null) File.WriteAllText(path, "RS2 Xbox Connect 0.2.0 preview\n" +
+            $"Direct mode: {!AdvancedRelay}\nRouter mapping active: {lease != null}\nDiscovery running: {discovery != null}\n" +
             $"Mode: {(Hosting ? "host" : "join")}\nServer active: {runningWorld != null}\nTunnel process active: {tunnel?.Alive == true}\nGateway running: {gateway?.Running == true}\nActive sockets: {gateway?.ActiveConnections ?? 0}\n" +
             "Addresses, paths, character names, credentials, certificates, invitations and server logs are intentionally excluded.\n");
         return Task.CompletedTask;
@@ -241,6 +258,7 @@ public partial class MainWindow : Window
     {
         if (busy || checking || !Active) return; checking = true;
         try {
+            if (!AdvancedRelay) { await CheckDirectStatus(); return; }
             bool addressExists = NetworkInterface.GetAllNetworkInterfaces().Where(n => n.OperationalStatus == OperationalStatus.Up).Any(n => n.GetIPProperties().UnicastAddresses.Any(a => a.Address.ToString() == activeAddress));
             AddressStatus.Text = addressExists ? "Xbox endpoint: " + activeAddress + ":" + settings.Port : "PC address changed. Stop, refresh adapters, and export a new Xbox config.";
             var engine = await Gateway.CheckGame("127.0.0.1", runningWorld?.EnginePort ?? visitorPort);

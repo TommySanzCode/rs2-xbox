@@ -6,27 +6,34 @@
    <TextBlock Text="Your world. Your friends. Original Xbox." Foreground="#DAE4DE" Margin="0,5,0,0"/>
   </StackPanel></Border>
   <Border DockPanel.Dock="Bottom" Background="#E5E3D9" Padding="24,12"><TextBlock x:Name="Notice" Text="Preview: real Xbox and cross-household acceptance tests are still pending."/></Border>
+  <Border DockPanel.Dock="Bottom" Background="#F3F2ED" Padding="24,10,24,0"><WrapPanel><Button x:Name="StartButton" Content="Start connection" Click="StartClick" Background="#244B45" Foreground="White"/><Button x:Name="StopButton" Content="Stop and save" Click="StopClick" IsEnabled="False"/></WrapPanel></Border>
   <ScrollViewer VerticalScrollBarVisibility="Auto"><Grid Margin="24">
    <Grid.ColumnDefinitions><ColumnDefinition Width="3*"/><ColumnDefinition Width="22"/><ColumnDefinition Width="2*"/></Grid.ColumnDefinitions>
    <StackPanel Grid.Column="0">
     <StackPanel x:Name="SetupPanel">
      <TextBlock Text="1  Choose a world" FontSize="20" FontWeight="SemiBold"/>
      <ComboBox x:Name="Mode" SelectedIndex="0" SelectionChanged="ModeChanged"><ComboBoxItem Content="Host a world"/><ComboBoxItem Content="Join a friend"/></ComboBox>
+     <ComboBox x:Name="Transport" SelectedIndex="0" SelectionChanged="ModeChanged"><ComboBoxItem Content="Automatic direct — no relay or service account"/><ComboBoxItem Content="Same LAN — no internet hosting"/><ComboBoxItem Content="Advanced — existing frp relay"/></ComboBox>
      <StackPanel x:Name="HostPanel">
       <ComboBox x:Name="Worlds" DisplayMemberPath="Name" SelectionChanged="WorldChanged"/>
       <TextBox x:Name="WorldName" Text="My world" AutomationProperties.Name="New world name"/>
       <WrapPanel><Button Content="Create world" Click="CreateWorld"/><Button Content="Import stopped server…" Click="ImportWorld"/></WrapPanel>
-      <WrapPanel><Button Content="Import relay profile…" Click="ImportRelay"/><Button Content="Export invitation…" Click="ExportInvitation"/></WrapPanel>
+      <WrapPanel x:Name="LegacyHost"><Button Content="Import relay profile…" Click="ImportRelay"/><Button Content="Export invitation…" Click="ExportInvitation"/></WrapPanel>
       <TextBlock x:Name="RelayLabel" Text="No relay profile selected." Margin="0,0,0,12" Foreground="#4D605B"/>
      </StackPanel>
      <StackPanel x:Name="JoinPanel" Visibility="Collapsed">
+      <StackPanel x:Name="DirectJoin"><TextBlock Text="Paste your friend's private invitation code"/><TextBox x:Name="InvitationCode" MaxLength="4096" TextWrapping="Wrap" MaxHeight="110" VerticalScrollBarVisibility="Auto"/><Button Content="Use invitation code" Click="UseDirectCode" HorizontalAlignment="Left"/></StackPanel>
+      <StackPanel x:Name="LegacyJoin">
       <ComboBox x:Name="JoinedWorlds" DisplayMemberPath="WorldName" SelectionChanged="JoinedWorldChanged"/>
       <Button Content="Import friend's invitation…" Click="ImportInvitation" HorizontalAlignment="Left"/>
+      </StackPanel>
       <TextBlock x:Name="InviteLabel" Text="No invitation selected." Margin="0,0,0,12" Foreground="#4D605B"/>
      </StackPanel>
      <TextBlock Text="2  Connect your Xbox" FontSize="20" FontWeight="SemiBold" Margin="0,12,0,4"/>
      <TextBlock Text="PC network adapter (same network as the Xbox)"/>
      <DockPanel><Button Content="Refresh" DockPanel.Dock="Right" Click="RefreshAdapters" Margin="8,4,0,12"/><ComboBox x:Name="Adapters" DisplayMemberPath="Label"/></DockPanel>
+     <Expander Header="Existing client / advanced settings" Margin="0,8,0,12"><StackPanel>
+     <TextBlock Text="These fields are for manual config export. Approve Connect-enabled Xboxes in Play together." Margin="0,8,0,8"/>
      <TextBlock Text="Local game port"/><TextBox x:Name="Port" Text="43594"/>
      <Grid><Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition Width="16"/><ColumnDefinition/></Grid.ColumnDefinitions>
       <StackPanel><TextBlock Text="Character name"/><TextBox x:Name="Username" MaxLength="12"/></StackPanel>
@@ -37,19 +44,28 @@
      <ComboBox x:Name="Preset" SelectedIndex="0"><ComboBoxItem Content="64 MB — original settings"/><ComboBoxItem Content="128 MB — 480p"/><ComboBoxItem Content="128 MB — 720p"/></ComboBox>
      <WrapPanel><Button Content="Preserve an existing config…" Click="ImportTemplate"/><Button Content="Use preset instead" Click="ClearTemplate"/></WrapPanel>
      <TextBlock x:Name="TemplateLabel" Text="Using the selected preset." Foreground="#4D605B" Margin="0,0,0,12"/>
+     </StackPanel></Expander>
     </StackPanel>
-    <WrapPanel><Button x:Name="StartButton" Content="Start connection" Click="StartClick" Background="#244B45" Foreground="White"/><Button x:Name="StopButton" Content="Stop and save" Click="StopClick" IsEnabled="False"/><Button x:Name="ConfigButton" Content="Export Xbox config…" Click="ExportConfig"/></WrapPanel>
+    <Button x:Name="ConfigButton" Content="Export Xbox config…" Click="ExportConfig" HorizontalAlignment="Left"/>
    </StackPanel>
    <StackPanel Grid.Column="2">
     <Border Background="White" Padding="20" CornerRadius="8"><StackPanel>
      <TextBlock Text="CONNECTION STATUS" FontWeight="SemiBold" Foreground="#4D605B" Margin="0,0,0,16"/>
      <TextBlock Text="World server" FontWeight="SemiBold"/><TextBlock x:Name="ServerStatus" Text="Stopped" Margin="0,4,0,16"/>
-     <TextBlock Text="Internet relay" FontWeight="SemiBold"/><TextBlock x:Name="RelayStatus" Text="Stopped" Margin="0,4,0,16"/>
+     <TextBlock Text="Friends' connection" FontWeight="SemiBold"/><TextBlock x:Name="RelayStatus" Text="Stopped" Margin="0,4,0,16"/>
      <TextBlock Text="Local Xbox gateway" FontWeight="SemiBold"/><TextBlock x:Name="XboxStatus" Text="Stopped" Margin="0,4,0,16"/>
      <TextBlock x:Name="AddressStatus" Text="Select your LAN adapter before exporting." Foreground="#4D605B"/>
     </StackPanel></Border>
+    <Button x:Name="CopyCodeButton" Content="Copy invitation code" Click="CopyDirectCode" IsEnabled="False" HorizontalAlignment="Left"/>
     <TextBlock Text="3  Play together" FontSize="20" FontWeight="SemiBold" Margin="0,24,0,8"/>
-    <TextBlock Text="Export config.ini, then transfer it beside default.xbe with your FTP app. Keep a backup of the old config. Start the Xbox game and press Start to log in." Margin="0,0,0,12"/>
+    <TextBlock Text="Connect-enabled Xbox: press Start, then approve the matching code here. After approval, press Start again to play. Existing clients can still use Export Xbox config and manual transfer." Margin="0,0,0,12"/>
+    <TextBlock Text="Xbox waiting for approval (match the on-screen code)"/>
+    <ComboBox x:Name="FoundXboxes" DisplayMemberPath="Code"/>
+    <TextBlock Text="Character for this Xbox"/><TextBox x:Name="PairUsername" MaxLength="12" AutomationProperties.Name="Character for selected Xbox"/>
+    <TextBlock Text="World password"/><PasswordBox x:Name="PairPassword" MaxLength="20" Padding="8,6" Margin="0,4,0,8" AutomationProperties.Name="Password for selected Xbox"/>
+    <WrapPanel><Button Content="Allow Xbox / update character" Click="PairXbox"/><Button Content="Forget allowed Xboxes" Click="ForgetXboxes"/></WrapPanel>
+    <TextBlock Text="Use your trusted home network. Each Xbox needs its own character. Passwords stay on this PC; discovery sends no character credentials." Foreground="#4D605B" Margin="0,0,0,12"/>
+    <Button Content="Set up Windows firewall…" Click="SetupFirewall" HorizontalAlignment="Left"/>
     <TextBlock Text="Keep this PC awake and Connect running. A dropped tunnel may require logging in again. Friends' saves remain on the host PC." Foreground="#4D605B" Margin="0,0,0,18"/>
     <WrapPanel><Button x:Name="RotateButton" Content="Replace world invitation" Click="RotateInvitation"/><Button x:Name="BackupButton" Content="Back up world…" Click="BackupWorld"/><Button x:Name="RestoreButton" Content="Restore backup…" Click="RestoreWorld"/></WrapPanel>
     <WrapPanel><Button Content="Save settings" Click="SaveClick"/><Button Content="Export diagnostics…" Click="ExportDiagnostics"/><Button Content="Help / online guide" Click="HelpClick"/></WrapPanel>

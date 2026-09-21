@@ -16,6 +16,7 @@ jobs:
           dotnet-version: '10.0.x'
       - run: dotnet build connect/src/Connect.App/Connect.App.csproj -c Release
       - run: dotnet run --project connect/tests/Connect.Tests -c Release
+      - run: dotnet run --project connect/tests/Connect.Direct.Tests -c Release
       - run: dotnet run --project connect/tests/Connect.Windows.Tests -c Release
       - run: python scripts/check-public.py
   relay:
@@ -30,3 +31,12 @@ jobs:
       - run: python3 connect/tests/test_relay.py /tmp/frp_0.68.0_linux_amd64
       - name: Check relay container build
         run: docker build -t rs2-connect-relay-test connect/relay
+  direct-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+      - run: dotnet run --project connect/tests/Connect.Direct.Tests -c Release
+      - run: cc -std=c11 -Wall -Wextra -Werror tests/xboxconnect_test.c src/xboxconnect.c -o /tmp/xboxconnect-test && /tmp/xboxconnect-test

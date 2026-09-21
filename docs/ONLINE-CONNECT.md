@@ -1,5 +1,7 @@
 # RS2 Xbox Connect: host and guest instructions
 
+**This is the older advanced frp relay guide. For the new no-relay app, use [Connect automatic direct](ONLINE-DIRECT.md).** The dependency limitation below applies to the older relay package, not the built-in direct transport.
+
 **Current release limitation:** the Windows developer ZIP does not include frp and cannot start online connections. Windows security blocked that dependency during packaging. The workflow below documents the complete implementation for builders/testers; a ready-to-play Windows bundle is pending. For playing now, use [LAN or another documented method](ONLINE.md).
 
 Connect is a private-group preview. See [what has actually been tested](CONNECT-VALIDATION.md). Each household needs an awake Windows PC on the same LAN as its Xbox. No VPN installation on the Xbox is needed. The public relay and world host can be operated by different people.

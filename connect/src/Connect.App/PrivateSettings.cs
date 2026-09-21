@@ -24,6 +24,10 @@ public sealed class Settings
     public Dictionary<string, WorldInvite> HostedInvitations { get; set; } = new();
     public Dictionary<string, WorldInvite> JoinedInvitations { get; set; } = new();
     public RelayProfile? Relay { get; set; }
+    public int Transport { get; set; }
+    public DirectInvite? DirectInvitation { get; set; }
+    public Dictionary<string, DirectIdentity> DirectIdentities { get; set; } = new();
+    public Dictionary<string, XboxCharacter> XboxCharacters { get; set; } = new();
 }
 
 internal static class PrivateSettings

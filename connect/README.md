@@ -1,36 +1,27 @@
-# RS2 Xbox Connect — private-world preview
+# RS2 Xbox Connect — direct connection preview
 
-**Current distribution:** the developer Windows artifact omits `frpc.exe` because Windows security blocked the official download on the build machine. It cannot establish online tunnels. The source and Linux relay are supplied for development/testing; use the existing LAN package or documented alternatives for play today. No security exclusions or bypasses are recommended. The complete Windows bundle remains pending.
+Host a RuneScape 2 world and join friends using one Windows app. **No rented relay, domain or service account is required.** Connect tries automatic router setup and reports unsupported routers, CGNAT and double NAT. Guests behind CGNAT can join a reachable host; there is no relay fallback when no friend can accept incoming connections.
 
-Connect is a Windows companion for the native revision-225 Xbox client. It combines the existing portable server, a local TCP gateway, and frp private forwarding. Use a PC at each household and a public relay operated by someone you trust.
+1. Extract the Windows ZIP and run `INSTALL.cmd`. Approve Windows' prompt for the app's Private-network firewall rules. Portable use is also supported.
+2. Install the included Connect-enabled Xbox folder once, or update an existing client while preserving its configuration. A PC installer cannot update your Xbox by itself.
+3. Host: choose **Host a world → Automatic direct → Start connection**, then **Copy invitation code** for friends. A first world is created if needed; stopped portable worlds can be imported.
+4. Guest: choose **Join a friend**, paste the invitation, and start.
+5. Press Start on Xbox, approve its matching code and character inside Connect, then press Start again. Passwords stay on the PC. Additional Xboxes need separate characters.
+6. Keep PCs awake. Use **Stop and save** when done.
 
-**Requirements:** Windows 10/11 x64 capable of running the bundled .NET 10 and Bun runtimes; an SSE4.2-capable CPU; an original Xbox with the existing game folder; and a Linux x64 relay with Docker Compose. The 64 MB and 128 MB clients use the same world. Original Xbox graphics/audio limitations are unchanged.
+Read the [complete host/guest guide](../docs/ONLINE-DIRECT.md) and [validation record](../docs/CONNECT-VALIDATION.md). Packaged guides are under `docs/`. Local software tests are not cross-household or real-Xbox acceptance. Original 64 MB/128 MB release assets are preserved.
 
-1. Extract the **complete** Windows ZIP into a writable folder. Run `RS2XboxConnect.exe`; no separate .NET, Bun or frp installation is needed.
-2. The relay administrator follows [relay setup](../docs/ONLINE-RELAY.md). On GitHub start at [Play with friends](https://github.com/TommySanzCode/rs2-xbox/blob/main/docs/ONLINE.md). Packaged copies include these guides in `docs/`.
-3. Host: create a world, import the private relay profile, select the LAN adapter, and start. Export a world invitation and share it privately with friends.
-4. Friend: choose Join, import the invitation, select the LAN adapter, and start.
-5. Each player enters their own character name/password and exports `config.ini`. Transfer it beside `default.xbe` using an existing FTP program. Launch the Xbox game and press Start.
-6. Keep the host, relay, and each household's PC running. Stop and save before backups or updates.
+The host needs a compatible UPnP router with public IPv4. Connect requests an expiring mapping; success does not prove external reachability until a friend connects. If unsupported, LAN play remains available and another friend can try hosting.
 
-New names register on first login. Reusing a name requires that world's existing password. Characters belong to the host's world; they are not official RuneScape accounts. Use a unique password. In this legacy server, passwords are case-insensitive.
+Existing clients can still use configuration export, preserving imported graphics/audio/controls. The earlier **Advanced frp relay** mode remains in source for existing setups. The direct package includes no frp executable. The older 0.1 developer package remains incomplete for that advanced mode because its Windows dependency was blocked during packaging; no security settings were changed to bypass the block.
 
-Windows may need a Private-network firewall rule for TCP 43594. The app does not disable the firewall or automatically forward router ports. Detailed commands and troubleshooting are in the online guide.
-
-Settings live in `%LOCALAPPDATA%\RS2XboxConnect`, restricted to the current Windows user and SYSTEM. Saved UI settings are protected with Windows DPAPI. Local server keys and databases necessarily remain available to the server in that private directory. Exported invitations, INI files and backups are private files: do not post them in issues.
-
-**Preview validation:** see [the validation record](../docs/CONNECT-VALIDATION.md). Local automated checks do not establish cross-household or real-Xbox acceptance. This app is not a System Link tunnel and does not add online support to other Xbox games.
-
-## Source build
-
-Install a .NET 10 SDK and run from the repository root:
+## Build and test
 
 ```powershell
-dotnet build connect/src/Connect.App/Connect.App.csproj -c Release
+dotnet build connect/src/Connect.App -c Release
 dotnet run --project connect/tests/Connect.Tests -c Release
-.\connect\scripts\Build-Connect.ps1 -OutputDirectory C:\Builds\RS2ConnectPreview
+dotnet run --project connect/tests/Connect.Direct.Tests -c Release
+dotnet run --project connect/tests/Connect.Windows.Tests -c Release
 ```
 
-The packaging script downloads checksum-pinned frp and the original clean server release, and publishes a self-contained Windows app. Use a new output directory for each release. The server package remains separate from the Git source tree because it includes historical assets and dependencies with their own terms. Retain all notices.
-
-`-AppOnly` creates the explicitly named **Developer-Windows** archive without attempting to download frp; it is useful for UI/config/server development, not online play. Do not rename it to imply a complete bundle.
+`connect/scripts/Build-ConnectXbox.ps1` builds each memory profile in an isolated folder using your nxdk and local game cache. `connect/scripts/Build-Direct.ps1` packages the self-contained app, checksum-verified original clean server, both new Xbox folders, checksums, guides and notices. See script parameters for local input paths. It never downloads or executes frp. Original client, game, server and dependency credits remain applicable.

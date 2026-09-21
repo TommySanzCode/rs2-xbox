@@ -5,11 +5,11 @@ import path from 'node:path';
 import net from 'node:net';
 import { createPublicKey, randomBytes, randomInt } from 'node:crypto';
 import { pathToFileURL } from 'node:url';
-const [engine, portText] = process.argv.slice(2);
+const [engine, portText, bridgeKeyFile] = process.argv.slice(2);
 if (!engine || !portText || !fs.existsSync(path.join(engine, '../../connect-world.json'))) throw new Error('Requires a disposable Connect world.');
 const port = Number(portText);
 const Isaac = (await import(pathToFileURL(path.join(engine, 'src/io/Isaac.ts')).href)).default;
-const key = createPublicKey(fs.readFileSync(path.join(engine, 'data/config/public.pem'))).export({format:'jwk'});
+const key = bridgeKeyFile ? JSON.parse(fs.readFileSync(bridgeKeyFile, 'utf8')) : createPublicKey(fs.readFileSync(path.join(engine, 'data/config/public.pem'))).export({format:'jwk'});
 const number = bytes => BigInt('0x' + bytes.toString('hex'));
 const exponent = number(Buffer.from(key.e, 'base64url')), modulus = number(Buffer.from(key.n, 'base64url'));
 function pow(value, power, mod) { let result=1n; for (;power>0n;power>>=1n,value=value*value%mod) if(power&1n) result=result*value%mod; return result; }
@@ -25,9 +25,9 @@ function packet(name,password,seed) {
  const body=Buffer.concat([Buffer.from([225,1]),crc,Buffer.from([cipher.length]),cipher]);
  return Buffer.concat([Buffer.from([16,body.length]),body]);
 }
-const accounts=Array.from({length:8},(_,i)=>({name:'ct'+randomBytes(4).toString('hex')+i,password:randomBytes(8).toString('hex')}));
+const accounts=Array.from({length:8},(_,i)=>bridgeKeyFile ? {name:'connect',password:'connect',address:'127.0.0.'+(i+2)} : {name:'ct'+randomBytes(4).toString('hex')+i,password:randomBytes(8).toString('hex')});
 function login(account) { return new Promise((resolve,reject)=>{
- const socket=net.createConnection({host:'127.0.0.1',port}); socket.setNoDelay(true);
+ const socket=net.createConnection({host:'127.0.0.1',port,localAddress:account.address}); socket.setNoDelay(true);
  let buffer=Buffer.alloc(0),phase=0,isaac;
  const timer=setTimeout(()=>{socket.destroy();reject(new Error('Game login timed out'));},12000);
  socket.on('error',e=>{clearTimeout(timer);reject(new Error('Game socket failed: '+e.code));});

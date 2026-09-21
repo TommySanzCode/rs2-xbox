@@ -80,6 +80,8 @@ public static class XboxConfig
             throw new ArgumentException("Password: 1–20 letters, digits, spaces, underscores or hyphens; no leading/trailing spaces. Use a password unique to this private world.");
     }
     public static string Export(string template, WorldInvite world, string address, int port, string username, string password)
+        => Export(template, new WorldInfo(world.WorldId, world.WorldName, world.RsaExponent, world.RsaModulus, world.Members, 43594), address, port, username, password);
+    public static string Export(string template, WorldInfo world, string address, int port, string username, string password)
     {
         ValidateLogin(username, password);
         if (!IPAddress.TryParse(address, out var ip) || ip.AddressFamily != System.Net.Sockets.AddressFamily.InterNetwork || ip.Equals(IPAddress.Any) || IPAddress.IsLoopback(ip))

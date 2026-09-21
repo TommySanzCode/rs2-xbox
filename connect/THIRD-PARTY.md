@@ -2,6 +2,8 @@
 
 Connect's C# application, local gateway, packaging tools, relay setup/policy, and documentation are additions to TommySanzCode/rs2-xbox. They do not replace or relicense the upstream components. No blanket license is assigned to the combined playable distribution.
 
+**Direct preview 0.2:** the direct TLS transport, UPnP adapter, invitation format, Xbox discovery and local login bridge are newly written project code using .NET and the existing Xbox runtime. Direct packages include no frp binary or relay runtime. The frp/Go/Python/Alpine/OpenSSL entries below apply to the retained advanced relay implementation; their source notices remain for attribution. All included Xbox, audio, server and .NET notices remain applicable.
+
 | Component | Source and notice |
 | --- | --- |
 | frp 0.68.0 | [fatedier/frp and contributors](https://github.com/fatedier/frp/tree/v0.68.0), Apache 2.0; verbatim `licenses/frp-0.68.0-LICENSE.txt` and the binary archive's license are included. |

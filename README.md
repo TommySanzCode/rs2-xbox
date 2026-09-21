@@ -28,8 +28,9 @@ See [third-party provenance and licensing](docs/THIRD-PARTY.md) and
 
 Follow [Play with friends](docs/ONLINE.md) for LAN play, direct internet hosting,
 Tailscale, managed TCP tunnels, and VPS hosting. **[RS2 Xbox Connect](connect/README.md)**
-adds a Windows Host/Join app around the existing server and a self-hosted private
-relay. Read [preview validation and limitations](docs/CONNECT-VALIDATION.md) before
+adds a Windows Host/Join app with [automatic direct connections](docs/ONLINE-DIRECT.md),
+private invitation codes and Xbox discovery, without a rented relay or service account.
+Unsupported routers and CGNAT hosting are reported. Read [preview validation and limitations](docs/CONNECT-VALIDATION.md) before
 downloading; the original 64 MB/128 MB Xbox release assets remain unchanged.
 
 ## Build

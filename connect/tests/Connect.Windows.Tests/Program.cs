@@ -7,10 +7,15 @@ var root = Path.Combine(Path.GetTempPath(), "RS2ConnectDpapi-" + Guid.NewGuid().
 PrivateSettings.RestrictDirectory(root);
 var path = Path.Combine(root, "settings.protected");
 var settings = new Settings { Username = "testuser", Password = "dpapi-test-password" };
+settings.DirectIdentities["test-world"] = DirectIdentity.Create();
+settings.XboxCharacters["test-xbox"] = new XboxCharacter("tester","private-character");
 PrivateSettings.Save(path, settings);
 if (Encoding.UTF8.GetString(File.ReadAllBytes(path)).Contains(settings.Password)) throw new Exception("Plaintext secret found");
 var loaded = PrivateSettings.Load(path);
 if (loaded.Password != settings.Password || loaded.Username != settings.Username) throw new Exception("DPAPI roundtrip failed");
+if (loaded.DirectIdentities["test-world"] != settings.DirectIdentities["test-world"] || loaded.XboxCharacters["test-xbox"] != settings.XboxCharacters["test-xbox"]) throw new Exception("Direct identity/character roundtrip failed");
+var ciphertext = Encoding.UTF8.GetString(File.ReadAllBytes(path));
+if (ciphertext.Contains(settings.DirectIdentities["test-world"].Secret) || ciphertext.Contains("private-character")) throw new Exception("Direct credentials were stored in plaintext");
 var acl = new DirectoryInfo(root).GetAccessControl();
 if (!acl.AreAccessRulesProtected) throw new Exception("Directory inherited broad ACLs");
 var permitted = new[] { WindowsIdentity.GetCurrent().User!.Value, new SecurityIdentifier(WellKnownSidType.LocalSystemSid, null).Value };
