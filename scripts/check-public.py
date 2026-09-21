@@ -12,7 +12,15 @@ ALLOWED_INI = {'xbox-config.example.ini', 'xbox-128-config.example.ini', 'server
 # This exception changes text decoding only; all privacy checks still apply.
 TEXT_ENCODINGS = {'release-notices/xbox/FreeType-FTL.txt': 'latin-1'}
 FORBIDDEN_PARTS = {'.deps', 'build', 'dist', 'node_modules', 'runtime', 'players', 'saves', '.git'}
+FORBIDDEN_PARTS.update({'bin', 'obj', 'artifacts'})
 FORBIDDEN_SUFFIXES = {'.xbe', '.iso', '.zip', '.exe', '.dll', '.obj', '.o', '.d', '.rdi', '.log', '.pem', '.key', '.pfx', '.sqlite', '.sqlite3', '.db', '.pyc'}
+FORBIDDEN_SUFFIXES.update({'.rs2invite', '.rs2relay', '.rs2backup', '.protected'})
+# RFC 5737 documentation examples only, confined to the new guides and fixture.
+# Private/public user addresses remain forbidden, including in these files.
+EXAMPLE_FILES = {'docs/ONLINE-ALTERNATIVES.md', 'connect/tests/Connect.Tests/Program.cs'}
+EXAMPLE_NETWORKS = [ipaddress.ip_network((value, 24)) for value in (0xC0000200, 0xC6336400, 0xCB007100)]
+# Network boundaries used only to explain RFC 1918/6598 NAT in the guide.
+NAT_BOUNDARIES = {0x0A000000, 0xAC100000, 0xC0A80000, 0x64400000}
 IPV4 = re.compile(r'(?<![\w.])(?:\d{1,3}\.){3}\d{1,3}(?![\w.])')
 PRIVATE_PATH = re.compile(r'(?:[A-Za-z]:[\\/]+Users[\\/]+[A-Za-z0-9][^\\/\s]*|/(?:Users|home)/[A-Za-z0-9][A-Za-z0-9_.-]*)', re.I)
 SECRET = re.compile(r'-----BEGIN (?:RSA |EC |OPENSSH |DSA )?PRIVATE KEY-----|gh[pousr]_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{20,}|AKIA[0-9A-Z]{16}')
@@ -71,6 +79,10 @@ def check(files):
             except ValueError:
                 continue
             if not address.is_loopback and not address.is_unspecified:
+                if name in EXAMPLE_FILES and any(address in network for network in EXAMPLE_NETWORKS):
+                    continue
+                if name == 'docs/ONLINE-ALTERNATIVES.md' and int(address) in NAT_BOUNDARIES:
+                    continue
                 issues.append((name, 'non-loopback IP address'))
                 break
         if path.suffix.lower() == '.ini':

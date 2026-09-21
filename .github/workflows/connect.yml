@@ -1,0 +1,32 @@
+name: Connect checks
+on:
+  push:
+    paths: ['connect/**', '.github/workflows/connect.yml', 'scripts/check-public.py', 'docs/ONLINE*']
+  pull_request:
+    paths: ['connect/**', '.github/workflows/connect.yml', 'scripts/check-public.py', 'docs/ONLINE*']
+permissions:
+  contents: read
+jobs:
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+      - run: dotnet build connect/src/Connect.App/Connect.App.csproj -c Release
+      - run: dotnet run --project connect/tests/Connect.Tests -c Release
+      - run: dotnet run --project connect/tests/Connect.Windows.Tests -c Release
+      - run: python scripts/check-public.py
+  relay:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch checksum-pinned Linux test dependency
+        run: |
+          curl -fL --retry 3 https://github.com/fatedier/frp/releases/download/v0.68.0/frp_0.68.0_linux_amd64.tar.gz -o /tmp/frp.tar.gz
+          echo '3cf934477f4fb1ee9e19e49c31fb33f5ffe3283300076f59afad8b8ccf1e1621  /tmp/frp.tar.gz' | sha256sum -c -
+          tar -xzf /tmp/frp.tar.gz -C /tmp
+      - run: python3 connect/tests/test_relay.py /tmp/frp_0.68.0_linux_amd64
+      - name: Check relay container build
+        run: docker build -t rs2-connect-relay-test connect/relay

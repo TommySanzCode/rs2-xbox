@@ -16,7 +16,14 @@ This project builds on the work below. Source revisions, component license decla
 
 See [the server package notices](server-package/THIRD-PARTY.md) for exact revisions, full license texts, and runtime source/rebuild references. The server's software licenses do not cover Jagex's game assets.
 
-## Source projects and references
+## RS2 Xbox Connect
+
+- **fatedier and the [frp contributors](https://github.com/fatedier/frp)** — private TCP forwarding used by the companion app and relay.
+- **Microsoft and the .NET/WPF contributors** — Windows application framework and runtime.
+- **Python Software Foundation, Alpine Linux, OpenSSL, and Docker contributors** — relay deployment tools and platform.
+- Connect's application, gateway, setup tools and online-play documentation are additions by this port; the existing Lost City, Bun, Jagex and client credits above remain applicable. See [Connect notices](connect/THIRD-PARTY.md).
+
+## Client source projects and references
 
 The original Client3 [reference list](https://github.com/lesleyrs/Client3/blob/d828cb3cb87f033d76f0582748e664bade049562/docs/README.md) identifies these contributions and references:
 

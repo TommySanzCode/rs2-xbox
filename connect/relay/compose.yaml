@@ -1,0 +1,21 @@
+services:
+  relay:
+    build: .
+    platform: linux/amd64
+    user: "${RS2_UID:?Run setup.sh first}:${RS2_GID:?Run setup.sh first}"
+    restart: unless-stopped
+    ports:
+      - "${RS2_RELAY_PORT:-7000}:7000/tcp"
+    volumes:
+      - ./data:/data
+    read_only: true
+    tmpfs:
+      - /tmp
+    cap_drop: [ALL]
+    security_opt:
+      - no-new-privileges:true
+    logging:
+      driver: json-file
+      options:
+        max-size: "5m"
+        max-file: "2"

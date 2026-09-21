@@ -31,4 +31,12 @@ __pycache__/
 *.db
 /saves/
 /players/
+**/bin/
+**/obj/
+/connect/artifacts/
+/connect/relay/data/
+*.rs2invite
+*.rs2relay
+*.rs2backup
+*.protected
 .DS_Store

@@ -24,6 +24,14 @@ include the matching historical game cache. Source builds require that cache in
 See [third-party provenance and licensing](docs/THIRD-PARTY.md) and
 [server package notices](server-package/THIRD-PARTY.md).
 
+## Play with friends
+
+Follow [Play with friends](docs/ONLINE.md) for LAN play, direct internet hosting,
+Tailscale, managed TCP tunnels, and VPS hosting. **[RS2 Xbox Connect](connect/README.md)**
+adds a Windows Host/Join app around the existing server and a self-hosted private
+relay. Read [preview validation and limitations](docs/CONNECT-VALIDATION.md) before
+downloading; the original 64 MB/128 MB Xbox release assets remain unchanged.
+
 ## Build
 
 On Windows, install Git and MSYS2 with the MinGW64 compiler tools described in

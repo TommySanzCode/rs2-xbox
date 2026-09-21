@@ -13,3 +13,4 @@
 release-notices/xbox/** -text -whitespace
 server-package/licenses/** -text -whitespace
 server-package/patches/*.patch -text -whitespace
+connect/licenses/** -text -whitespace
