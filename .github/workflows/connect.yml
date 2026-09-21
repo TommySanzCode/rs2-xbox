@@ -1,9 +1,9 @@
 name: Connect checks
 on:
   push:
-    paths: ['connect/**', '.github/workflows/connect.yml', 'scripts/check-public.py', 'docs/ONLINE*']
+    paths: ['connect/**', '.github/workflows/connect.yml', 'scripts/check-public.py', 'docs/ONLINE*', 'src/xboxconnect.*', 'src/entry/client.c', 'tests/xboxconnect_test.c']
   pull_request:
-    paths: ['connect/**', '.github/workflows/connect.yml', 'scripts/check-public.py', 'docs/ONLINE*']
+    paths: ['connect/**', '.github/workflows/connect.yml', 'scripts/check-public.py', 'docs/ONLINE*', 'src/xboxconnect.*', 'src/entry/client.c', 'tests/xboxconnect_test.c']
 permissions:
   contents: read
 jobs:

@@ -9638,9 +9638,15 @@ void client_draw_chatback(Client *c) {
         } else if (_Custom.chat_era == 2) {
             // 204+
             char buf[USERNAME_LENGTH + 3];
-            sprintf(buf, "%s:", jstring_format_name(c->username));
+            char *display_name = c->username;
+#ifdef NXDK
+            // Connect's placeholder is only a LAN login handshake. The world
+            // supplies the actual character name in the player's appearance.
+            if (xbox_connect_active() && c->local_player && c->local_player->name[0]) display_name = c->local_player->name;
+#endif
+            sprintf(buf, "%s:", jstring_format_name(display_name));
             drawString(font, 4, 90, buf, BLACK);
-            sprintf(buf, "%s: ", c->username);
+            sprintf(buf, "%s: ", display_name);
 
             char buf2[CHAT_LENGTH + 2];
             sprintf(buf2, "%s*", c->chat_typed);

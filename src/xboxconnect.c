@@ -36,6 +36,7 @@ extern Custom _Custom;
 static int connect_enabled = -1;
 static char nonce[17];
 static char message[96];
+bool xbox_connect_active(void) { return connect_enabled == 1; }
 
 bool xbox_connect_login(Client *game) {
     if (connect_enabled < 0) connect_enabled = !strcmp(_Client.socketip, "auto");

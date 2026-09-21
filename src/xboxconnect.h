@@ -12,4 +12,5 @@ int xbox_connect_parse(const char *message, const char *nonce, XboxConnectReply 
 #ifdef NXDK
 struct Client;
 bool xbox_connect_login(struct Client *game);
+bool xbox_connect_active(void);
 #endif

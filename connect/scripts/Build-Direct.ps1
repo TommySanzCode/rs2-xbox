@@ -38,6 +38,7 @@ foreach ($profile in @(64,128)) {
     if ($limited -ne ($profile -eq 64)) { throw 'Xbox executable memory flag does not match its package.' }
     if ($profile -eq 128) { Copy-Item -LiteralPath $SoundFont -Destination (Join-Path $destination 'TimGM6mb.sf2') }
     Copy-Item -LiteralPath (Join-Path $repo 'release-notices') -Destination $destination -Recurse
+    Copy-Item -LiteralPath (Join-Path $repo 'licenses') -Destination $destination -Recurse
     Copy-Item -LiteralPath (Join-Path $repo 'CREDITS.md'),(Join-Path $repo 'docs\THIRD-PARTY.md') -Destination $destination
     & python (Join-Path $repo 'scripts\sanitize-xbox-paths.py') --input (Join-Path $source 'default.xbe') --output (Join-Path $destination 'default.xbe')
     if ($LASTEXITCODE -ne 0) { throw 'Xbox diagnostic path sanitation failed.' }
