@@ -7,7 +7,7 @@ $repo = (Resolve-Path -LiteralPath (Join-Path $PSScriptRoot '..\..')).Path
 $out = [IO.Path]::GetFullPath($OutputDirectory)
 if (Test-Path -LiteralPath $out) { throw 'Choose a new artifact folder. Existing packages are never overwritten.' }
 [void][IO.Directory]::CreateDirectory($out)
-$hash = '9ac5f77b04a7ffe9d414da83da073c31d3564e9e56ec14fda929f60fdee9babb'
+$hash = '01f8225e7ab6ebdc6864e48b4502443af5001f115b91dee5f3ef94149eac4fd0'
 if ((Get-FileHash -LiteralPath $ServerZip).Hash.ToLowerInvariant() -ne $hash) { throw 'Use the current checksum-pinned Preview 1 server archive.' }
 $app = Join-Path $out 'RS2-Xbox-Connect'
 & dotnet publish (Join-Path $repo 'connect\src\Connect.App') -c Release -r win-x64 --self-contained true -p:DebugType=None -p:DebugSymbols=false -o $app --nologo

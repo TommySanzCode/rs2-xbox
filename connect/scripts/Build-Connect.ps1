@@ -18,7 +18,7 @@ if (-not $AppOnly) {
 }
 if (-not $ServerZip) { $ServerZip = Join-Path $downloads 'RS2-2004-Server.zip' }
 # Checksum-pinned release archive, including the issue #2 launcher fix; never bundle live state.
-$serverHash = '9ac5f77b04a7ffe9d414da83da073c31d3564e9e56ec14fda929f60fdee9babb'
+$serverHash = '01f8225e7ab6ebdc6864e48b4502443af5001f115b91dee5f3ef94149eac4fd0'
 Get-CheckedDownload 'https://github.com/TommySanzCode/rs2-xbox/releases/download/v0.1.0-preview.1/RS2-2004-Server.zip' $ServerZip $serverHash
 $stage = Join-Path $out ('stage-' + [Guid]::NewGuid().ToString('N'))
 $app = Join-Path $stage 'RS2-Xbox-Connect'
