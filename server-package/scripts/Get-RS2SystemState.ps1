@@ -4,11 +4,52 @@ $ErrorActionPreference = 'Stop'
 $ProgressPreference = 'SilentlyContinue'
 try {
     if ($Query -eq 'processes') {
+        # Windows may report an executable using an 8.3 alias even when the
+        # launcher uses its long name. Compare real file arguments, not strings.
+        Add-Type -TypeDefinition @'
+using System;
+using System.ComponentModel;
+using System.Runtime.InteropServices;
+using System.Text;
+public static class RS2ProcessPaths {
+    [DllImport("kernel32.dll", CharSet=CharSet.Unicode, SetLastError=true)]
+    private static extern uint GetLongPathName(string path, StringBuilder output, uint length);
+    [DllImport("shell32.dll", CharSet=CharSet.Unicode, ExactSpelling=true, SetLastError=true)]
+    private static extern IntPtr CommandLineToArgvW(string command, out int count);
+    [DllImport("kernel32.dll")]
+    private static extern IntPtr LocalFree(IntPtr memory);
+    public static string Canonical(string path) {
+        var output = new StringBuilder(32768);
+        uint length = GetLongPathName(path, output, (uint)output.Capacity);
+        if (length == 0 || length >= output.Capacity) throw new Win32Exception(Marshal.GetLastWin32Error());
+        return output.ToString();
+    }
+    public static string[] Arguments(string command) {
+        int count; IntPtr memory = CommandLineToArgvW(command, out count);
+        if (memory == IntPtr.Zero) throw new Win32Exception(Marshal.GetLastWin32Error());
+        try {
+            var result = new string[count];
+            for (int i=0;i<count;i++) result[i]=Marshal.PtrToStringUni(Marshal.ReadIntPtr(memory,i*IntPtr.Size));
+            return result;
+        } finally { LocalFree(memory); }
+    }
+}
+'@
+        $expectedBun = [RS2ProcessPaths]::Canonical($BunPath)
+        $expectedWrapper = [RS2ProcessPaths]::Canonical($WrapperPath)
         $processIds = @(Get-CimInstance Win32_Process -Filter "Name = 'bun.exe'" -OperationTimeoutSec 5 | ForEach-Object {
             if (-not $_.ExecutablePath -or -not $_.CommandLine) {
                 throw 'Cannot inspect a running Bun process. Run the launcher as the same Windows user as that process; do not start another server until its identity is known.'
             }
-            if ($_.ExecutablePath -eq $BunPath -and $_.CommandLine.IndexOf($WrapperPath, [StringComparison]::OrdinalIgnoreCase) -ge 0) { [int]$_.ProcessId }
+            if ([RS2ProcessPaths]::Canonical($_.ExecutablePath) -eq $expectedBun) {
+                $wrapperMatch = $false
+                foreach ($argument in [RS2ProcessPaths]::Arguments($_.CommandLine)) {
+                    if ([IO.Path]::GetExtension($argument) -ieq '.ts' -and
+                        [IO.Path]::GetPathRoot($argument) -eq [IO.Path]::GetPathRoot($expectedWrapper) -and [IO.File]::Exists($argument) -and
+                        [RS2ProcessPaths]::Canonical($argument) -eq $expectedWrapper) { $wrapperMatch = $true; break }
+                }
+                if ($wrapperMatch) { [int]$_.ProcessId }
+            }
         })
         [pscustomobject]@{ matches = $processIds } | ConvertTo-Json -Compress
     } else {

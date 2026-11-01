@@ -29,6 +29,7 @@ public class LauncherFixture {
 '@
 Add-Type -TypeDefinition $stub -OutputAssembly $bun -OutputType ConsoleApplication
 [IO.File]::WriteAllText((Join-Path $scripts 'initialize-server.mjs'),'// Test stub; the fixture executable only checks this argument path.')
+[IO.File]::WriteAllText((Join-Path $root 'Server225\run-local.ts'),'// Test wrapper identity only.')
 . (Join-Path $scripts 'RS2-Server.Common.ps1')
 function Check([bool]$condition,[string]$message) { if (-not $condition) { throw $message }; Write-Output "PASS: $message" }
 $ps5 = Join-Path $env:SystemRoot 'System32\WindowsPowerShell\v1.0\powershell.exe'
@@ -83,6 +84,14 @@ try {
         catch { $timedOut = $_.Exception.Message.Contains('timed out') }
         Check $timedOut 'worker deadline remains enforced while another server process exists'
         Check (-not $hold.HasExited) 'configuration failure leaves the existing process running'
+    } finally { if (-not $hold.HasExited) { $hold.Kill(); [void]$hold.WaitForExit(2000) }; $hold.Dispose() }
+    $fso = New-Object -ComObject Scripting.FileSystemObject
+    $shortBun = $fso.GetFile($bun).ShortPath
+    $shortWrapper = $fso.GetFile($rs2Wrapper).ShortPath
+    $hold = Start-Process -FilePath $shortBun -ArgumentList @('run',('"'+$shortWrapper+'"'),'--hold') -WindowStyle Hidden -PassThru
+    try {
+        $orphans = @(Get-RS2WrapperProcesses)
+        Check ($orphans.Count -eq 1 -and $orphans[0].ProcessId -eq $hold.Id) '8.3 executable and wrapper aliases retain duplicate-server protection'
     } finally { if (-not $hold.HasExited) { $hold.Kill(); [void]$hold.WaitForExit(2000) }; $hold.Dispose() }
     $echoScript = Join-Path $scripts 'echo-args.ps1'
     [IO.File]::WriteAllText($echoScript,'param([string[]]$Items); ConvertTo-Json -InputObject $Items -Compress')
