@@ -66,9 +66,7 @@ try {
             throw "Server is shutting down (PID $($record.pid)). Wait for it to stop before starting again. Read $stderrLog and $stdoutLog."
         }
         if ($status -and $status.status -eq 'ready') {
-            $listener = @(Get-NetTCPConnection -State Listen -OwningProcess $record.pid -ErrorAction SilentlyContinue |
-                Where-Object { $_.LocalPort -eq $status.nodePort })
-            if ($listener.Count -gt 0) {
+            if (Test-RS2GameReady ([int]$status.nodePort)) {
                 Write-Output "RS2 revision 225 is ready on TCP port $($status.nodePort) (PID $($record.pid))."
                 Write-Output "Log: $stdoutLog"
                 Write-Output "Errors: $stderrLog"

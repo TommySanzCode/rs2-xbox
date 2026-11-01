@@ -1,0 +1,30 @@
+Server launcher update - issue #2 - 2026-11-01
+
+This update applies to the Windows portable server used by BOTH the 64 MB and
+128 MB Xbox clients. Existing Xbox files do not need updating.
+
+Fresh installation: fully extract RS2-2004-Server.zip, open Options.cmd as
+needed, and run Start-Server.cmd. The four printed stages identify progress.
+Automatic address discovery no longer uses the Windows NetTCPIP CIM provider.
+A manual server_address completely skips address discovery. Setup helpers are
+time limited and failures explain the next step.
+
+Existing world: stop it with Stop-Server.cmd and make a private backup. Extract
+the launcher-fix ZIP to a separate location, then copy its scripts folder into
+your existing server folder, replacing the old launcher scripts. You can also
+take the scripts folder from the updated complete server ZIP. Do not replace
+options.ini, Xbox-config.ini or Server225: they hold your existing settings,
+accounts, keys and saves. Start normally after replacing the launcher files.
+
+If automatic address selection fails, set server_address in options.ini to the
+server PC's IPv4 address on the Xbox LAN and retry. Running Bun processes still
+receive a bounded identity check before startup to prevent duplicate worlds.
+If that check fails, resolve it before launching another copy.
+
+Tested: Windows PowerShell 5.1 regression cases for blocked address discovery,
+blocked runtime/configuration helpers, paths with spaces/symbols, duplicate
+process protection, and normal setup. The release notes record actual server
+startup, login, persistence and shutdown checks. The reporter's specific PC
+may still require its displayed error details if another local problem exists.
+
+Credits and dependency notices in the original server remain applicable.

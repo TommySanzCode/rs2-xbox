@@ -18,6 +18,8 @@ GET STARTED
    fresh RSA keys and a local account. With blank account options, it uses
    the default username xboxplayer and generates a random password. Later
    starts reuse the local account, keys, database, and saves.
+   The launcher now prints four setup stages. Windows probes time out after
+   10 seconds and initialization after 90 seconds, instead of waiting silently.
 
 4. Find Xbox-config.ini beside Start-Server.cmd. Check its socketip setting
    points to the PC's LAN address. If automatic detection chose a VPN or
@@ -58,6 +60,29 @@ Logs are in Server225\runtime\. Keep the extracted server folder to retain
 your account, keys, and saves. Distributed archives contain no personal
 addresses, accounts, keys, or saves; those are generated locally. Your generated
 Xbox-config.ini contains a plaintext login, so keep configured copies private.
+
+SETUP TROUBLESHOOTING (ISSUE #2)
+
+The updated launcher detects the address without the Windows NetTCPIP/WMI
+network provider. An explicit server_address skips address discovery entirely.
+If automatic detection fails, use Options.cmd to enter the PC's IPv4 address
+on the Xbox LAN, save, and try Start-Server.cmd again.
+
+Stage 1 checks existing processes. A running Bun process needs an identity
+check; if that check times out, startup stops safely instead of launching a
+duplicate world. Start and stop the server under the same Windows account.
+
+Stage 3 tests the bundled runtime. If it fails, confirm complete extraction,
+read the Windows error, and check the runtime requirements in THIRD-PARTY.md.
+Stage 4 prepares configuration. All six server/service ports must be free,
+not only the game port. The error names any conflicting port or invalid option.
+
+Existing installations: stop and back up the world first, then copy only the
+updated scripts folder from the new download into your existing server folder.
+Keep options.ini, Xbox-config.ini and the entire Server225 folder in place.
+The optional RS2-2004-Server-Launcher-Fix.zip contains just these launcher files
+and update instructions. Both Xbox memory profiles use the same server; no
+Xbox XBE, display, audio, controls or client configuration update is required.
 
 XBOX CONTROLS
 

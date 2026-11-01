@@ -315,6 +315,7 @@ def main() -> None:
     modified = [path for path in modified if excluded(path) is None]
     required_template = ("Start-Server.cmd", "Stop-Server.cmd", "Options.cmd", "Help.cmd", "Help.txt", "options.ini",
                          "scripts/Configure-Server.ps1", "scripts/initialize-server.mjs", "scripts/RS2-Server.Common.ps1",
+                         "scripts/Get-RS2SystemState.ps1",
                          "scripts/Start-RS2-Server.ps1", "scripts/Stop-RS2-Server.ps1", "Server225/run-local.ts",
                          "patches/engine-local-bind.patch", "THIRD-PARTY.md", "licenses/Bun-1.4.2-LICENSE.md")
     missing_template = [path for path in required_template if not (output / PACKAGES[1] / path).is_file()]

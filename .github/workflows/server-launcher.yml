@@ -1,0 +1,16 @@
+name: Server launcher checks
+on:
+  push:
+    paths: ['server-package/**', 'tests/server_launcher_test.ps1', '.github/workflows/server-launcher.yml']
+  pull_request:
+    paths: ['server-package/**', 'tests/server_launcher_test.ps1', '.github/workflows/server-launcher.yml']
+permissions:
+  contents: read
+jobs:
+  windows-powershell:
+    runs-on: windows-2022
+    steps:
+      - uses: actions/checkout@v4
+      - name: Windows PowerShell 5 launcher regression tests
+        shell: powershell
+        run: .\tests\server_launcher_test.ps1
