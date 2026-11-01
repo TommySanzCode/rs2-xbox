@@ -17,7 +17,7 @@ using System.Threading;
 public class LauncherFixture {
   public static void Main(string[] args) {
     bool version = args.Length == 1 && args[0] == "--version";
-    if (args.Length > 2 && args[2] == "--hold") { Thread.Sleep(60000); return; }
+    if (args.Length > 2 && args[2] == "--hold") { File.WriteAllText(Path.Combine(Path.GetDirectoryName(args[1]),"fixture-running"),"ready"); Thread.Sleep(60000); return; }
     if (version && Environment.GetEnvironmentVariable("RS2_FIXTURE_STAGE") == "runtime" ||
         !version && Environment.GetEnvironmentVariable("RS2_FIXTURE_STAGE") == "setup") { Thread.Sleep(60000); return; }
     if (version) { Console.WriteLine("fixture-runtime"); return; }
@@ -66,7 +66,13 @@ try {
     Copy-Item -LiteralPath (Join-Path $Package 'scripts\Get-RS2SystemState.ps1') -Destination $worker
     $hold = Start-Process -FilePath $bun -ArgumentList @('run',('"'+$rs2Wrapper+'"'),'--hold') -WindowStyle Hidden -PassThru
     try {
+        $deadline = [DateTime]::UtcNow.AddSeconds(5)
+        while (-not (Test-Path -LiteralPath (Join-Path $root 'Server225\fixture-running')) -and -not $hold.HasExited -and [DateTime]::UtcNow -lt $deadline) { Start-Sleep -Milliseconds 50 }
         $orphans = @(Get-RS2WrapperProcesses)
+        if ($orphans.Count -ne 1 -or $orphans[0].ProcessId -ne $hold.Id) {
+            $observed = Get-CimInstance Win32_Process -Filter "ProcessId = $($hold.Id)" -OperationTimeoutSec 5
+            [pscustomobject]@{ FixtureAlive=(-not $hold.HasExited); ExpectedBun=$rs2Bun; ExpectedWrapper=$rs2Wrapper; ObservedExecutable=$observed.ExecutablePath; ObservedCommandLine=$observed.CommandLine } | ConvertTo-Json -Compress | Write-Output
+        }
         Check ($orphans.Count -eq 1 -and $orphans[0].ProcessId -eq $hold.Id) 'bounded orphan check identifies the matching folder and command line'
         $result = Configure
         Check ($result.Code -ne 0 -and $result.Error.Contains('unrecorded server process')) 'orphan protection prevents a duplicate server'
