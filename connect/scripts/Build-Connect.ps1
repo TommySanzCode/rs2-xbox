@@ -17,8 +17,8 @@ if (-not $AppOnly) {
     if (-not (Test-Path -LiteralPath $frpExtract)) { [IO.Compression.ZipFile]::ExtractToDirectory($frpZip, $frpExtract) }
 }
 if (-not $ServerZip) { $ServerZip = Join-Path $downloads 'RS2-2004-Server.zip' }
-# Exact original release archive; do not bundle a live server or its private state.
-$serverHash = 'bc1a236a076264580fbf2ba665610dbd8b027a2ec713bf44f9a5c1bb82cee265'
+# Checksum-pinned release archive, including the issue #2 launcher fix; never bundle live state.
+$serverHash = '9ac5f77b04a7ffe9d414da83da073c31d3564e9e56ec14fda929f60fdee9babb'
 Get-CheckedDownload 'https://github.com/TommySanzCode/rs2-xbox/releases/download/v0.1.0-preview.1/RS2-2004-Server.zip' $ServerZip $serverHash
 $stage = Join-Path $out ('stage-' + [Guid]::NewGuid().ToString('N'))
 $app = Join-Path $stage 'RS2-Xbox-Connect'
